@@ -27,7 +27,6 @@ org.slf4j:slf4j-api:1.7.26
 org.springframework.boot:spring-boot-actuator-autoconfigure:2.1.4.RELEASE
 org.springframework.boot:spring-boot-actuator:2.1.4.RELEASE
 org.springframework.boot:spring-boot-autoconfigure:2.1.4.RELEASE
-org.springframework.boot:spring-boot-devtools:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-actuator:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-json:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-logging:2.1.4.RELEASE

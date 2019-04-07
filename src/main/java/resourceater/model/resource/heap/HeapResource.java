@@ -3,22 +3,21 @@ package resourceater.model.resource.heap;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 import org.springframework.util.unit.DataSize;
+import resourceater.model.resource.Resource;
 
-public class HeapResource {
+/**
+ * @author Jonatan Ivanov
+ */
+public class HeapResource implements Resource {
     private static final long MAX_SIZE = DataSize.ofGigabytes(2).toBytes();
-
-    @Getter private final int id;
     @JsonIgnore private final byte[] bytes;
 
-    @JsonCreator
-    public HeapResource(@JsonProperty("size") String size) {
+    @JsonCreator public HeapResource(@JsonProperty("size") String size) {
         this(parseAndValidate(size));
     }
 
     private HeapResource(DataSize dataSize) {
-        this.id = System.identityHashCode(this);
         this.bytes = new byte[(int) dataSize.toBytes()];
     }
 
@@ -31,6 +30,7 @@ public class HeapResource {
         return dataSize;
     }
 
+    @Override
     public int getSize() {
         return bytes.length;
     }

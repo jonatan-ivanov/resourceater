@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import resourceater.model.resource.heap.HeapResource;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Jonatan Ivanov
  */
 @RestController
-public class ResourceController {
-    private final Map<Integer, HeapResource> heapResources = new HashMap<>();
+public class HeapResourceController {
+    private final Map<Integer, HeapResource> heapResources = new ConcurrentHashMap<>();
 
     @GetMapping("/resources/objects")
     public Collection<HeapResource> objects() {

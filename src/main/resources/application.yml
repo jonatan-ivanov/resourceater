@@ -1,1 +1,2 @@
 spring.application.name: resourceater
+spring.output.ansi.enabled: always

@@ -15,7 +15,6 @@ repositories {
 dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -26,10 +25,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.+'
-}
-
-test {
-    useJUnitPlatform()
 }
 
 dependencyLocking {
@@ -43,6 +38,10 @@ task resolveAndLockAll {
     doLast {
         configurations.findAll { it.canBeResolved }.each { it.resolve() }
     }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task cleanAll {
