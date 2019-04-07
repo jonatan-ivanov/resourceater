@@ -1,60 +1,47 @@
 package resourceater.controller;
 
-import org.springframework.beans.factory.DisposableBean;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import resourceater.model.resource.thread.ThreadResource;
+import resourceater.repository.ResourceRepository;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Optional;
 
 /**
  * @author Jonatan Ivanov
  */
 @RestController
-public class ThreadResourceController implements DisposableBean {
-    private final Map<Integer, ThreadResource> threadResources = new ConcurrentHashMap<>();
+@RequiredArgsConstructor
+public class ThreadResourceController {
+    private final ResourceRepository<ThreadResource> repository;
 
     @GetMapping("/resources/threadPools")
-    public Collection<ThreadResource> threadPools() {
-        return threadResources.values();
+    public Iterable<ThreadResource> findAll() {
+        return repository.findAll();
     }
 
     @GetMapping("/resources/threadPools/{id}")
-    public ThreadResource threadPool(@PathVariable int id) {
-        return threadResources.get(id);
+    public Optional<ThreadResource> findById(@PathVariable String id) {
+        return repository.findById(id);
     }
 
     @PostMapping("/resources/threadPools")
-    public ThreadResource createThreadPool(
-        @RequestBody ThreadResource threadResource,
-        @RequestParam(required = false, defaultValue = "true") boolean permanent) {
-        if (permanent) {
-            threadResources.put(threadResource.getId(), threadResource);
-        }
-
-        return threadResource;
+    public ThreadResource create(@RequestBody ThreadResource resource) {
+        return repository.save(resource);
     }
 
     @DeleteMapping("/resources/threadPools")
-    public void deleteThreadPools() {
-        threadResources.values().forEach(ThreadResource::shutdown);
-        threadResources.clear();
+    public void deleteAll() {
+        repository.deleteAll();
     }
 
     @DeleteMapping("/resources/threadPools/{id}")
-    public void deleteThreadPool(@PathVariable int id) {
-        threadResources.remove(id).shutdown();
-    }
-
-    @Override
-    public void destroy() throws Exception {
-        deleteThreadPools();
+    public void deleteById(@PathVariable String id) {
+        repository.deleteById(id);
     }
 }

@@ -20,7 +20,7 @@ public class ThreadResource implements Resource {
 
     @JsonCreator public ThreadResource(@JsonProperty("size") int size) {
         for (int i = 0; i < size; i++) {
-            Thread thread = new Thread(this::run, String.format("threadResource-%d#%d", getId(), i));
+            Thread thread = new Thread(this::run, String.format("threadResource-%s#%d", getId(), i));
             threads.add(thread);
             thread.start();
         }
@@ -31,16 +31,17 @@ public class ThreadResource implements Resource {
             countDownLatch.await();
         }
         catch (InterruptedException e) {
-            log.warn(String.format("Thread %s was interrupted", Thread.currentThread().getName()), e);
+            log.warn(String.format("Thread: %s was interrupted", Thread.currentThread().getName()), e);
         }
     }
 
     @Override
-    public int getSize() {
+    public long getSize() {
         return threads.size();
     }
 
-    public void shutdown() {
+    @Override
+    public void destroy() {
         countDownLatch.countDown();
     }
 }

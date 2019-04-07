@@ -3,10 +3,12 @@ package resourceater.model.resource;
 /**
  * @author Jonatan Ivanov
  */
+@SuppressWarnings("unused")
 public interface Resource {
-    default int getId() {
-        return System.identityHashCode(this);
+    default String getId() {
+        return String.valueOf(System.identityHashCode(this));
     }
 
-    int getSize();
+    long getSize();
+    void destroy();
 }

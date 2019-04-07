@@ -14,24 +14,24 @@ public class HeapResource implements Resource {
     @JsonIgnore private final byte[] bytes;
 
     @JsonCreator public HeapResource(@JsonProperty("size") String size) {
-        this(parseAndValidate(size));
+        this(DataSize.parse(size));
     }
 
     private HeapResource(DataSize dataSize) {
+        if (MAX_SIZE < dataSize.toBytes()) {
+            throw new IllegalArgumentException("The maximum allowed size is 2G"); // the size must fit into an int
+        }
+
         this.bytes = new byte[(int) dataSize.toBytes()];
     }
 
-    private static DataSize parseAndValidate(String size) {
-        DataSize dataSize = DataSize.parse(size);
-        if (MAX_SIZE < dataSize.toBytes()) {
-            throw new IllegalArgumentException("The maximum allowed size is 2G");
-        }
-
-        return dataSize;
+    @Override
+    public long getSize() {
+        return bytes.length;
     }
 
     @Override
-    public int getSize() {
-        return bytes.length;
+    public void destroy() {
+        // GC will do this
     }
 }
