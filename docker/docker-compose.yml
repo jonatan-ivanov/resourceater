@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  pacman:
+    image: ${SERVICE_IMAGE}
+    container_name: resourceater
+    ports:
+      - "${HTTP_PORT}:${HTTP_PORT}"
+      - "${JMX_PORT}:${JMX_PORT}"
+    volumes:
+      - ${LOGS_HOME}:/app/logs

@@ -1,0 +1,27 @@
+apply plugin: 'com.bmuschko.docker-spring-boot-application'
+
+docker {
+    springBootApplication {
+        baseImage = 'adoptopenjdk/openjdk12:alpine'
+        ports = [HTTP_PORT, JMX_PORT]
+        tag = "$project.dockerNamespace/$project.name:$project.version"
+        maintainer = project.maintainer
+    }
+}
+dockerCreateDockerfile {
+    environmentVariable 'JDK_JAVA_OPTIONS', commonJvmArgs.join(' ')
+}
+
+task dockerRun {
+    dependsOn dockerBuildImage
+    doLast {
+        def envVars = [
+                "HTTP_PORT=$HTTP_PORT",
+                "JMX_PORT=$JMX_PORT",
+                "LOGS_HOME=$projectDir/logs",
+                "SERVICE_IMAGE=${docker.springBootApplication.tag.get()}"
+        ]
+
+        'docker-compose up'.execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)
+    }
+}
