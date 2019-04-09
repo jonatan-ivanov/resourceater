@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import resourceater.model.resource.Response;
 import resourceater.model.resource.heap.HeapResource;
+import resourceater.model.resource.heap.HeapResourceRequest;
 import resourceater.repository.ResourceRepository;
 
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
+import static resourceater.utils.StreamUtils.toStream;
 
 /**
  * @author Jonatan Ivanov
@@ -24,18 +29,23 @@ public class HeapResourceController {
     private final ResourceRepository<HeapResource> repository;
 
     @GetMapping
-    public Iterable<HeapResource> findAll() {
-        return repository.findAll();
+    public Iterable<Response> findAll() {
+        return toStream(repository.findAll())
+            .map(HeapResource::toResponse)
+            .collect(toList());
     }
 
     @GetMapping("{id}")
-    public Optional<HeapResource> findById(@PathVariable String id) {
-        return repository.findById(id);
+    public Optional<Response> findById(@PathVariable String id) {
+        return repository.findById(id).map(HeapResource::toResponse);
     }
 
     @PostMapping
-    public HeapResource create(@RequestBody HeapResource resource, @RequestParam(required = false, defaultValue = "true") boolean permanent) {
-        return permanent ? repository.save(resource) : resource;
+    public Response create(
+        @RequestBody HeapResourceRequest request,
+        @RequestParam(required = false, defaultValue = "true") boolean permanent) {
+        HeapResource resource = new HeapResource(request);
+        return (permanent ? repository.save(resource) : resource).toResponse();
     }
 
     @DeleteMapping

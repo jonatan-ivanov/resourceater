@@ -8,11 +8,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import resourceater.model.resource.Response;
 import resourceater.model.resource.file.FileResource;
+import resourceater.model.resource.file.FileResourceRequest;
 import resourceater.repository.ResourceRepository;
 
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+import static resourceater.utils.StreamUtils.toStream;
+
+/**
+ * @author Jonatan Ivanov
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/resources/files")
@@ -20,18 +28,20 @@ public class FileResourceController {
     private final ResourceRepository<FileResource> repository;
 
     @GetMapping
-    public Iterable<FileResource> findAll() {
-        return repository.findAll();
+    public Iterable<Response> findAll() {
+        return toStream(repository.findAll())
+            .map(FileResource::toResponse)
+            .collect(toList());
     }
 
     @GetMapping("{id}")
-    public Optional<FileResource> findById(@PathVariable String id) {
-        return repository.findById(id);
+    public Optional<Response> findById(@PathVariable String id) {
+        return repository.findById(id).map(FileResource::toResponse);
     }
 
     @PostMapping
-    public FileResource create(@RequestBody FileResource resource) {
-        return repository.save(resource);
+    public Response create(@RequestBody FileResourceRequest request) {
+        return repository.save(new FileResource(request)).toResponse();
     }
 
     @DeleteMapping

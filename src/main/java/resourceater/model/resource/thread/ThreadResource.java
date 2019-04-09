@@ -1,10 +1,8 @@
 package resourceater.model.resource.thread;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.slf4j.Slf4j;
 import resourceater.model.resource.Resource;
+import resourceater.model.resource.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +13,11 @@ import java.util.concurrent.CountDownLatch;
  */
 @Slf4j
 public class ThreadResource implements Resource {
-    @JsonIgnore private final CountDownLatch countDownLatch = new CountDownLatch(1);
-    @JsonIgnore private final List<Thread> threads = new ArrayList<>();
+    private final CountDownLatch countDownLatch = new CountDownLatch(1);
+    private final List<Thread> threads = new ArrayList<>();
 
-    @JsonCreator public ThreadResource(@JsonProperty("size") int size) {
-        for (int i = 0; i < size; i++) {
+    public ThreadResource(ThreadResourceRequest request) {
+        for (int i = 0; i < request.getSize(); i++) {
             Thread thread = new Thread(this::run, String.format("threadResource-%s#%d", getId(), i));
             threads.add(thread);
             thread.start();
@@ -36,12 +34,15 @@ public class ThreadResource implements Resource {
     }
 
     @Override
-    public long getSize() {
-        return threads.size();
+    public void destroy() {
+        countDownLatch.countDown();
     }
 
     @Override
-    public void destroy() {
-        countDownLatch.countDown();
+    public Response toResponse() {
+        return ThreadResourceResponse.builder()
+            .resourceId(this.getId())
+            .size(this.threads.size())
+            .build();
     }
 }

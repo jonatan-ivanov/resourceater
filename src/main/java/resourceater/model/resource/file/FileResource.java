@@ -1,18 +1,15 @@
 package resourceater.model.resource.file;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.unit.DataSize;
 import resourceater.model.resource.Resource;
+import resourceater.model.resource.Response;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 import static java.nio.file.StandardOpenOption.WRITE;
@@ -23,10 +20,10 @@ import static java.nio.file.StandardOpenOption.WRITE;
 @Slf4j
 public class FileResource implements Resource {
     private static final int FILE_BUFFER_SIZE = (int) DataSize.ofMegabytes(1).toBytes();
-    @JsonIgnore private final File file;
+    private final File file;
 
-    @JsonCreator public FileResource(@JsonProperty("size") String size) {
-        this(DataSize.parse(size));
+    public FileResource(FileResourceRequest request) {
+        this(DataSize.parse(request.getSize()));
     }
 
     private FileResource(DataSize dataSize) {
@@ -52,16 +49,6 @@ public class FileResource implements Resource {
         );
     }
 
-    @SuppressWarnings("unused")
-    public Path getPath() {
-        return file.toPath();
-    }
-
-    @Override
-    public long getSize() {
-        return file.length();
-    }
-
     @Override
     public void destroy() {
         try {
@@ -70,5 +57,14 @@ public class FileResource implements Resource {
         catch (IOException e) {
             log.warn(String.format("Unable to delete file: %s", file.toPath()), e);
         }
+    }
+
+    @Override
+    public Response toResponse() {
+        return FileResourceResponse.builder()
+            .resourceId(this.getId())
+            .size(this.file.length())
+            .path(this.file.getAbsolutePath())
+            .build();
     }
 }

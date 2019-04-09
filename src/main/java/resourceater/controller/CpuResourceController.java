@@ -8,11 +8,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import resourceater.model.resource.Response;
 import resourceater.model.resource.cpu.CpuResource;
+import resourceater.model.resource.cpu.CpuResourceRequest;
 import resourceater.repository.ResourceRepository;
 
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+import static resourceater.utils.StreamUtils.toStream;
+
+/**
+ * @author Jonatan Ivanov
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/resources/cores")
@@ -20,18 +28,20 @@ public class CpuResourceController {
     private final ResourceRepository<CpuResource> repository;
 
     @GetMapping
-    public Iterable<CpuResource> findAll() {
-        return repository.findAll();
+    public Iterable<Response> findAll() {
+        return toStream(repository.findAll())
+            .map(CpuResource::toResponse)
+            .collect(toList());
     }
 
     @GetMapping("{id}")
-    public Optional<CpuResource> findById(@PathVariable String id) {
-        return repository.findById(id);
+    public Optional<Response> findById(@PathVariable String id) {
+        return repository.findById(id).map(CpuResource::toResponse);
     }
 
     @PostMapping
-    public CpuResource create(@RequestBody CpuResource resource) {
-        return repository.save(resource);
+    public Response create(@RequestBody CpuResourceRequest request) {
+        return repository.save(new CpuResource(request)).toResponse();
     }
 
     @DeleteMapping
