@@ -34,6 +34,7 @@ org.hibernate.validator:hibernate-validator:6.0.16.Final
 org.jboss.logging:jboss-logging:3.3.2.Final
 org.latencyutils:LatencyUtils:2.0.3
 org.mapstruct:mapstruct:1.2.0.Final
+org.ow2.asm:asm:7.1
 org.projectlombok:lombok:1.18.6
 org.slf4j:jul-to-slf4j:1.7.26
 org.slf4j:slf4j-api:1.7.26

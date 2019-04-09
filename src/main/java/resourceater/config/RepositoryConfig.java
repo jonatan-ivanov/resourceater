@@ -2,6 +2,7 @@ package resourceater.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import resourceater.model.resource.clazz.ClassResource;
 import resourceater.model.resource.cpu.CpuResource;
 import resourceater.model.resource.file.FileResource;
 import resourceater.model.resource.heap.HeapResource;
@@ -26,6 +27,10 @@ class RepositoryConfig {
     }
 
     @Bean ResourceRepository<CpuResource> cpuResourceRepository() {
+        return new ResourceRepository<>();
+    }
+
+    @Bean ResourceRepository<ClassResource> classResourceRepository() {
         return new ResourceRepository<>();
     }
 }
