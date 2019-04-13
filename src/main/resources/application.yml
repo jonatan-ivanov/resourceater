@@ -1,6 +1,14 @@
 spring.application.name: resourceater
+logging.level.resourceater: DEBUG
 logging.file: logs/${spring.application.name}.log
 spring.output.ansi.enabled: always
 
 management.endpoints.web.exposure.include: '*'
 management.endpoint.metrics.enabled: true
+
+feign.client.config.httpBlob:
+  loggerLevel: BASIC
+  url: 'http://cachefly.cachefly.net/100mb.test' # https://linhost.info/2013/10/download-test-files/
+#  url: 'http://speedtest.tele2.net/100MB.zip' # http://speedtest.tele2.net/
+#  url: 'http://www.ovh.net/files/100Mio.dat' # http://www.ovh.net/files/
+#  url: 'choose one based on your region' # http://www.azurespeed.com/Azure/Download
