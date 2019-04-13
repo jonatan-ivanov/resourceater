@@ -8,3 +8,7 @@ services:
       - "${JMX_PORT}:${JMX_PORT}"
     volumes:
       - ${LOGS_HOME}:/app/logs
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 128M
