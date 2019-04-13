@@ -15,7 +15,7 @@ ext.commonJvmArgs = [
         '-Dcom.sun.management.jmxremote.host=0.0.0.0',
         '-Djava.rmi.server.hostname=0.0.0.0',
         '-XX:+HeapDumpOnOutOfMemoryError',
-        '-XX:HeapDumpPath=/logs',
+        '-XX:HeapDumpPath=logs',
         '-Xlog:gc*:file=logs/gc.log:time,uptime,pid,tid,level,tags:filecount=5,filesize=5M'
 ]
 
