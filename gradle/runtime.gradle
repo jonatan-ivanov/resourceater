@@ -16,6 +16,7 @@ ext.commonJvmArgs = [
         '-Djava.rmi.server.hostname=0.0.0.0',
         '-XX:+HeapDumpOnOutOfMemoryError',
         '-XX:HeapDumpPath=logs',
+        '-XX:NativeMemoryTracking=detail',
         '-Xlog:gc*:file=logs/gc.log:time,uptime,pid,tid,level,tags:filecount=5,filesize=5M'
 ]
 
