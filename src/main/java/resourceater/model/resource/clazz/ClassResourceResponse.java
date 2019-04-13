@@ -9,7 +9,7 @@ import resourceater.model.resource.Response;
  */
 @Getter
 @Builder
-public class ClassResourceResponse implements Response {
+class ClassResourceResponse implements Response {
     private final String resourceId;
     private final int size;
 }

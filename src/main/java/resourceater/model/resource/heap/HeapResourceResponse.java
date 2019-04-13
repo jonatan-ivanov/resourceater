@@ -9,7 +9,7 @@ import resourceater.model.resource.Response;
  */
 @Getter
 @Builder
-public class HeapResourceResponse implements Response {
+class HeapResourceResponse implements Response {
     private final String resourceId;
     private final long size;
 }

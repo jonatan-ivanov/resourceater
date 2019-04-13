@@ -15,20 +15,21 @@ import static org.objectweb.asm.Opcodes.V12;
  * @author Jonatan Ivanov
  */
 public class ClassResource implements Resource {
+    private static final String PACKAGE_NAME = "gen";
     private static final DynamicClassLoader CLASS_LOADER = new DynamicClassLoader();
     private final ClassWriter classWriter = new ClassWriter(0);
     private final List<Class<?>> classes = new ArrayList<>();
 
     public ClassResource(ClassResourceRequest request) {
         for (int i = 0; i < request.getSize(); i++) {
-            classes.add(generateClass("gen", format("%s$%d", getId(), i)));
+            classes.add(generateClass(format("%s$%d", getId(), i)));
         }
     }
 
-    private Class<?> generateClass(String pckg, String name) {
-        classWriter.visit(V12, ACC_PUBLIC, format("%s/%s", pckg, name), null, "java/lang/Object", null);
+    private Class<?> generateClass(String name) {
+        classWriter.visit(V12, ACC_PUBLIC, format("%s/%s", PACKAGE_NAME, name), null, "java/lang/Object", null);
         classWriter.visitEnd();
-        return CLASS_LOADER.defineClass(format("%s.%s", pckg, name), classWriter.toByteArray());
+        return CLASS_LOADER.defineClass(format("%s.%s", PACKAGE_NAME, name), classWriter.toByteArray());
     }
 
     @Override
