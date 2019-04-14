@@ -1,8 +1,8 @@
 package resourceater.model.resource.network.socket;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.ToString;
+import lombok.Value;
 import resourceater.model.resource.Response;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Jonatan Ivanov
  */
-@Getter
+@Value
 @ToString
 @Builder
 class SocketResourceResponse implements Response {

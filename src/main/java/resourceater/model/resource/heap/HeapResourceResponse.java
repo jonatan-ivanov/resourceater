@@ -1,13 +1,13 @@
 package resourceater.model.resource.heap;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import resourceater.model.resource.Response;
 
 /**
  * @author Jonatan Ivanov
  */
-@Getter
+@Value
 @Builder
 class HeapResourceResponse implements Response {
     private final String resourceId;

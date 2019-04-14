@@ -1,13 +1,13 @@
 package resourceater.model.resource.thread.daemon;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import resourceater.model.resource.Response;
 
 /**
  * @author Jonatan Ivanov
  */
-@Getter
+@Value
 @Builder
 class DaemonThreadResourceResponse implements Response {
     private final String resourceId;

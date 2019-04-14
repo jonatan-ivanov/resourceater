@@ -1,13 +1,13 @@
 package resourceater.model.resource.clazz;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import resourceater.model.resource.Response;
 
 /**
  * @author Jonatan Ivanov
  */
-@Getter
+@Value
 @Builder
 class ClassResourceResponse implements Response {
     private final String resourceId;
