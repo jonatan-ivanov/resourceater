@@ -1,56 +1,23 @@
 package resourceater.controller;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import resourceater.model.resource.Response;
 import resourceater.model.resource.file.FileResource;
 import resourceater.model.resource.file.FileResourceRequest;
 import resourceater.repository.ResourceRepository;
-
-import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
-import static resourceater.utils.StreamUtils.toStream;
 
 /**
  * @author Jonatan Ivanov
  */
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/resources/files")
-public class FileResourceController {
-    private final ResourceRepository<FileResource> repository;
-
-    @GetMapping
-    public Iterable<Response> findAll() {
-        return toStream(repository.findAll())
-            .map(FileResource::toResponse)
-            .collect(toList());
+public class FileResourceController extends ResourceController<FileResourceRequest, FileResource> {
+    public FileResourceController(ResourceRepository<FileResource> repository) {
+        super(repository);
     }
 
-    @GetMapping("{id}")
-    public Optional<Response> findById(@PathVariable String id) {
-        return repository.findById(id).map(FileResource::toResponse);
-    }
-
-    @PostMapping
-    public Response create(@RequestBody FileResourceRequest request) {
-        return repository.save(new FileResource(request)).toResponse();
-    }
-
-    @DeleteMapping
-    public void deleteAll() {
-        repository.deleteAll();
-    }
-
-    @DeleteMapping("{id}")
-    public void deleteById(@PathVariable String id) {
-        repository.deleteById(id);
+    @Override
+    FileResource createResource(FileResourceRequest request) {
+        return new FileResource(request);
     }
 }
