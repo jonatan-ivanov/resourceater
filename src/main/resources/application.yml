@@ -6,6 +6,13 @@ spring.output.ansi.enabled: always
 management.endpoints.web.exposure.include: '*'
 management.endpoint.metrics.enabled: true
 
+server.tomcat.max-threads: 100
+feign.okhttp.enabled: true
+
+feign.client.config.containerThreadResource:
+  loggerLevel: BASIC
+  url: 'http://localhost:${server.port:8080}/resources/containerThreads'
+
 feign.client.config.httpBlob:
   loggerLevel: BASIC
   url: 'http://cachefly.cachefly.net/100mb.test' # https://linhost.info/2013/10/download-test-files/

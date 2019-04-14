@@ -8,6 +8,7 @@ import resourceater.model.resource.file.FileResource;
 import resourceater.model.resource.heap.HeapResource;
 import resourceater.model.resource.network.http.HttpResource;
 import resourceater.model.resource.network.socket.SocketResource;
+import resourceater.model.resource.thread.container.ContainerThreadResource;
 import resourceater.model.resource.thread.daemon.DaemonThreadResource;
 import resourceater.repository.ResourceRepository;
 
@@ -41,6 +42,10 @@ class RepositoryConfig {
     }
 
     @Bean ResourceRepository<SocketResource> socketResourceRepository() {
+        return new ResourceRepository<>();
+    }
+
+    @Bean ResourceRepository<ContainerThreadResource> containerThreadResourceRepository() {
         return new ResourceRepository<>();
     }
 }
