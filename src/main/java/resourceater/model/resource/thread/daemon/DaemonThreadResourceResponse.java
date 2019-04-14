@@ -1,4 +1,4 @@
-package resourceater.model.resource.thread;
+package resourceater.model.resource.thread.daemon;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import resourceater.model.resource.Response;
  */
 @Getter
 @Builder
-class ThreadResourceResponse implements Response {
+class DaemonThreadResourceResponse implements Response {
     private final String resourceId;
     private final int size;
 }

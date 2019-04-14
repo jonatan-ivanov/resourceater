@@ -8,7 +8,7 @@ import resourceater.model.resource.file.FileResource;
 import resourceater.model.resource.heap.HeapResource;
 import resourceater.model.resource.network.http.HttpResource;
 import resourceater.model.resource.network.socket.SocketResource;
-import resourceater.model.resource.thread.ThreadResource;
+import resourceater.model.resource.thread.daemon.DaemonThreadResource;
 import resourceater.repository.ResourceRepository;
 
 /**
@@ -20,7 +20,7 @@ class RepositoryConfig {
         return new ResourceRepository<>();
     }
 
-    @Bean ResourceRepository<ThreadResource> threadResourceRepository() {
+    @Bean ResourceRepository<DaemonThreadResource> daemonThreadResourceRepository() {
         return new ResourceRepository<>();
     }
 
