@@ -24,11 +24,6 @@ public class HeapResource implements Resource {
     }
 
     @Override
-    public void destroy() {
-        // GC will do this
-    }
-
-    @Override
     public Response toResponse() {
         return HeapResourceResponse.builder()
             .resourceId(this.getId())

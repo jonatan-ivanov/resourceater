@@ -20,7 +20,7 @@ import static resourceater.utils.StreamUtils.toStream;
  */
 @RequiredArgsConstructor
 public abstract class ResourceController<RQ, R extends Resource> {
-    private final ResourceRepository<R> repository;
+    protected final ResourceRepository<R> repository;
 
     @GetMapping
     public Iterable<Response> findAll() {
@@ -36,7 +36,7 @@ public abstract class ResourceController<RQ, R extends Resource> {
 
     @PostMapping
     public Response create(@RequestBody(required = false) RQ request) {
-        return repository.save(createResource(request)).toResponse();
+        return repository.save(createResource(request)).init().toResponse();
     }
 
     @DeleteMapping

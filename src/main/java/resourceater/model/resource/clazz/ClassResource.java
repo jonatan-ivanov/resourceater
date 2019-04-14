@@ -33,11 +33,6 @@ public class ClassResource implements Resource {
     }
 
     @Override
-    public void destroy() {
-        // GC will do this
-    }
-
-    @Override
     public Response toResponse() {
         return ClassResourceResponse.builder()
             .resourceId(this.getId())

@@ -44,11 +44,6 @@ public class SocketResource implements Resource {
     }
 
     @Override
-    public void destroy() {
-        // GC will do this
-    }
-
-    @Override
     public Response toResponse() {
         return SocketResourceResponse.builder()
             .resourceId(getId())

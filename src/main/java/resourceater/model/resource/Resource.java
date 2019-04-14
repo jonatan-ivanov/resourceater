@@ -8,7 +8,13 @@ public interface Resource {
         return String.valueOf(System.identityHashCode(this));
     }
 
-    void destroy();
+    default Resource init() {
+        return this;
+    }
+
+    default void destroy() {
+        // noop
+    }
 
     Response toResponse();
 }
