@@ -1,5 +1,7 @@
 package resourceater.model.resource;
 
-public interface Response {
-    String getResourceId();
+import org.springframework.hateoas.ResourceSupport;
+
+public abstract class Response extends ResourceSupport {
+    public abstract String getResourceId();
 }

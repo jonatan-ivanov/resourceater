@@ -6,11 +6,13 @@ import resourceater.model.resource.heap.HeapResource;
 import resourceater.model.resource.heap.HeapResourceRequest;
 import resourceater.repository.ResourceRepository;
 
+import static resourceater.controller.Mappings.OBJECTS;
+
 /**
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/objects")
+@RequestMapping("/resources/" + OBJECTS)
 public class HeapResourceController extends ResourceController<HeapResourceRequest, HeapResource> {
     public HeapResourceController(ResourceRepository<HeapResource> repository) {
         super(repository);
@@ -19,5 +21,10 @@ public class HeapResourceController extends ResourceController<HeapResourceReque
     @Override
     HeapResource createResource(HeapResourceRequest request) {
         return new HeapResource(request);
+    }
+
+    @Override
+    String getRel() {
+        return OBJECTS;
     }
 }

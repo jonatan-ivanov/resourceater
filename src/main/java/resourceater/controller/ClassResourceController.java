@@ -6,11 +6,13 @@ import resourceater.model.resource.clazz.ClassResource;
 import resourceater.model.resource.clazz.ClassResourceRequest;
 import resourceater.repository.ResourceRepository;
 
+import static resourceater.controller.Mappings.CLASS_POOLS;
+
 /**
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/classPools")
+@RequestMapping("/resources/" + CLASS_POOLS)
 public class ClassResourceController extends ResourceController<ClassResourceRequest, ClassResource> {
     public ClassResourceController(ResourceRepository<ClassResource> repository) {
         super(repository);
@@ -19,5 +21,10 @@ public class ClassResourceController extends ResourceController<ClassResourceReq
     @Override
     ClassResource createResource(ClassResourceRequest request) {
         return new ClassResource(request);
+    }
+
+    @Override
+    String getRel() {
+        return CLASS_POOLS;
     }
 }

@@ -1,6 +1,7 @@
 package resourceater.model.resource.clazz;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 import resourceater.model.resource.Response;
 
@@ -9,7 +10,8 @@ import resourceater.model.resource.Response;
  */
 @Value
 @Builder
-class ClassResourceResponse implements Response {
+@EqualsAndHashCode(callSuper=true)
+class ClassResourceResponse extends Response {
     private final String resourceId;
     private final int size;
 }

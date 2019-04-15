@@ -76,6 +76,7 @@ org.springframework.boot:spring-boot-actuator:2.1.4.RELEASE
 org.springframework.boot:spring-boot-autoconfigure:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-actuator:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-aop:2.1.4.RELEASE
+org.springframework.boot:spring-boot-starter-hateoas:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-json:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-logging:2.1.4.RELEASE
 org.springframework.boot:spring-boot-starter-test:2.1.4.RELEASE
@@ -92,6 +93,7 @@ org.springframework.cloud:spring-cloud-netflix-ribbon:2.1.0.RELEASE
 org.springframework.cloud:spring-cloud-openfeign-core:2.1.0.RELEASE
 org.springframework.cloud:spring-cloud-starter-openfeign:2.1.0.RELEASE
 org.springframework.cloud:spring-cloud-starter:2.1.0.RELEASE
+org.springframework.hateoas:spring-hateoas:0.25.1.RELEASE
 org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE
 org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE
 org.springframework.security:spring-security-crypto:5.1.5.RELEASE

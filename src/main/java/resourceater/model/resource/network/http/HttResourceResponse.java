@@ -1,6 +1,7 @@
 package resourceater.model.resource.network.http;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 import resourceater.model.resource.Response;
 
@@ -9,7 +10,8 @@ import resourceater.model.resource.Response;
  */
 @Value
 @Builder
-class HttResourceResponse implements Response {
+@EqualsAndHashCode(callSuper=true)
+class HttResourceResponse extends Response {
     private final String resourceId;
     private final String url;
 }
