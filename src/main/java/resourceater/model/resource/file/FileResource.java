@@ -19,6 +19,7 @@ import static java.nio.file.StandardOpenOption.WRITE;
  */
 @Slf4j
 public class FileResource implements Resource {
+    private static final long MAX_SIZE = DataSize.ofGigabytes(1).toBytes();
     private static final int FILE_BUFFER_SIZE = (int) DataSize.ofMegabytes(1).toBytes();
     private final File file;
 
@@ -27,6 +28,10 @@ public class FileResource implements Resource {
     }
 
     private FileResource(DataSize dataSize) {
+        if (MAX_SIZE < dataSize.toBytes()) {
+            throw new IllegalArgumentException("The maximum allowed size is 1GB"); // the size must fit into an int
+        }
+
         this.file = new File(getId());
         populate(file, dataSize);
     }

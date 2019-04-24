@@ -7,6 +7,7 @@ class Mappings {
     static final String THREAD_POOLS = "threadPools";
     static final String FILES = "files";
     static final String OBJECTS = "objects";
+    static final String DIRECT_BUFFERS = "directBuffers";
     static final String HTTP_CLIENTS = "httpClients";
     static final String SOCKET_POOLS = "socketPools";
 }
