@@ -22,6 +22,6 @@ task dockerRun {
                 "SERVICE_IMAGE=${docker.springBootApplication.tag.get()}"
         ]
 
-        'docker-compose up'.execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)
+        'docker-compose --compatibility up'.execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)
     }
 }
