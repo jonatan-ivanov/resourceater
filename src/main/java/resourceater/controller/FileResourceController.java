@@ -12,7 +12,7 @@ import static resourceater.controller.Mappings.FILES;
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/" + FILES)
+@RequestMapping(FILES)
 public class FileResourceController extends ResourceController<FileResourceRequest, FileResource> {
     public FileResourceController(ResourceRepository<FileResource> repository) {
         super(repository);
@@ -21,10 +21,5 @@ public class FileResourceController extends ResourceController<FileResourceReque
     @Override
     FileResource createResource(FileResourceRequest request) {
         return new FileResource(request);
-    }
-
-    @Override
-    String getRel() {
-        return FILES;
     }
 }

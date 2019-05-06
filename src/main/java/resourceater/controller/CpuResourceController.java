@@ -12,7 +12,7 @@ import static resourceater.controller.Mappings.CORES;
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/" + CORES)
+@RequestMapping(CORES)
 public class CpuResourceController extends ResourceController<CpuResourceRequest, CpuResource> {
     public CpuResourceController(ResourceRepository<CpuResource> repository) {
         super(repository);
@@ -21,10 +21,5 @@ public class CpuResourceController extends ResourceController<CpuResourceRequest
     @Override
     CpuResource createResource(CpuResourceRequest request) {
         return new CpuResource(request);
-    }
-
-    @Override
-    String getRel() {
-        return CORES;
     }
 }

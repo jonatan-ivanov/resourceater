@@ -13,7 +13,7 @@ import static resourceater.controller.Mappings.HTTP_CLIENTS;
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/" + HTTP_CLIENTS)
+@RequestMapping(HTTP_CLIENTS)
 public class HttpResourceController extends ResourceController<Void, HttpResource> {
     private final String url;
     private final HttpBlobClient client;
@@ -30,11 +30,6 @@ public class HttpResourceController extends ResourceController<Void, HttpResourc
     @Override
     HttpResource createResource(Void request) {
         return new HttpResource(client, url);
-    }
-
-    @Override
-    String getRel() {
-        return HTTP_CLIENTS;
     }
 }
 

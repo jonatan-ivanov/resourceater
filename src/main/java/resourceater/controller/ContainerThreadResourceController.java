@@ -19,7 +19,7 @@ import static resourceater.controller.Mappings.CONTAINER_THREADS;
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/" + CONTAINER_THREADS)
+@RequestMapping(CONTAINER_THREADS)
 public class ContainerThreadResourceController extends ResourceController<ContainerThreadResourceRequest, ContainerThreadResource> {
     private final ContainerThreadResourceClient client;
 
@@ -42,10 +42,5 @@ public class ContainerThreadResourceController extends ResourceController<Contai
     @Override
     ContainerThreadResource createResource(ContainerThreadResourceRequest request) {
         return new ContainerThreadResource(request, client);
-    }
-
-    @Override
-    String getRel() {
-        return CONTAINER_THREADS;
     }
 }

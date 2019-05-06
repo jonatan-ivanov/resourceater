@@ -70,8 +70,6 @@ public abstract class ResourceController<RQ, R extends Resource> {
 
     abstract R createResource(RQ request);
 
-    abstract String getRel();
-
     private Iterable<Response> enhance(Iterable<Response> responses) {
         return new Resources<>(responses, linkTo(methodOn(this.getClass()).findAll()).withSelfRel());
     }
@@ -79,7 +77,7 @@ public abstract class ResourceController<RQ, R extends Resource> {
     private Response enhance(Response response) {
         response.add(
             linkTo(methodOn(this.getClass()).findById(response.getResourceId())).withSelfRel(),
-            linkTo(methodOn(this.getClass()).findAll()).withRel(this.getRel())
+            linkTo(methodOn(this.getClass()).findAll()).withRel("collection")
         );
 
         return response;

@@ -12,7 +12,7 @@ import static resourceater.controller.Mappings.DIRECT_BUFFERS;
  * @author Jonatan Ivanov
  */
 @RestController
-@RequestMapping("/resources/" + DIRECT_BUFFERS)
+@RequestMapping(DIRECT_BUFFERS)
 public class OffHeapResourceController extends ResourceController<OffHeapResourceRequest, OffHeapResource> {
     public OffHeapResourceController(ResourceRepository<OffHeapResource> repository) {
         super(repository);
@@ -21,10 +21,5 @@ public class OffHeapResourceController extends ResourceController<OffHeapResourc
     @Override
     OffHeapResource createResource(OffHeapResourceRequest request) {
         return new OffHeapResource(request);
-    }
-
-    @Override
-    String getRel() {
-        return DIRECT_BUFFERS;
     }
 }
