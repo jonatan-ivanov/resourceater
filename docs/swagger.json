@@ -1,14 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Api Documentation",
+    "description": "Service API to consume your resources on demand",
     "version": "1.0",
-    "title": "Api Documentation",
-    "termsOfService": "urn:tos",
-    "contact": {},
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    "title": "Resourceater REST API",
+    "contact": {
+      "name": "Jonatan Ivanov",
+      "url": "https://github.com/jonatan-ivanov",
+      "email": "jonatan.ivanov@gmail.com"
     }
   },
   "host": "localhost:8080",
@@ -51,6 +50,12 @@
       "description": "Socket Resource Controller"
     }
   ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/resources/classPools": {
       "get": {
@@ -59,9 +64,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -87,12 +89,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -132,9 +128,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -162,9 +155,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -199,9 +189,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -238,9 +225,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_1",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -266,12 +250,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_1",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -311,9 +289,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_1",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -341,9 +316,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_1",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -378,9 +350,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_1",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -417,9 +386,6 @@
         ],
         "summary": "block",
         "operationId": "blockUsingGET",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -456,9 +422,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_2",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -484,12 +447,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_2",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -529,9 +486,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_2",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -559,9 +513,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_2",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -596,9 +547,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_2",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -635,9 +583,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_7",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -663,12 +608,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_7",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -708,9 +647,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_7",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -738,9 +674,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_7",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -775,9 +708,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_7",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -814,9 +744,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_4",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -842,12 +769,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_4",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -887,9 +808,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_4",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -917,9 +835,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_4",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -954,9 +869,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_4",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -993,9 +905,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_6",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1021,12 +930,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_6",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1055,9 +958,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_6",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1085,9 +985,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_6",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1122,9 +1019,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_6",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1161,9 +1055,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_5",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1189,12 +1080,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_5",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -1234,9 +1119,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_5",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1264,9 +1146,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_5",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1301,9 +1180,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_5",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1340,9 +1216,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_8",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1368,12 +1241,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_8",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -1413,9 +1280,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_8",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1443,9 +1307,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_8",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1480,9 +1341,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_8",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1519,9 +1377,6 @@
         ],
         "summary": "findAll",
         "operationId": "findAllUsingGET_3",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1547,12 +1402,6 @@
         ],
         "summary": "create",
         "operationId": "createUsingPOST_3",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "in": "body",
@@ -1592,9 +1441,6 @@
         ],
         "summary": "deleteAll",
         "operationId": "deleteAllUsingDELETE_3",
-        "produces": [
-          "*/*"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1622,9 +1468,6 @@
         ],
         "summary": "findById",
         "operationId": "findByIdUsingGET_3",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -1659,9 +1502,6 @@
         ],
         "summary": "deleteById",
         "operationId": "deleteByIdUsingDELETE_3",
-        "produces": [
-          "*/*"
-        ],
         "parameters": [
           {
             "name": "id",
