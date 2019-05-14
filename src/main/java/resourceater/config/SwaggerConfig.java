@@ -2,6 +2,8 @@ package resourceater.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import resourceater.ResourceaterApplication;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -13,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Set;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static springfox.documentation.builders.PathSelectors.regex;
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 
 /**
@@ -20,11 +23,11 @@ import static springfox.documentation.builders.RequestHandlerSelectors.basePacka
  */
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfig implements WebMvcConfigurer {
     private static final Set<String> SUPPORTED_MEDIA_TYPES = Set.of(APPLICATION_JSON_VALUE);
 
     @Bean
-    public Docket api() {
+    public Docket resourcesApi() {
         return new Docket(DocumentationType.SWAGGER_2)
             .groupName("Resourceater API")
             .consumes(SUPPORTED_MEDIA_TYPES)
@@ -36,7 +39,7 @@ public class SwaggerConfig {
 
     private ApiInfo resourcesApiInfo() {
         return new ApiInfoBuilder()
-            .title("Resourceater REST API")
+            .title("Resourceater API")
             .description("Service API to consume your resources on demand")
             .version("1.0")
             .contact(new Contact(
@@ -44,5 +47,28 @@ public class SwaggerConfig {
                 "https://github.com/jonatan-ivanov",
                 "jonatan.ivanov@gmail.com"))
             .build();
+    }
+
+    @Bean
+    public Docket actuatorApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+            .groupName("Spring-Boot Actuator API")
+            .consumes(SUPPORTED_MEDIA_TYPES)
+            .produces(SUPPORTED_MEDIA_TYPES)
+            .apiInfo(actuatorApiInfo())
+            .select().paths(regex("/actuator/.*"))
+            .build();
+    }
+
+    private ApiInfo actuatorApiInfo() {
+        return new ApiInfoBuilder()
+            .title("Spring-Boot Actuator API")
+            .description("https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html")
+            .build();
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "/swagger-ui.html");
     }
 }

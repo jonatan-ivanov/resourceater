@@ -3,7 +3,7 @@
   "info": {
     "description": "Service API to consume your resources on demand",
     "version": "1.0",
-    "title": "Resourceater REST API",
+    "title": "Resourceater API",
     "contact": {
       "name": "Jonatan Ivanov",
       "url": "https://github.com/jonatan-ivanov",
