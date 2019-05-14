@@ -1,6 +1,7 @@
 spring.application.name: resourceater
 logging.level.resourceater: DEBUG
 logging.file: logs/${spring.application.name}.log
+spring.jackson.serialization.indent_output: true
 spring.output.ansi.enabled: always
 
 management.endpoints.web.exposure.include: '*'
