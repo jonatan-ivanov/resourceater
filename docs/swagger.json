@@ -14,40 +14,40 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "class-resource-controller",
-      "description": "Class Resource Controller"
-    },
-    {
-      "name": "container-thread-resource-controller",
-      "description": "Container Thread Resource Controller"
-    },
-    {
-      "name": "cpu-resource-controller",
+      "name": "CPU Cores",
       "description": "Cpu Resource Controller"
     },
     {
-      "name": "daemon-thread-resource-controller",
-      "description": "Daemon Thread Resource Controller"
+      "name": "Classes",
+      "description": "Class Resource Controller"
     },
     {
-      "name": "file-resource-controller",
+      "name": "Container Threads",
+      "description": "Container Thread Resource Controller"
+    },
+    {
+      "name": "Files",
       "description": "File Resource Controller"
     },
     {
-      "name": "heap-resource-controller",
+      "name": "Heap Objects",
       "description": "Heap Resource Controller"
     },
     {
-      "name": "http-resource-controller",
+      "name": "Network Traffic over HTTP",
       "description": "Http Resource Controller"
     },
     {
-      "name": "off-heap-resource-controller",
+      "name": "Off-Heap Direct Buffers",
       "description": "Off Heap Resource Controller"
     },
     {
-      "name": "socket-resource-controller",
+      "name": "Sockets",
       "description": "Socket Resource Controller"
+    },
+    {
+      "name": "Threads",
+      "description": "Daemon Thread Resource Controller"
     }
   ],
   "consumes": [
@@ -60,9 +60,9 @@
     "/resources/classPools": {
       "get": {
         "tags": [
-          "class-resource-controller"
+          "Classes"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET",
         "responses": {
           "200": {
@@ -85,9 +85,9 @@
       },
       "post": {
         "tags": [
-          "class-resource-controller"
+          "Classes"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST",
         "parameters": [
           {
@@ -124,9 +124,9 @@
       },
       "delete": {
         "tags": [
-          "class-resource-controller"
+          "Classes"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE",
         "responses": {
           "200": {
@@ -151,9 +151,9 @@
     "/resources/classPools/{id}": {
       "get": {
         "tags": [
-          "class-resource-controller"
+          "Classes"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET",
         "parameters": [
           {
@@ -185,9 +185,9 @@
       },
       "delete": {
         "tags": [
-          "class-resource-controller"
+          "Classes"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE",
         "parameters": [
           {
@@ -221,9 +221,9 @@
     "/resources/containerThreads": {
       "get": {
         "tags": [
-          "container-thread-resource-controller"
+          "Container Threads"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_1",
         "responses": {
           "200": {
@@ -246,9 +246,9 @@
       },
       "post": {
         "tags": [
-          "container-thread-resource-controller"
+          "Container Threads"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_1",
         "parameters": [
           {
@@ -285,9 +285,9 @@
       },
       "delete": {
         "tags": [
-          "container-thread-resource-controller"
+          "Container Threads"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_1",
         "responses": {
           "200": {
@@ -312,9 +312,9 @@
     "/resources/containerThreads/{id}": {
       "get": {
         "tags": [
-          "container-thread-resource-controller"
+          "Container Threads"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_1",
         "parameters": [
           {
@@ -346,9 +346,9 @@
       },
       "delete": {
         "tags": [
-          "container-thread-resource-controller"
+          "Container Threads"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_1",
         "parameters": [
           {
@@ -382,7 +382,7 @@
     "/resources/containerThreads/{id}/block": {
       "get": {
         "tags": [
-          "container-thread-resource-controller"
+          "Container Threads"
         ],
         "summary": "block",
         "operationId": "blockUsingGET",
@@ -418,9 +418,9 @@
     "/resources/cores": {
       "get": {
         "tags": [
-          "cpu-resource-controller"
+          "CPU Cores"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_2",
         "responses": {
           "200": {
@@ -443,9 +443,9 @@
       },
       "post": {
         "tags": [
-          "cpu-resource-controller"
+          "CPU Cores"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_2",
         "parameters": [
           {
@@ -482,9 +482,9 @@
       },
       "delete": {
         "tags": [
-          "cpu-resource-controller"
+          "CPU Cores"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_2",
         "responses": {
           "200": {
@@ -509,9 +509,9 @@
     "/resources/cores/{id}": {
       "get": {
         "tags": [
-          "cpu-resource-controller"
+          "CPU Cores"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_2",
         "parameters": [
           {
@@ -543,9 +543,9 @@
       },
       "delete": {
         "tags": [
-          "cpu-resource-controller"
+          "CPU Cores"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_2",
         "parameters": [
           {
@@ -579,9 +579,9 @@
     "/resources/directBuffers": {
       "get": {
         "tags": [
-          "off-heap-resource-controller"
+          "Off-Heap Direct Buffers"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_7",
         "responses": {
           "200": {
@@ -604,9 +604,9 @@
       },
       "post": {
         "tags": [
-          "off-heap-resource-controller"
+          "Off-Heap Direct Buffers"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_7",
         "parameters": [
           {
@@ -643,9 +643,9 @@
       },
       "delete": {
         "tags": [
-          "off-heap-resource-controller"
+          "Off-Heap Direct Buffers"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_7",
         "responses": {
           "200": {
@@ -670,9 +670,9 @@
     "/resources/directBuffers/{id}": {
       "get": {
         "tags": [
-          "off-heap-resource-controller"
+          "Off-Heap Direct Buffers"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_7",
         "parameters": [
           {
@@ -704,9 +704,9 @@
       },
       "delete": {
         "tags": [
-          "off-heap-resource-controller"
+          "Off-Heap Direct Buffers"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_7",
         "parameters": [
           {
@@ -740,9 +740,9 @@
     "/resources/files": {
       "get": {
         "tags": [
-          "file-resource-controller"
+          "Files"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_4",
         "responses": {
           "200": {
@@ -765,9 +765,9 @@
       },
       "post": {
         "tags": [
-          "file-resource-controller"
+          "Files"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_4",
         "parameters": [
           {
@@ -804,9 +804,9 @@
       },
       "delete": {
         "tags": [
-          "file-resource-controller"
+          "Files"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_4",
         "responses": {
           "200": {
@@ -831,9 +831,9 @@
     "/resources/files/{id}": {
       "get": {
         "tags": [
-          "file-resource-controller"
+          "Files"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_4",
         "parameters": [
           {
@@ -865,9 +865,9 @@
       },
       "delete": {
         "tags": [
-          "file-resource-controller"
+          "Files"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_4",
         "parameters": [
           {
@@ -901,9 +901,9 @@
     "/resources/httpClients": {
       "get": {
         "tags": [
-          "http-resource-controller"
+          "Network Traffic over HTTP"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_6",
         "responses": {
           "200": {
@@ -926,9 +926,9 @@
       },
       "post": {
         "tags": [
-          "http-resource-controller"
+          "Network Traffic over HTTP"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_6",
         "responses": {
           "200": {
@@ -954,9 +954,9 @@
       },
       "delete": {
         "tags": [
-          "http-resource-controller"
+          "Network Traffic over HTTP"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_6",
         "responses": {
           "200": {
@@ -981,9 +981,9 @@
     "/resources/httpClients/{id}": {
       "get": {
         "tags": [
-          "http-resource-controller"
+          "Network Traffic over HTTP"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_6",
         "parameters": [
           {
@@ -1015,9 +1015,9 @@
       },
       "delete": {
         "tags": [
-          "http-resource-controller"
+          "Network Traffic over HTTP"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_6",
         "parameters": [
           {
@@ -1051,9 +1051,9 @@
     "/resources/objects": {
       "get": {
         "tags": [
-          "heap-resource-controller"
+          "Heap Objects"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_5",
         "responses": {
           "200": {
@@ -1076,9 +1076,9 @@
       },
       "post": {
         "tags": [
-          "heap-resource-controller"
+          "Heap Objects"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_5",
         "parameters": [
           {
@@ -1115,9 +1115,9 @@
       },
       "delete": {
         "tags": [
-          "heap-resource-controller"
+          "Heap Objects"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_5",
         "responses": {
           "200": {
@@ -1142,9 +1142,9 @@
     "/resources/objects/{id}": {
       "get": {
         "tags": [
-          "heap-resource-controller"
+          "Heap Objects"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_5",
         "parameters": [
           {
@@ -1176,9 +1176,9 @@
       },
       "delete": {
         "tags": [
-          "heap-resource-controller"
+          "Heap Objects"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_5",
         "parameters": [
           {
@@ -1212,9 +1212,9 @@
     "/resources/socketPools": {
       "get": {
         "tags": [
-          "socket-resource-controller"
+          "Sockets"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_8",
         "responses": {
           "200": {
@@ -1237,9 +1237,9 @@
       },
       "post": {
         "tags": [
-          "socket-resource-controller"
+          "Sockets"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_8",
         "parameters": [
           {
@@ -1276,9 +1276,9 @@
       },
       "delete": {
         "tags": [
-          "socket-resource-controller"
+          "Sockets"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_8",
         "responses": {
           "200": {
@@ -1303,9 +1303,9 @@
     "/resources/socketPools/{id}": {
       "get": {
         "tags": [
-          "socket-resource-controller"
+          "Sockets"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_8",
         "parameters": [
           {
@@ -1337,9 +1337,9 @@
       },
       "delete": {
         "tags": [
-          "socket-resource-controller"
+          "Sockets"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_8",
         "parameters": [
           {
@@ -1373,9 +1373,9 @@
     "/resources/threadPools": {
       "get": {
         "tags": [
-          "daemon-thread-resource-controller"
+          "Threads"
         ],
-        "summary": "findAll",
+        "summary": "Fetches all of the resources",
         "operationId": "findAllUsingGET_3",
         "responses": {
           "200": {
@@ -1398,9 +1398,9 @@
       },
       "post": {
         "tags": [
-          "daemon-thread-resource-controller"
+          "Threads"
         ],
-        "summary": "create",
+        "summary": "Creates a resource",
         "operationId": "createUsingPOST_3",
         "parameters": [
           {
@@ -1437,9 +1437,9 @@
       },
       "delete": {
         "tags": [
-          "daemon-thread-resource-controller"
+          "Threads"
         ],
-        "summary": "deleteAll",
+        "summary": "Deletes all of the resources",
         "operationId": "deleteAllUsingDELETE_3",
         "responses": {
           "200": {
@@ -1464,9 +1464,9 @@
     "/resources/threadPools/{id}": {
       "get": {
         "tags": [
-          "daemon-thread-resource-controller"
+          "Threads"
         ],
-        "summary": "findById",
+        "summary": "Fetches a resource by its ID",
         "operationId": "findByIdUsingGET_3",
         "parameters": [
           {
@@ -1498,9 +1498,9 @@
       },
       "delete": {
         "tags": [
-          "daemon-thread-resource-controller"
+          "Threads"
         ],
-        "summary": "deleteById",
+        "summary": "Deletes a resource by its ID ",
         "operationId": "deleteByIdUsingDELETE_3",
         "parameters": [
           {
