@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import resourceater.model.resource.cpu.CpuResource;
@@ -13,6 +14,7 @@ import static resourceater.controller.Mappings.CORES;
  */
 @RestController
 @RequestMapping(CORES)
+@Api(tags = {"CPU Cores"})
 public class CpuResourceController extends ResourceController<CpuResourceRequest, CpuResource> {
     public CpuResourceController(ResourceRepository<CpuResource> repository) {
         super(repository);

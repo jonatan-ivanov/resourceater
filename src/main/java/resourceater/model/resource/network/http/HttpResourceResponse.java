@@ -11,7 +11,7 @@ import resourceater.model.resource.Response;
 @Value
 @Builder
 @EqualsAndHashCode(callSuper=true)
-class HttResourceResponse extends Response {
+class HttpResourceResponse extends Response {
     private final String resourceId;
     private final String url;
 }

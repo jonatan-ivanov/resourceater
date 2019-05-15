@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import resourceater.model.resource.file.FileResource;
@@ -13,6 +14,7 @@ import static resourceater.controller.Mappings.FILES;
  */
 @RestController
 @RequestMapping(FILES)
+@Api(tags = {"Files"})
 public class FileResourceController extends ResourceController<FileResourceRequest, FileResource> {
     public FileResourceController(ResourceRepository<FileResource> repository) {
         super(repository);

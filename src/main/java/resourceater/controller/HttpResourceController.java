@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import static resourceater.controller.Mappings.HTTP_CLIENTS;
  */
 @RestController
 @RequestMapping(HTTP_CLIENTS)
+@Api(tags = {"Network Traffic over HTTP"})
 public class HttpResourceController extends ResourceController<Void, HttpResource> {
     private final String url;
     private final HttpBlobClient client;

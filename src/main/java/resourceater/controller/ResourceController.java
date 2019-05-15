@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ public abstract class ResourceController<RQ, R extends Resource> {
     protected final ResourceRepository<R> repository;
 
     @GetMapping
+    @ApiOperation("Fetches all of the resources")
     public Iterable<Response> findAll() {
         Iterable<Response> responses = toStream(repository.findAll())
             .map(R::toResponse)
@@ -41,6 +43,7 @@ public abstract class ResourceController<RQ, R extends Resource> {
     }
 
     @GetMapping("{id}")
+    @ApiOperation("Fetches a resource by its ID")
     public Response findById(@PathVariable String id) {
         return repository.findById(id)
             .map(R::toResponse)
@@ -49,6 +52,7 @@ public abstract class ResourceController<RQ, R extends Resource> {
     }
 
     @PostMapping
+    @ApiOperation("Creates a resource")
     public ResponseEntity<Response> create(@RequestBody(required = false) RQ request) throws URISyntaxException {
         Response response = enhance(repository.save(createResource(request)).init().toResponse());
         return ResponseEntity
@@ -57,12 +61,14 @@ public abstract class ResourceController<RQ, R extends Resource> {
     }
 
     @DeleteMapping
+    @ApiOperation("Deletes all of the resources")
     public ResponseEntity<?> deleteAll() {
         repository.deleteAll();
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
+    @ApiOperation("Deletes a resource by its ID ")
     public ResponseEntity<?> deleteById(@PathVariable String id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();

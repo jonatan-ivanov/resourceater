@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import static resourceater.controller.Mappings.CONTAINER_THREADS;
  */
 @RestController
 @RequestMapping(CONTAINER_THREADS)
+@Api(tags = {"Container Threads"})
 public class ContainerThreadResourceController extends ResourceController<ContainerThreadResourceRequest, ContainerThreadResource> {
     private final ContainerThreadResourceClient client;
 

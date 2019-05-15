@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import resourceater.model.resource.heap.HeapResource;
@@ -13,6 +14,7 @@ import static resourceater.controller.Mappings.OBJECTS;
  */
 @RestController
 @RequestMapping(OBJECTS)
+@Api(tags = {"Heap Objects"})
 public class HeapResourceController extends ResourceController<HeapResourceRequest, HeapResource> {
     public HeapResourceController(ResourceRepository<HeapResource> repository) {
         super(repository);

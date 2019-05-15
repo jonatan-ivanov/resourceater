@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import resourceater.model.resource.offheap.OffHeapResource;
@@ -13,6 +14,7 @@ import static resourceater.controller.Mappings.DIRECT_BUFFERS;
  */
 @RestController
 @RequestMapping(DIRECT_BUFFERS)
+@Api(tags = {"Off-Heap Direct Buffers"})
 public class OffHeapResourceController extends ResourceController<OffHeapResourceRequest, OffHeapResource> {
     public OffHeapResourceController(ResourceRepository<OffHeapResource> repository) {
         super(repository);

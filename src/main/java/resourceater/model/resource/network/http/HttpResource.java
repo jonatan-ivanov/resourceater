@@ -48,7 +48,7 @@ public class HttpResource implements Resource {
 
     @Override
     public Response toResponse() {
-        return HttResourceResponse.builder()
+        return HttpResourceResponse.builder()
             .resourceId(getId())
             .url(this.url)
             .build();
