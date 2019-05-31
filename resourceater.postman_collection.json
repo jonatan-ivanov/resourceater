@@ -1,0 +1,1091 @@
+{
+	"info": {
+		"_postman_id": "ac7225a3-6158-4b01-843c-5d8ae5ee6e0e",
+		"name": "resourceater",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "classPools",
+			"item": [
+				{
+					"name": "classPools",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/classPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"classPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "classPools",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 10000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/classPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"classPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "classPools",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/classPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"classPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "classPools/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/classPools/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"classPools",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "classPools/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/classPools/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"classPools",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cores",
+			"item": [
+				{
+					"name": "cores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/cores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"cores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cores",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/cores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"cores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cores",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/cores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"cores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cores/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/cores/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"cores",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cores/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/cores/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"cores",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "files",
+			"item": [
+				{
+					"name": "files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "files",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": \"10MB\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "files",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "files/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/files/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"files",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "files/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/files/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"files",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "httpClients",
+			"item": [
+				{
+					"name": "httpClients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/httpClients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"httpClients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "httpClients",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/httpClients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"httpClients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "httpClients",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/httpClients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"httpClients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "httpClients/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/httpClients/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"httpClients",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "httpClients/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/httpClients/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"httpClients",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "objects",
+			"item": [
+				{
+					"name": "objects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/objects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "objects",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": \"100MB\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/objects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "objects",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/objects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "objects/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/objects/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"objects",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "objects/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/objects/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"objects",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "directBuffers",
+			"item": [
+				{
+					"name": "directBuffers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/directBuffers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"directBuffers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "directBuffers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": \"100MB\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/directBuffers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"directBuffers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "directBuffers",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/directBuffers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"directBuffers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "directBuffers/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/directBuffers/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"directBuffers",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "directBuffers/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/directBuffers/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"directBuffers",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "threadPools",
+			"item": [
+				{
+					"name": "threadPools",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/threadPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"threadPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "threadPools",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 1000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/threadPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"threadPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "threadPools",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/threadPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"threadPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "threadPools/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/threadPools/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"threadPools",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "threadPools/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/threadPools/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"threadPools",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "socketPools",
+			"item": [
+				{
+					"name": "socketPools",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/socketPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"socketPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "socketPools",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 10\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/socketPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"socketPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "socketPools",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/socketPools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"socketPools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "socketPools/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/socketPools/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"socketPools",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "socketPools/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/socketPools/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"socketPools",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "containerThreads",
+			"item": [
+				{
+					"name": "containerThreads",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/containerThreads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"containerThreads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "containerThreads",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 99\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/resources/containerThreads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"containerThreads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "containerThreads",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/containerThreads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"containerThreads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "containerThreads/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/containerThreads/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"containerThreads",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "containerThreads/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/containerThreads/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"containerThreads",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/actuator/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
