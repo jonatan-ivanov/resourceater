@@ -8,4 +8,5 @@ import lombok.Value;
 @Value
 public class CreateHeapResourceRequest {
     private final String size;
+    private final boolean disposable;
 }

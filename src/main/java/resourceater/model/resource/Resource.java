@@ -8,6 +8,10 @@ public interface Resource<R extends Resource<R>> {
         return String.valueOf(System.identityHashCode(this));
     }
 
+    default boolean isDisposable() {
+        return false;
+    }
+
     default void saved() {
         // noop
     }

@@ -1,5 +1,6 @@
 package resourceater.model.resource.heap;
 
+import lombok.Getter;
 import org.springframework.util.unit.DataSize;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
@@ -9,17 +10,19 @@ import resourceater.model.resource.Resource;
  */
 public class HeapResource implements Resource<HeapResource> {
     private static final long MAX_SIZE = DataSize.ofGigabytes(1).toBytes();
+    @Getter private final boolean disposable;
     private final byte[] bytes;
 
     public HeapResource(CreateHeapResourceRequest request) {
-        this(DataSize.parse(request.getSize()));
+        this(DataSize.parse(request.getSize()), request.isDisposable());
     }
 
-    private HeapResource(DataSize dataSize) {
+    private HeapResource(DataSize dataSize, boolean disposable) {
         if (MAX_SIZE < dataSize.toBytes()) {
             throw new IllegalArgumentException("The maximum allowed size is 1GB"); // the size must fit into an int
         }
 
+        this.disposable = disposable;
         this.bytes = new byte[(int) dataSize.toBytes()];
     }
 

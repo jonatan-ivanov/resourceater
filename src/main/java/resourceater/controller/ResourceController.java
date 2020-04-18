@@ -44,7 +44,12 @@ public abstract class ResourceController<RQ, R extends Resource<R>> {
     @ResponseStatus(CREATED)
     @ApiOperation("Creates a resource")
     public Model<R> create(@RequestBody(required = false) RQ request) {
-        return modelAssembler.toModel(repository.save(createResource(request)));
+        R resource = repository.save(createResource(request));
+        if (resource.isDisposable()) {
+            repository.delete(resource);
+        }
+
+        return modelAssembler.toModel(resource);
     }
 
     @DeleteMapping
