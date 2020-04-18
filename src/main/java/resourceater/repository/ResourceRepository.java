@@ -1,21 +1,19 @@
 package resourceater.repository;
 
-import org.springframework.beans.factory.DisposableBean;
-import resourceater.model.resource.Resource;
+import static resourceater.utils.StreamUtils.toStream;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-
-import static resourceater.utils.StreamUtils.toStream;
+import org.springframework.beans.factory.DisposableBean;
+import resourceater.model.resource.Resource;
 
 /**
  * Implements org.springframework.data.repository.CrudRepository
  * @author Jonatan Ivanov
  */
-@SuppressWarnings("WeakerAccess")
-public class ResourceRepository<T extends Resource> implements DisposableBean {
+public class ResourceRepository<T extends Resource<T>> implements DisposableBean {
     private final Map<String, T> resources = new ConcurrentHashMap<>();
 
     public long count() {
@@ -59,6 +57,8 @@ public class ResourceRepository<T extends Resource> implements DisposableBean {
 
     public T save(T entity) {
         resources.put(entity.getId(), entity);
+        entity.saved();
+
         return entity;
     }
 

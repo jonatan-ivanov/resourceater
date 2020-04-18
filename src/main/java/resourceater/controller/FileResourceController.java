@@ -1,27 +1,30 @@
 package resourceater.controller;
 
+import static resourceater.controller.Mappings.FILES;
+
 import io.swagger.annotations.Api;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import resourceater.model.resource.file.CreateFileResourceRequest;
 import resourceater.model.resource.file.FileResource;
-import resourceater.model.resource.file.FileResourceRequest;
+import resourceater.model.resource.file.FileResourceModel;
 import resourceater.repository.ResourceRepository;
-
-import static resourceater.controller.Mappings.FILES;
 
 /**
  * @author Jonatan Ivanov
  */
 @RestController
 @RequestMapping(FILES)
+@ExposesResourceFor(FileResourceModel.class)
 @Api(tags = {"Files"})
-public class FileResourceController extends ResourceController<FileResourceRequest, FileResource> {
-    public FileResourceController(ResourceRepository<FileResource> repository) {
-        super(repository);
+public class FileResourceController extends ResourceController<CreateFileResourceRequest, FileResource> {
+    public FileResourceController(ModelAssembler<FileResource> modelAssembler, ResourceRepository<FileResource> repository) {
+        super(modelAssembler, repository);
     }
 
     @Override
-    FileResource createResource(FileResourceRequest request) {
+    FileResource createResource(CreateFileResourceRequest request) {
         return new FileResource(request);
     }
 }

@@ -6,6 +6,6 @@ import lombok.Value;
  * @author Jonatan Ivanov
  */
 @Value
-public class SocketResourceRequest {
+public class CreateSocketResourceRequest {
     private final int size;
 }

@@ -1,4 +1,4 @@
-package resourceater.model.resource.offheap;
+package resourceater.model.resource.heap;
 
 import lombok.Value;
 
@@ -6,6 +6,6 @@ import lombok.Value;
  * @author Jonatan Ivanov
  */
 @Value
-public class OffHeapResourceRequest {
+public class CreateHeapResourceRequest {
     private final String size;
 }

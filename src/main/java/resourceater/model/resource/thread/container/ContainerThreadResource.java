@@ -1,47 +1,34 @@
 package resourceater.model.resource.thread.container;
 
-import feign.FeignException;
-import lombok.extern.slf4j.Slf4j;
-import resourceater.client.ContainerThreadResourceClient;
-import resourceater.model.resource.Resource;
-import resourceater.model.resource.Response;
+import static java.lang.String.format;
 
+import feign.FeignException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
-
-import static java.lang.String.format;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import resourceater.client.ContainerThreadResourceClient;
+import resourceater.model.resource.Model;
+import resourceater.model.resource.Resource;
 
 /**
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class ContainerThreadResource implements Resource {
-    private final CountDownLatch initLatch = new CountDownLatch(1);
+@RequiredArgsConstructor
+public class ContainerThreadResource implements Resource<ContainerThreadResource> {
     private final CountDownLatch containerThreadLatch = new CountDownLatch(1);
     private final List<Thread> threads = new ArrayList<>();
-    private final ContainerThreadResourceClient client;
 
-    public ContainerThreadResource(ContainerThreadResourceRequest request, ContainerThreadResourceClient client) {
-        this.client = client;
-        for (int i = 0; i < request.getSize(); i++) {
-            Thread thread = new Thread(this::run, format("containerCallerThread-%s#%d", getId(), i));
-            threads.add(thread);
-            thread.start();
-        }
-    }
+    private final CreateContainerThreadResourceRequest request;
+    private final ContainerThreadResourceClient client;
 
     private void run() {
         try {
-            // the thread should wait until the controller saves the resource
-            // otherwise the block HTTP call will not find the resource
-            initLatch.await();
             log.info(format("%s started", Thread.currentThread().getName()));
             client.block(this.getId());
-        }
-        catch (InterruptedException e) {
-            log.warn(format("Thread: %s was interrupted", Thread.currentThread().getName()), e);
         }
         catch (FeignException e) {
             log.warn(getMessage(e), e);
@@ -71,9 +58,14 @@ public class ContainerThreadResource implements Resource {
     }
 
     @Override
-    public Resource init() {
-        initLatch.countDown();
-        return this;
+    public void saved() {
+        // we should start the threads after the resource is saved
+        // otherwise the block HTTP call will not find the resource
+        for (int i = 0; i < request.getSize(); i++) {
+            Thread thread = new Thread(this::run, format("containerCallerThread-%s#%d", getId(), i));
+            threads.add(thread);
+            thread.start();
+        }
     }
 
     @Override
@@ -82,9 +74,9 @@ public class ContainerThreadResource implements Resource {
     }
 
     @Override
-    public Response toResponse() {
-        return ContainerThreadResourceResponse.builder()
-            .resourceId(this.getId())
+    public Model<ContainerThreadResource> toModel() {
+        return ContainerThreadResourceModel.builder()
+            .id(this.getId())
             .size(this.threads.size())
             .build();
     }

@@ -3,18 +3,18 @@ package resourceater.model.resource;
 /**
  * @author Jonatan Ivanov
  */
-public interface Resource {
+public interface Resource<R extends Resource<R>> {
     default String getId() {
         return String.valueOf(System.identityHashCode(this));
     }
 
-    default Resource init() {
-        return this;
+    default void saved() {
+        // noop
     }
 
     default void destroy() {
         // noop
     }
 
-    Response toResponse();
+    Model<R> toModel();
 }

@@ -1,26 +1,25 @@
 package resourceater.model.resource.clazz;
 
-import org.objectweb.asm.ClassWriter;
-import resourceater.model.resource.Resource;
-import resourceater.model.resource.Response;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.lang.String.format;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.V12;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.objectweb.asm.ClassWriter;
+import resourceater.model.resource.Model;
+import resourceater.model.resource.Resource;
+
 /**
  * @author Jonatan Ivanov
  */
-public class ClassResource implements Resource {
+public class ClassResource implements Resource<ClassResource> {
     private static final String PACKAGE_NAME = "gen";
     private static final DynamicClassLoader CLASS_LOADER = new DynamicClassLoader();
     private final ClassWriter classWriter = new ClassWriter(0);
     private final List<Class<?>> classes = new ArrayList<>();
 
-    public ClassResource(ClassResourceRequest request) {
+    public ClassResource(CreateClassResourceRequest request) {
         for (int i = 0; i < request.getSize(); i++) {
             classes.add(generateClass(format("%s$%d", getId(), i)));
         }
@@ -33,9 +32,9 @@ public class ClassResource implements Resource {
     }
 
     @Override
-    public Response toResponse() {
-        return ClassResourceResponse.builder()
-            .resourceId(this.getId())
+    public Model<ClassResource> toModel() {
+        return ClassResourceModel.builder()
+            .id(this.getId())
             .size(this.classes.size())
             .build();
     }

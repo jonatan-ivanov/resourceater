@@ -1,37 +1,41 @@
 buildscript {
+    ext.springBootVersion = '2.2.6.RELEASE'
+    ext.springCloudVersion = 'Hoxton.SR3'
+
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.+'
-        classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:2.+'
-        classpath 'com.bmuschko:gradle-docker-plugin:4.+'
-        classpath 'org.ajoberstar.grgit:grgit-gradle:3.+'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:2.2.2'
+        classpath 'com.bmuschko:gradle-docker-plugin:6.4.0'
+        classpath 'org.ajoberstar.grgit:grgit-gradle:4.0.1'
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.gorylenko.gradle-git-properties'
 apply plugin: 'org.ajoberstar.grgit'
 apply from: 'gradle/dependency-locking.gradle'
 apply from: 'gradle/runtime.gradle'
 apply from: 'gradle/docker.gradle'
 
-sourceCompatibility = 12
-targetCompatibility = 12
+sourceCompatibility = 14
+targetCompatibility = 14
 
 repositories {
     mavenCentral()
-}
-dependencyManagement {
-    imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:+'
-    }
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' } // for springfox-swagger 3.+
 }
 dependencies {
+    ['annotationProcessor', 'compileOnly', 'implementation', 'runtimeOnly', 'testImplementation'].each { conf ->
+        dependencies.add(conf, platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
+        dependencies.add(conf, platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"))
+    }
+    testImplementation platform('org.junit:junit-bom:5.+')
+
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
 
@@ -40,8 +44,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'io.github.openfeign:feign-okhttp'
-    implementation 'io.springfox:springfox-swagger2:2.+'
-    implementation 'io.springfox:springfox-swagger-ui:2.+'
+    implementation 'io.springfox:springfox-swagger2:3.+'
+    implementation 'io.springfox:springfox-swagger-ui:3.+'
+    implementation 'io.springfox:springfox-spring-webmvc:3.+'
+
     implementation 'org.ow2.asm:asm:7.+'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api'

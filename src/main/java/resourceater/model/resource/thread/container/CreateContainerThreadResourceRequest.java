@@ -6,6 +6,6 @@ import lombok.Value;
  * @author Jonatan Ivanov
  */
 @Value
-public class ContainerThreadResourceRequest {
+public class CreateContainerThreadResourceRequest {
     private final int size;
 }

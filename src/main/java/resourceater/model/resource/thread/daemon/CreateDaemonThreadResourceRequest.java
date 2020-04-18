@@ -1,12 +1,11 @@
 package resourceater.model.resource.thread.daemon;
 
 import lombok.Value;
-import resourceater.model.resource.Request;
 
 /**
  * @author Jonatan Ivanov
  */
 @Value
-public class DaemonThreadResourceRequest implements Request {
+public class CreateDaemonThreadResourceRequest {
     private final int size;
 }

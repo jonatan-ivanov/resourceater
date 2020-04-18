@@ -1,9 +1,9 @@
-package resourceater.model.resource.clazz;
+package resourceater.model.resource.cpu;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import resourceater.model.resource.Response;
+import resourceater.model.resource.Model;
 
 /**
  * @author Jonatan Ivanov
@@ -11,7 +11,7 @@ import resourceater.model.resource.Response;
 @Value
 @Builder
 @EqualsAndHashCode(callSuper=true)
-class ClassResourceResponse extends Response {
-    private final String resourceId;
+public class CpuResourceModel extends Model<CpuResource> {
+    private final String id;
     private final int size;
 }

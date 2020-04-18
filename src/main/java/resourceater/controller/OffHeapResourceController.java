@@ -1,27 +1,30 @@
 package resourceater.controller;
 
+import static resourceater.controller.Mappings.DIRECT_BUFFERS;
+
 import io.swagger.annotations.Api;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import resourceater.model.resource.offheap.CreateOffHeapResourceRequest;
 import resourceater.model.resource.offheap.OffHeapResource;
-import resourceater.model.resource.offheap.OffHeapResourceRequest;
+import resourceater.model.resource.offheap.OffHeapResourceModel;
 import resourceater.repository.ResourceRepository;
-
-import static resourceater.controller.Mappings.DIRECT_BUFFERS;
 
 /**
  * @author Jonatan Ivanov
  */
 @RestController
 @RequestMapping(DIRECT_BUFFERS)
+@ExposesResourceFor(OffHeapResourceModel.class)
 @Api(tags = {"Off-Heap Direct Buffers"})
-public class OffHeapResourceController extends ResourceController<OffHeapResourceRequest, OffHeapResource> {
-    public OffHeapResourceController(ResourceRepository<OffHeapResource> repository) {
-        super(repository);
+public class OffHeapResourceController extends ResourceController<CreateOffHeapResourceRequest, OffHeapResource> {
+    public OffHeapResourceController(ModelAssembler<OffHeapResource> modelAssembler, ResourceRepository<OffHeapResource> repository) {
+        super(modelAssembler, repository);
     }
 
     @Override
-    OffHeapResource createResource(OffHeapResourceRequest request) {
+    OffHeapResource createResource(CreateOffHeapResourceRequest request) {
         return new OffHeapResource(request);
     }
 }

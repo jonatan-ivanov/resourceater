@@ -2,10 +2,9 @@ apply plugin: 'com.bmuschko.docker-spring-boot-application'
 
 docker {
     springBootApplication {
-        baseImage = 'adoptopenjdk/openjdk12:alpine'
-        ports = [HTTP_PORT, JMX_PORT]
-        tag = "$project.dockerNamespace/$project.name:$project.version"
+        baseImage = 'adoptopenjdk:14-jre-hotspot'
         maintainer = project.maintainer
+        ports = [HTTP_PORT, JMX_PORT]
     }
 }
 dockerCreateDockerfile {
@@ -19,7 +18,7 @@ task dockerRun {
                 "HTTP_PORT=$HTTP_PORT",
                 "JMX_PORT=$JMX_PORT",
                 "LOGS_HOME=$projectDir/logs",
-                "SERVICE_IMAGE=${docker.springBootApplication.tag.get()}"
+                "SERVICE_IMAGE=$project.group/$project.name:$project.version"
         ]
 
         'docker-compose --compatibility up'.execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)

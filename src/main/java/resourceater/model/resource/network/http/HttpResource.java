@@ -1,21 +1,20 @@
 package resourceater.model.resource.network.http;
 
-import lombok.extern.slf4j.Slf4j;
-import resourceater.client.HttpBlobClient;
-import resourceater.model.resource.Resource;
-import resourceater.model.resource.Response;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
+import lombok.extern.slf4j.Slf4j;
+import resourceater.client.HttpBlobClient;
+import resourceater.model.resource.Model;
+import resourceater.model.resource.Resource;
 
 /**
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class HttpResource implements Resource {
+public class HttpResource implements Resource<HttpResource> {
     private final ExecutorService executorService;
     private final HttpBlobClient client;
     private final String url;
@@ -47,9 +46,9 @@ public class HttpResource implements Resource {
     }
 
     @Override
-    public Response toResponse() {
-        return HttpResourceResponse.builder()
-            .resourceId(getId())
+    public Model<HttpResource> toModel() {
+        return HttpResourceModel.builder()
+            .id(getId())
             .url(this.url)
             .build();
     }

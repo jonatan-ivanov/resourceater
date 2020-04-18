@@ -1,27 +1,30 @@
 package resourceater.controller;
 
+import static resourceater.controller.Mappings.THREAD_POOLS;
+
 import io.swagger.annotations.Api;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import resourceater.model.resource.thread.daemon.CreateDaemonThreadResourceRequest;
 import resourceater.model.resource.thread.daemon.DaemonThreadResource;
-import resourceater.model.resource.thread.daemon.DaemonThreadResourceRequest;
+import resourceater.model.resource.thread.daemon.DaemonThreadResourceModel;
 import resourceater.repository.ResourceRepository;
-
-import static resourceater.controller.Mappings.THREAD_POOLS;
 
 /**
  * @author Jonatan Ivanov
  */
 @RestController
 @RequestMapping(THREAD_POOLS)
+@ExposesResourceFor(DaemonThreadResourceModel.class)
 @Api(tags = {"Threads"})
-public class DaemonThreadResourceController extends ResourceController<DaemonThreadResourceRequest, DaemonThreadResource> {
-    public DaemonThreadResourceController(ResourceRepository<DaemonThreadResource> repository) {
-        super(repository);
+public class DaemonThreadResourceController extends ResourceController<CreateDaemonThreadResourceRequest, DaemonThreadResource> {
+    public DaemonThreadResourceController(ModelAssembler<DaemonThreadResource> modelAssembler, ResourceRepository<DaemonThreadResource> repository) {
+        super(modelAssembler, repository);
     }
 
     @Override
-    DaemonThreadResource createResource(DaemonThreadResourceRequest request) {
+    DaemonThreadResource createResource(CreateDaemonThreadResourceRequest request) {
         return new DaemonThreadResource(request);
     }
 }

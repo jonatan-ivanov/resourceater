@@ -1,11 +1,10 @@
 package resourceater.model.resource.network.socket;
 
+import java.util.List;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import resourceater.model.resource.Response;
-
-import java.util.List;
+import resourceater.model.resource.Model;
 
 /**
  * @author Jonatan Ivanov
@@ -13,8 +12,8 @@ import java.util.List;
 @Value
 @Builder
 @EqualsAndHashCode(callSuper=true)
-class SocketResourceResponse extends Response {
-    private final String resourceId;
+public class SocketResourceModel extends Model<SocketResource> {
+    private final String id;
     private final int size;
     private final List<Integer> ports;
 }

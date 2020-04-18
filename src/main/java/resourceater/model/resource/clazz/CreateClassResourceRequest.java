@@ -1,4 +1,4 @@
-package resourceater.model.resource.cpu;
+package resourceater.model.resource.clazz;
 
 import lombok.Value;
 
@@ -6,6 +6,6 @@ import lombok.Value;
  * @author Jonatan Ivanov
  */
 @Value
-public class CpuResourceRequest {
+public class CreateClassResourceRequest {
     private final int size;
 }

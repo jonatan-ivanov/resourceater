@@ -1,26 +1,23 @@
 package resourceater.repository;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import resourceater.model.resource.Resource;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static resourceater.utils.StreamUtils.toStream;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static resourceater.utils.StreamUtils.toStream;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import resourceater.model.resource.Resource;
 
 /**
  * @author Jonatan Ivanov
  */
 class ResourceRepositoryTest {
-    private final ResourceRepository<Resource> repository = new ResourceRepository<>();
+    private final ResourceRepository<TestResource> repository = new ResourceRepository<>();
 
     @BeforeEach
     void setUp() {
@@ -39,7 +36,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldDeleteAndDestroyEntityByReference() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         resources.forEach(repository::delete);
 
         assertThat(repository.count()).isZero();
@@ -48,7 +45,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldNotDeleteNonExistingEntityByReference() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         repository.delete(createResource());
 
         assertThat(repository.count()).isEqualTo(3);
@@ -57,7 +54,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldDeleteAndDestroyAllEntities() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         repository.deleteAll();
 
         assertThat(repository.count()).isZero();
@@ -66,7 +63,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldDeleteAndDestroyEntitiesById() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         repository.deleteAll(resources);
 
         assertThat(repository.count()).isZero();
@@ -75,7 +72,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldDeleteAndDestroyEntityById() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         toStream(resources)
             .map(Resource::getId)
             .forEach(repository::deleteById);
@@ -86,7 +83,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldNotDeleteNonExistingEntityById() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         repository.deleteById("");
 
         assertThat(repository.count()).isEqualTo(3);
@@ -115,7 +112,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldFindAllSavedEntitiesById() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         Iterable<String> ids = toStream(resources)
             .map(Resource::getId)
             .collect(Collectors.toList());
@@ -131,8 +128,8 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldFindSavedEntityById() {
-        Iterable<Resource> resources = saveThreeResources();
-        List<Resource> foundResources = toStream(resources)
+        Iterable<TestResource> resources = saveThreeResources();
+        List<TestResource> foundResources = toStream(resources)
             .map(Resource::getId)
             .map(repository::findById)
             .flatMap(Optional::stream)
@@ -149,34 +146,31 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldSaveEntity() {
-        Resource resource = createResource();
+        TestResource resource = createResource();
         assertThat(repository.save(resource)).isSameAs(resource);
         assertThat(repository.findAll()).hasSameElementsAs(List.of(resource));
     }
 
     @Test
     void shouldSaveAllEntities() {
-        List<Resource> resources = List.of(createResource(), createResource(), createResource());
+        List<TestResource> resources = List.of(createResource(), createResource(), createResource());
         assertThat(repository.saveAll(resources)).hasSameElementsAs(resources);
         assertThat(repository.findAll()).hasSameElementsAs(resources);
     }
 
     @Test
     void shouldRemoveAndDestroyAllEntities() {
-        Iterable<Resource> resources = saveThreeResources();
+        Iterable<TestResource> resources = saveThreeResources();
         repository.destroy();
         assertThat(repository.count()).isZero();
         resources.forEach(resource -> verify(resource).destroy());
     }
 
-    private Iterable<Resource> saveThreeResources() {
+    private Iterable<TestResource> saveThreeResources() {
         return repository.saveAll(List.of(createResource(), createResource(), createResource()));
     }
 
-    private Resource createResource() {
-        Resource resource = mock(Resource.class);
-        when(resource.getId()).thenReturn(UUID.randomUUID().toString());
-
-        return resource;
+    private TestResource createResource() {
+        return spy(TestResource.class);
     }
 }

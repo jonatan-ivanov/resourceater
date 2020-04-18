@@ -6,6 +6,6 @@ import lombok.Value;
  * @author Jonatan Ivanov
  */
 @Value
-public class FileResourceRequest {
+public class CreateFileResourceRequest {
     private final String size;
 }

@@ -18,11 +18,15 @@ import resourceater.repository.ResourceRepository;
  */
 @Configuration
 class RepositoryConfig {
-    @Bean ResourceRepository<HeapResource> heapResourceRepository() {
+    @Bean ResourceRepository<ClassResource> classResourceRepository() {
         return new ResourceRepository<>();
     }
 
-    @Bean ResourceRepository<OffHeapResource> offHeapResourceRepository() {
+    @Bean ResourceRepository<ContainerThreadResource> containerThreadResourceRepository() {
+        return new ResourceRepository<>();
+    }
+
+    @Bean ResourceRepository<CpuResource> cpuResourceRepository() {
         return new ResourceRepository<>();
     }
 
@@ -34,11 +38,7 @@ class RepositoryConfig {
         return new ResourceRepository<>();
     }
 
-    @Bean ResourceRepository<CpuResource> cpuResourceRepository() {
-        return new ResourceRepository<>();
-    }
-
-    @Bean ResourceRepository<ClassResource> classResourceRepository() {
+    @Bean ResourceRepository<HeapResource> heapResourceRepository() {
         return new ResourceRepository<>();
     }
 
@@ -46,11 +46,11 @@ class RepositoryConfig {
         return new ResourceRepository<>();
     }
 
-    @Bean ResourceRepository<SocketResource> socketResourceRepository() {
+    @Bean ResourceRepository<OffHeapResource> offHeapResourceRepository() {
         return new ResourceRepository<>();
     }
 
-    @Bean ResourceRepository<ContainerThreadResource> containerThreadResourceRepository() {
+    @Bean ResourceRepository<SocketResource> socketResourceRepository() {
         return new ResourceRepository<>();
     }
 }

@@ -1,19 +1,18 @@
 package resourceater.model.resource.offheap;
 
-import org.springframework.util.unit.DataSize;
-import resourceater.model.resource.Resource;
-import resourceater.model.resource.Response;
-
 import java.nio.ByteBuffer;
+import org.springframework.util.unit.DataSize;
+import resourceater.model.resource.Model;
+import resourceater.model.resource.Resource;
 
 /**
  * @author Jonatan Ivanov
  */
-public class OffHeapResource implements Resource {
+public class OffHeapResource implements Resource<OffHeapResource> {
     private static final long MAX_SIZE = DataSize.ofGigabytes(1).toBytes();
     private final ByteBuffer byteBuffer;
 
-    public OffHeapResource(OffHeapResourceRequest request) {
+    public OffHeapResource(CreateOffHeapResourceRequest request) {
         this(DataSize.parse(request.getSize()));
     }
 
@@ -26,9 +25,9 @@ public class OffHeapResource implements Resource {
     }
 
     @Override
-    public Response toResponse() {
-        return OffHeapResourceResponse.builder()
-            .resourceId(this.getId())
+    public Model<OffHeapResource> toModel() {
+        return OffHeapResourceModel.builder()
+            .id(this.getId())
             .size(this.byteBuffer.capacity())
             .build();
     }

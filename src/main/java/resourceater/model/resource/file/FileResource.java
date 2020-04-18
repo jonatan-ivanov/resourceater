@@ -1,29 +1,28 @@
 package resourceater.model.resource.file;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.unit.DataSize;
-import resourceater.model.resource.Resource;
-import resourceater.model.resource.Response;
+import static java.nio.file.StandardOpenOption.CREATE_NEW;
+import static java.nio.file.StandardOpenOption.WRITE;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
-
-import static java.nio.file.StandardOpenOption.CREATE_NEW;
-import static java.nio.file.StandardOpenOption.WRITE;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.unit.DataSize;
+import resourceater.model.resource.Model;
+import resourceater.model.resource.Resource;
 
 /**
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class FileResource implements Resource {
+public class FileResource implements Resource<FileResource> {
     private static final long MAX_SIZE = DataSize.ofGigabytes(1).toBytes();
     private static final int FILE_BUFFER_SIZE = (int) DataSize.ofMegabytes(1).toBytes();
     private final File file;
 
-    public FileResource(FileResourceRequest request) {
+    public FileResource(CreateFileResourceRequest request) {
         this(DataSize.parse(request.getSize()));
     }
 
@@ -65,9 +64,9 @@ public class FileResource implements Resource {
     }
 
     @Override
-    public Response toResponse() {
-        return FileResourceResponse.builder()
-            .resourceId(this.getId())
+    public Model<FileResource> toModel() {
+        return FileResourceModel.builder()
+            .id(this.getId())
             .size(this.file.length())
             .path(this.file.getAbsolutePath())
             .build();
