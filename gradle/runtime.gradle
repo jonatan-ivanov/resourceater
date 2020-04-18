@@ -3,7 +3,7 @@ ext.JMX_PORT = 8686
 
 ext.commonJvmArgs = [
         '-server',
-        // '-XX:+PrintFlagsFinal',
+//        '-XX:+PrintFlagsFinal',
         '-XX:NativeMemoryTracking=summary',
         '-XX:InitialHeapSize=1G',
         '-XX:MaxHeapSize=1G',
@@ -22,8 +22,8 @@ ext.commonJvmArgs = [
         '-Dcom.sun.management.jmxremote.local.only=false',
         '-Dcom.sun.management.jmxremote.authenticate=false',
         '-Dcom.sun.management.jmxremote.ssl=false',
-        '-Dcom.sun.management.jmxremote.host=0.0.0.0',
-        '-Djava.rmi.server.hostname=0.0.0.0',
+        '-Dcom.sun.management.jmxremote.host=127.0.0.1',
+        '-Djava.rmi.server.hostname=127.0.0.1',
 
         '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
 ]

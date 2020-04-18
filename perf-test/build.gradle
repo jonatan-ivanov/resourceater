@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.github.lkishalmi.gatling:gradle-gatling-plugin:3.3.0'
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'com.github.lkishalmi.gatling'
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation 'org.scala-lang:scala-library:2.13.1'
+    implementation 'io.gatling:gatling-http:3.3.1'
+    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.3.1'
+}
+
+idea {
+    module {
+        sourceDirs += sourceSets.gatling.scala.srcDirs
+        resourceDirs +=  sourceSets.gatling.resources.srcDirs
+    }
+}
