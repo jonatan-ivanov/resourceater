@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * @author Jonatan Ivanov
  */
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = ResourceaterApplication.class)
 class ResourceaterApplicationTests {
     @Test void contextLoads() {}
 }
