@@ -3,4 +3,4 @@
 # This file is expected to be part of source control.
 org.projectlombok:lombok:1.18.12
 org.springframework.boot:spring-boot-dependencies:2.2.6.RELEASE
-org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR3
+org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR4

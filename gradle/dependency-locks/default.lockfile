@@ -83,7 +83,7 @@ org.springframework.boot:spring-boot-starter:2.2.6.RELEASE
 org.springframework.boot:spring-boot:2.2.6.RELEASE
 org.springframework.cloud:spring-cloud-commons:2.2.2.RELEASE
 org.springframework.cloud:spring-cloud-context:2.2.2.RELEASE
-org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR3
+org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR4
 org.springframework.cloud:spring-cloud-netflix-archaius:2.2.2.RELEASE
 org.springframework.cloud:spring-cloud-netflix-ribbon:2.2.2.RELEASE
 org.springframework.cloud:spring-cloud-openfeign-core:2.2.2.RELEASE

@@ -1,6 +1,6 @@
 buildscript {
     ext.springBootVersion = '2.2.6.RELEASE'
-    ext.springCloudVersion = 'Hoxton.SR3'
+    ext.springCloudVersion = 'Hoxton.SR4'
 
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' }
