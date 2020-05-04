@@ -14,12 +14,13 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class HttpResource implements Resource<HttpResource> {
+public class HttpResource extends Resource<HttpResource> {
     private final ExecutorService executorService;
     private final HttpBlobClient client;
     private final String url;
 
-    public HttpResource(HttpBlobClient client, String url) {
+    public HttpResource(CreateHttpResourceRequest createHttpResourceRequest, HttpBlobClient client, String url) {
+        super(createHttpResourceRequest.getTtl());
         this.executorService = new ThreadPoolExecutor(1, 1, 0, SECONDS, new ArrayBlockingQueue<>(1));
         this.client = client;
         this.url = url;
@@ -47,9 +48,6 @@ public class HttpResource implements Resource<HttpResource> {
 
     @Override
     public Model<HttpResource> toModel() {
-        return HttpResourceModel.builder()
-            .id(getId())
-            .url(this.url)
-            .build();
+        return new HttpResourceModel(this, this.url);
     }
 }

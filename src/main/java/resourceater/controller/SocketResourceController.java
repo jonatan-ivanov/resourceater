@@ -11,6 +11,9 @@ import resourceater.model.resource.network.socket.SocketResource;
 import resourceater.model.resource.network.socket.SocketResourceModel;
 import resourceater.repository.ResourceRepository;
 
+/**
+ * @author Jonatan Ivanov
+ */
 @RestController
 @RequestMapping(SOCKET_POOLS)
 @ExposesResourceFor(SocketResourceModel.class)

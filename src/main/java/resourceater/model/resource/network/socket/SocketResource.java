@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,14 +16,15 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class SocketResource implements Resource<SocketResource> {
+public class SocketResource extends Resource<SocketResource> {
     private final List<ServerSocket> sockets = new ArrayList<>();
 
     public SocketResource(CreateSocketResourceRequest request) {
-        this(request.getSize());
+        this(request.getSize(), request.getTtl());
     }
 
-    private SocketResource(int count) {
+    private SocketResource(int count, Duration ttl) {
+        super(ttl);
         for (int i = 0; i < count; i++) {
             allocateSocket().ifPresent(sockets::add);
         }
@@ -44,10 +46,10 @@ public class SocketResource implements Resource<SocketResource> {
 
     @Override
     public Model<SocketResource> toModel() {
-        return SocketResourceModel.builder()
-            .id(getId())
-            .size(sockets.size())
-            .ports(sockets.stream().map(ServerSocket::getLocalPort).collect(toList()))
-            .build();
+        return new SocketResourceModel(
+            this,
+            sockets.size(),
+            sockets.stream().map(ServerSocket::getLocalPort).collect(toList())
+        );
     }
 }

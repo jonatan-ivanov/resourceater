@@ -1,4 +1,4 @@
-package resourceater.model.resource.thread.container;
+package resourceater.model.resource.network.http;
 
 import java.time.Duration;
 import lombok.Value;
@@ -8,7 +8,6 @@ import resourceater.model.resource.CreateRequest;
  * @author Jonatan Ivanov
  */
 @Value
-public class CreateContainerThreadResourceRequest implements CreateRequest {
-    private final int size;
+public class CreateHttpResourceRequest implements CreateRequest {
     private final Duration ttl;
 }

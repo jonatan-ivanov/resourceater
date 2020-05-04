@@ -9,6 +9,9 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
 
+/**
+ * @author Jonatan Ivanov
+ */
 public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAssemblerSupport<Resource<R>, Model<R>> {
     private final EntityLinks links;
 

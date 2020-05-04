@@ -1,5 +1,8 @@
 package resourceater.controller;
 
+/**
+ * @author Jonatan Ivanov
+ */
 class Mappings {
     static final String RESOURCES = "/resources";
     static final String CLASS_POOLS = RESOURCES + "/classPools";

@@ -32,6 +32,9 @@ import resourceater.model.resource.thread.container.ContainerThreadResourceModel
 import resourceater.model.resource.thread.daemon.DaemonThreadResource;
 import resourceater.model.resource.thread.daemon.DaemonThreadResourceModel;
 
+/**
+ * @author Jonatan Ivanov
+ */
 @Configuration
 public class ModelAssemblerConfig {
     @Bean

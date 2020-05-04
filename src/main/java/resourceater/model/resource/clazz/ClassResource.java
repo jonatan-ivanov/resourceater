@@ -13,13 +13,14 @@ import resourceater.model.resource.Resource;
 /**
  * @author Jonatan Ivanov
  */
-public class ClassResource implements Resource<ClassResource> {
+public class ClassResource extends Resource<ClassResource> {
     private static final String PACKAGE_NAME = "gen";
     private static final DynamicClassLoader CLASS_LOADER = new DynamicClassLoader();
     private final ClassWriter classWriter = new ClassWriter(0);
     private final List<Class<?>> classes = new ArrayList<>();
 
     public ClassResource(CreateClassResourceRequest request) {
+        super(request.getTtl());
         for (int i = 0; i < request.getSize(); i++) {
             classes.add(generateClass(format("%s$%d", getId(), i)));
         }
@@ -33,10 +34,7 @@ public class ClassResource implements Resource<ClassResource> {
 
     @Override
     public Model<ClassResource> toModel() {
-        return ClassResourceModel.builder()
-            .id(this.getId())
-            .size(this.classes.size())
-            .build();
+        return new ClassResourceModel(this, this.classes.size());
     }
 
     private static class DynamicClassLoader extends ClassLoader { // because defineClass is protected

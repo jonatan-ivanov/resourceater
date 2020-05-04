@@ -36,6 +36,7 @@ dependencies {
         dependencies.add(conf, platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
         dependencies.add(conf, platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"))
     }
+    implementation platform('io.projectreactor:reactor-bom:Dysprosium-SR7')
     testImplementation platform('org.junit:junit-bom:5.+')
 
     annotationProcessor 'org.projectlombok:lombok'
@@ -46,6 +47,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'io.github.openfeign:feign-okhttp'
+    implementation 'io.projectreactor:reactor-core'
+
     implementation 'io.springfox:springfox-swagger2:3.+'
     implementation 'io.springfox:springfox-swagger-ui:3.+'
     implementation 'io.springfox:springfox-spring-webmvc:3.+'

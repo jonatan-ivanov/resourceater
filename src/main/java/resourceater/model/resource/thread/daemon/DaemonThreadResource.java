@@ -11,11 +11,12 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class DaemonThreadResource implements Resource<DaemonThreadResource> {
+public class DaemonThreadResource extends Resource<DaemonThreadResource> {
     private final CountDownLatch countDownLatch = new CountDownLatch(1);
     private final List<Thread> threads = new ArrayList<>();
 
     public DaemonThreadResource(CreateDaemonThreadResourceRequest request) {
+        super(request.getTtl());
         for (int i = 0; i < request.getSize(); i++) {
             Thread thread = new Thread(this::run, String.format("daemonThread-%s#%d", getId(), i));
             threads.add(thread);
@@ -39,9 +40,6 @@ public class DaemonThreadResource implements Resource<DaemonThreadResource> {
 
     @Override
     public Model<DaemonThreadResource> toModel() {
-        return DaemonThreadResourceModel.builder()
-            .id(this.getId())
-            .size(this.threads.size())
-            .build();
+        return new DaemonThreadResourceModel(this, this.threads.size());
     }
 }

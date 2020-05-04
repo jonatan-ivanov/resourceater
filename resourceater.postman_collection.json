@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ac7225a3-6158-4b01-843c-5d8ae5ee6e0e",
+		"_postman_id": "5a4548c9-01e4-46d9-84ae-a86731c7f1b2",
 		"name": "resourceater",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": 10000\n}"
+							"raw": "{\n\t\"size\": 10000,\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/classPools",
@@ -121,7 +121,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "cores",
@@ -160,7 +161,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": 2\n}"
+							"raw": "{\n\t\"size\": 2,\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/cores",
@@ -239,7 +240,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "files",
@@ -278,7 +280,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": \"10MB\"\n}\n"
+							"raw": "{\n\t\"size\": \"10MB\",\n\t\"ttl\": \"PT10s\"\n}\n"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/files",
@@ -357,7 +359,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "httpClients",
@@ -396,7 +399,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/httpClients",
@@ -475,7 +478,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "objects",
@@ -514,7 +518,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": \"100MB\"\n}\n"
+							"raw": "{\n\t\"size\": \"1MB\",\n\t\"ttl\": \"PT10s\"\n}\n"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/objects",
@@ -593,7 +597,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "directBuffers",
@@ -632,7 +637,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": \"100MB\"\n}\n"
+							"raw": "{\n\t\"size\": \"100MB\",\n\t\"ttl\": \"PT10s\"\n}\n"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/directBuffers",
@@ -711,7 +716,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "threadPools",
@@ -750,7 +756,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": 1000\n}"
+							"raw": "{\n\t\"size\": 1000,\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/threadPools",
@@ -829,7 +835,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "socketPools",
@@ -868,7 +875,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": 10\n}"
+							"raw": "{\n\t\"size\": 100,\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/socketPools",
@@ -947,7 +954,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "containerThreads",
@@ -986,7 +994,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": 99\n}"
+							"raw": "{\n\t\"size\": 100,\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/containerThreads",
@@ -1065,7 +1073,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "/actuator/health",
@@ -1087,5 +1096,6 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

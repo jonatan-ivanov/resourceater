@@ -13,11 +13,12 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class CpuResource implements Resource<CpuResource> {
+public class CpuResource extends Resource<CpuResource> {
     private final ExecutorService executorService;
     private final int size;
 
     public CpuResource(CreateCpuResourceRequest request) {
+        super(request.getTtl());
         this.size = request.getSize();
         this.executorService = new ThreadPoolExecutor(this.size, this.size, 0, SECONDS, new ArrayBlockingQueue<>(1));
         for (int i = 0; i < size; i++) {
@@ -42,9 +43,6 @@ public class CpuResource implements Resource<CpuResource> {
 
     @Override
     public Model<CpuResource> toModel() {
-        return CpuResourceModel.builder()
-            .id(this.getId())
-            .size(this.size)
-            .build();
+        return new CpuResourceModel(this, this.size);
     }
 }

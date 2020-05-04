@@ -1,17 +1,24 @@
 package heap
 
+import java.time.Duration
+
 import io.gatling.core.Predef._
 import io.gatling.http.HeaderValues._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
+/**
+ * @author Jonatan Ivanov
+ */
 class HeapSimulation extends Simulation  {
-    val size = "100KB"
-    val rate = 100
-    val duration = 60
+    val size = "512KB"
+    val ttl: Duration = Duration.ofMinutes(1)
+    val rate = 10 // 5MB/sec (300MB/min), 10 objects/sec (600 objects/min)
+    val duration = 300
 
     println(s"size: $size")
-    println(s"rate: $size")
+    println(s"ttl: $ttl")
+    println(s"rate: $rate")
     println(s"duration: $duration")
 
     val httpProtocol: HttpProtocolBuilder = http
@@ -24,9 +31,9 @@ class HeapSimulation extends Simulation  {
             .exec(
                 http("createObject")
                     .post("/resources/objects")
-                    .body(StringBody(s"""{ "size": "$size", "disposable": true }""")).asJson
+                    .body(StringBody(s"""{ "size": "$size", "ttl": "$ttl" }""")).asJson
             )
-            .inject(constantUsersPerSec(rate) during(duration))
+            .inject(constantUsersPerSec(rate) during duration)
             .protocols(httpProtocol)
     )
 }

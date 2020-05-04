@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.unit.DataSize;
 import resourceater.model.resource.Model;
@@ -17,16 +18,17 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 @Slf4j
-public class FileResource implements Resource<FileResource> {
+public class FileResource extends Resource<FileResource> {
     private static final long MAX_SIZE = DataSize.ofGigabytes(1).toBytes();
     private static final int FILE_BUFFER_SIZE = (int) DataSize.ofMegabytes(1).toBytes();
     private final File file;
 
     public FileResource(CreateFileResourceRequest request) {
-        this(DataSize.parse(request.getSize()));
+        this(DataSize.parse(request.getSize()), request.getTtl());
     }
 
-    private FileResource(DataSize dataSize) {
+    private FileResource(DataSize dataSize, Duration ttl) {
+        super(ttl);
         if (MAX_SIZE < dataSize.toBytes()) {
             throw new IllegalArgumentException("The maximum allowed size is 1GB"); // the size must fit into an int
         }
@@ -65,10 +67,6 @@ public class FileResource implements Resource<FileResource> {
 
     @Override
     public Model<FileResource> toModel() {
-        return FileResourceModel.builder()
-            .id(this.getId())
-            .size(this.file.length())
-            .path(this.file.getAbsolutePath())
-            .build();
+        return new FileResourceModel(this, this.file.length(), this.file.getAbsolutePath());
     }
 }
