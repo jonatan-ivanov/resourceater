@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static resourceater.controller.Mappings.CONTAINER_THREADS;
 
 import io.swagger.annotations.Api;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,10 +31,11 @@ public class ContainerThreadResourceController extends ResourceController<Create
     private final ContainerThreadResourceClient client;
 
     public ContainerThreadResourceController(
+        PagedResourcesAssembler<ContainerThreadResource> pagedAssembler,
         ModelAssembler<ContainerThreadResource> modelAssembler,
         ResourceRepository<ContainerThreadResource> repository,
         ContainerThreadResourceClient client) {
-        super(modelAssembler, repository);
+        super(pagedAssembler, modelAssembler, repository);
         this.client = client;
     }
 

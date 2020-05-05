@@ -6,7 +6,9 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.hateoas.CollectionModel;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,13 +27,14 @@ import resourceater.repository.ResourceRepository;
  */
 @RequiredArgsConstructor
 public abstract class ResourceController<RQ extends CreateRequest, R extends Resource<R>> {
+    private final PagedResourcesAssembler<R> pagedAssembler;
     private final ModelAssembler<R> modelAssembler;
     protected final ResourceRepository<R> repository;
 
     @GetMapping
     @ApiOperation("Fetches all of the resources")
-    public CollectionModel<Model<R>> findAll() {
-        return modelAssembler.toCollectionModel(repository.findAll());
+    public PagedModel<Model<R>> findAll(Pageable pageable) {
+        return pagedAssembler.toModel(repository.findAll(pageable), modelAssembler);
     }
 
     @GetMapping("{id}")

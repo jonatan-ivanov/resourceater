@@ -1,6 +1,6 @@
 package resourceater.model.resource.network.socket;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -49,7 +49,7 @@ public class SocketResource extends Resource<SocketResource> {
         return new SocketResourceModel(
             this,
             sockets.size(),
-            sockets.stream().map(ServerSocket::getLocalPort).collect(toList())
+            sockets.stream().map(ServerSocket::getLocalPort).collect(toUnmodifiableList())
         );
     }
 }

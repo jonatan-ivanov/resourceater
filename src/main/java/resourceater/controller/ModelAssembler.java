@@ -12,7 +12,7 @@ import resourceater.model.resource.Resource;
 /**
  * @author Jonatan Ivanov
  */
-public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAssemblerSupport<Resource<R>, Model<R>> {
+public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAssemblerSupport<R, Model<R>> {
     private final EntityLinks links;
 
     public ModelAssembler(EntityLinks links, Class<?> controllerClass, Class<? extends Model<R>> modelClass) {
@@ -21,18 +21,18 @@ public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAs
     }
 
     @Override
-    protected Model<R> instantiateModel(Resource<R> resource) {
+    protected Model<R> instantiateModel(R resource) {
         return resource.toModel();
     }
 
     @Override
-    public Model<R> toModel(Resource<R> resource) {
+    public Model<R> toModel(R resource) {
         return createModelWithId(resource.getId(), resource)
             .add(links.linkToCollectionResource(getResourceType()).withRel(COLLECTION));
     }
 
     @Override
-    public CollectionModel<Model<R>> toCollectionModel(Iterable<? extends Resource<R>> entities) {
+    public CollectionModel<Model<R>> toCollectionModel(Iterable<? extends R> entities) {
         return new CollectionModel<>(
             super.toCollectionModel(entities).getContent(),
             links.linkToCollectionResource(getResourceType()).withRel(SELF)

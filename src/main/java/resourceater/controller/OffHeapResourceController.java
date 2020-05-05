@@ -3,6 +3,7 @@ package resourceater.controller;
 import static resourceater.controller.Mappings.DIRECT_BUFFERS;
 
 import io.swagger.annotations.Api;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,11 @@ import resourceater.repository.ResourceRepository;
 @ExposesResourceFor(OffHeapResourceModel.class)
 @Api(tags = {"Off-Heap Direct Buffers"})
 public class OffHeapResourceController extends ResourceController<CreateOffHeapResourceRequest, OffHeapResource> {
-    public OffHeapResourceController(ModelAssembler<OffHeapResource> modelAssembler, ResourceRepository<OffHeapResource> repository) {
-        super(modelAssembler, repository);
+    public OffHeapResourceController(
+        PagedResourcesAssembler<OffHeapResource> pagedAssembler,
+        ModelAssembler<OffHeapResource> modelAssembler,
+        ResourceRepository<OffHeapResource> repository) {
+        super(pagedAssembler, modelAssembler, repository);
     }
 
     @Override

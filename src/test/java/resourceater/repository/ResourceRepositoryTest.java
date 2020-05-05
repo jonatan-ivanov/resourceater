@@ -1,6 +1,8 @@
 package resourceater.repository;
 
+import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -8,9 +10,12 @@ import static resourceater.utils.StreamUtils.toStream;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import resourceater.model.resource.Resource;
 
 /**
@@ -111,11 +116,48 @@ class ResourceRepositoryTest {
     }
 
     @Test
+    void shouldFindAndPageAllSavedEntities() {
+        List<TestResource> savedResources = toStream(saveThreeResources()).collect(toUnmodifiableList());
+        Page<TestResource> firstPage = repository.findAll(PageRequest.of(0, 2));
+        Page<TestResource> secondPage = repository.findAll(firstPage.nextPageable());
+
+        assertThat(firstPage.getTotalElements()).isEqualTo(3);
+        assertThat(firstPage.getTotalPages()).isEqualTo(2);
+        assertThat(firstPage.hasNext()).isTrue();
+        assertThat(firstPage.hasPrevious()).isFalse();
+
+        assertThat(secondPage.getTotalElements()).isEqualTo(3);
+        assertThat(secondPage.getTotalPages()).isEqualTo(2);
+        assertThat(secondPage.hasNext()).isFalse();
+        assertThat(secondPage.hasPrevious()).isTrue();
+
+        List<TestResource> foundResources = Stream.concat(toStream(firstPage), toStream(secondPage))
+            .collect(toUnmodifiableList());
+        assertThat(foundResources).hasSameElementsAs(savedResources);
+    }
+
+    @Test
+    void sortedFindAndPageAllShouldNotBeSupported() {
+        assertThatThrownBy(() -> repository.findAll(PageRequest.of(0, 2, Sort.by("testField"))))
+            .isInstanceOf(UnsupportedOperationException.class)
+            .hasMessage("Sorting is not supported on this data set")
+            .hasNoCause();
+    }
+
+    @Test
+    void sortedFindAllShouldNotBeSupported() {
+        assertThatThrownBy(() -> repository.findAll(Sort.by("testField")))
+            .isInstanceOf(UnsupportedOperationException.class)
+            .hasMessage("Sorting is not supported on this data set")
+            .hasNoCause();
+    }
+
+    @Test
     void shouldFindAllSavedEntitiesById() {
         Iterable<TestResource> resources = saveThreeResources();
         Iterable<String> ids = toStream(resources)
             .map(Resource::getId)
-            .collect(Collectors.toList());
+            .collect(toUnmodifiableList());
 
         assertThat(repository.findAllById(ids)).hasSameElementsAs(resources);
     }
@@ -133,7 +175,7 @@ class ResourceRepositoryTest {
             .map(Resource::getId)
             .map(repository::findById)
             .flatMap(Optional::stream)
-            .collect(Collectors.toList());
+            .collect(toUnmodifiableList());
 
         assertThat(foundResources).hasSameElementsAs(resources);
     }

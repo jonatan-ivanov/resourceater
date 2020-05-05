@@ -3,6 +3,7 @@ package resourceater.controller;
 import static resourceater.controller.Mappings.CORES;
 
 import io.swagger.annotations.Api;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,11 @@ import resourceater.repository.ResourceRepository;
 @ExposesResourceFor(CpuResourceModel.class)
 @Api(tags = {"CPU Cores"})
 public class CpuResourceController extends ResourceController<CreateCpuResourceRequest, CpuResource> {
-    public CpuResourceController(ModelAssembler<CpuResource> modelAssembler, ResourceRepository<CpuResource> repository) {
-        super(modelAssembler, repository);
+    public CpuResourceController(
+        PagedResourcesAssembler<CpuResource> pagedAssembler,
+        ModelAssembler<CpuResource> modelAssembler,
+        ResourceRepository<CpuResource> repository) {
+        super(pagedAssembler, modelAssembler, repository);
     }
 
     @Override

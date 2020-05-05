@@ -4,6 +4,7 @@ import static resourceater.controller.Mappings.HTTP_CLIENTS;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +26,12 @@ public class HttpResourceController extends ResourceController<CreateHttpResourc
     private final HttpBlobClient client;
 
     public HttpResourceController(
+        PagedResourcesAssembler<HttpResource> pagedAssembler,
         ModelAssembler<HttpResource> modelAssembler,
         ResourceRepository<HttpResource> repository,
         HttpBlobClient client,
         @Value("${feign.client.config.httpBlob.url}") String url) {
-        super(modelAssembler, repository);
+        super(pagedAssembler, modelAssembler, repository);
         this.client = client;
         this.url = url;
     }

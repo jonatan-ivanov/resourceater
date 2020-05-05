@@ -3,6 +3,7 @@ package resourceater.controller;
 import static resourceater.controller.Mappings.FILES;
 
 import io.swagger.annotations.Api;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,11 @@ import resourceater.repository.ResourceRepository;
 @ExposesResourceFor(FileResourceModel.class)
 @Api(tags = {"Files"})
 public class FileResourceController extends ResourceController<CreateFileResourceRequest, FileResource> {
-    public FileResourceController(ModelAssembler<FileResource> modelAssembler, ResourceRepository<FileResource> repository) {
-        super(modelAssembler, repository);
+    public FileResourceController(
+        PagedResourcesAssembler<FileResource> pagedAssembler,
+        ModelAssembler<FileResource> modelAssembler,
+        ResourceRepository<FileResource> repository) {
+        super(pagedAssembler, modelAssembler, repository);
     }
 
     @Override

@@ -92,6 +92,7 @@ org.springframework.cloud:spring-cloud-netflix-ribbon:2.2.2.RELEASE
 org.springframework.cloud:spring-cloud-openfeign-core:2.2.2.RELEASE
 org.springframework.cloud:spring-cloud-starter-openfeign:2.2.2.RELEASE
 org.springframework.cloud:spring-cloud-starter:2.2.2.RELEASE
+org.springframework.data:spring-data-commons:2.2.6.RELEASE
 org.springframework.hateoas:spring-hateoas:1.0.4.RELEASE
 org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE
 org.springframework.plugin:spring-plugin-metadata:2.0.0.RELEASE
