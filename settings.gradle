@@ -1,2 +1,4 @@
 rootProject.name = 'resourceater'
+enableFeaturePreview('ONE_LOCKFILE_PER_PROJECT')
+
 include ':perf-test'
