@@ -8,6 +8,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static resourceater.utils.StreamUtils.toStream;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -22,6 +23,7 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 class ResourceRepositoryTest {
+    private static final Duration DEFAULT_TTL = Duration.ofSeconds(5);
     private final ResourceRepository<TestResource> repository = new ResourceRepository<>();
 
     @BeforeEach
@@ -37,6 +39,18 @@ class ResourceRepositoryTest {
 
         repository.deleteAll();
         assertThat(repository.count()).isZero();
+    }
+
+    @Test
+    void shouldNotSaveResourceWithZeroTtl() {
+        saveThreeResources(Duration.ZERO);
+        assertThat(repository.count()).isEqualTo(0);
+    }
+
+    @Test
+    void shouldSaveResourceWithoutTtl() {
+        saveThreeResources(null);
+        assertThat(repository.count()).isEqualTo(3);
     }
 
     @Test
@@ -209,10 +223,18 @@ class ResourceRepositoryTest {
     }
 
     private Iterable<TestResource> saveThreeResources() {
-        return repository.saveAll(List.of(createResource(), createResource(), createResource()));
+        return saveThreeResources(DEFAULT_TTL);
+    }
+
+    private Iterable<TestResource> saveThreeResources(Duration ttl) {
+        return repository.saveAll(List.of(createResource(ttl), createResource(ttl), createResource(ttl)));
     }
 
     private TestResource createResource() {
-        return spy(TestResource.class);
+        return createResource(DEFAULT_TTL);
+    }
+
+    private TestResource createResource(Duration ttl) {
+        return spy(new TestResource(ttl));
     }
 }

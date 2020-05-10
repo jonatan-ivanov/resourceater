@@ -3,10 +3,11 @@ package resourceater.repository;
 import static java.util.stream.Collectors.toUnmodifiableList;
 import static resourceater.utils.StreamUtils.toStream;
 
+import com.stoyanr.evictor.ConcurrentMapWithTimedEviction;
+import com.stoyanr.evictor.map.ConcurrentHashMapWithTimedEviction;
+import java.time.Duration;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,7 +20,7 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 public class ResourceRepository<T extends Resource<T>> implements PagingAndSortingRepository<T, String>, DisposableBean {
-    private final Map<String, T> resources = new ConcurrentHashMap<>();
+    private final ConcurrentMapWithTimedEviction<String, T> resources = new ConcurrentHashMapWithTimedEviction<>();
 
     @Override
     public Iterable<T> findAll(Sort sort) {
@@ -42,9 +43,29 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
 
     @Override
     public <S extends T> S save(S entity) {
-        resources.put(entity.getId(), entity);
+        //TODO: entity.destroy() must be called upon eviction
+        entity.getTtl()
+            .map(Duration::toMillis)
+            .ifPresentOrElse(
+                ttl -> saveWithTtl(entity, ttl),
+                () -> saveWithOutTtl(entity)
+            );
         entity.saved();
+
         return entity;
+    }
+
+    private <S extends T> void saveWithTtl(S entity, long ttl) {
+        if (ttl != 0) {
+            resources.put(entity.getId(), entity, ttl);
+        }
+        else {
+            entity.destroy();
+        }
+    }
+
+    private <S extends T> void saveWithOutTtl(S entity) {
+        resources.put(entity.getId(), entity);
     }
 
     @Override

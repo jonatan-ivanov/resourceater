@@ -48,12 +48,12 @@ dependencies {
     implementation 'org.springframework.data:spring-data-commons'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'io.github.openfeign:feign-okhttp'
-    implementation 'io.projectreactor:reactor-core'
 
     implementation 'io.springfox:springfox-swagger2:3.+'
     implementation 'io.springfox:springfox-swagger-ui:3.+'
     implementation 'io.springfox:springfox-spring-webmvc:3.+'
 
+    implementation 'com.stoyanr:evictor:1.+'
     implementation 'org.ow2.asm:asm:7.+'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
