@@ -15,7 +15,7 @@ import resourceater.model.resource.Resource;
  */
 public class ClassResource extends Resource<ClassResource> {
     private static final String PACKAGE_NAME = "gen";
-    private static final DynamicClassLoader CLASS_LOADER = new DynamicClassLoader();
+    private final DynamicClassLoader classLoader = new DynamicClassLoader();
     private final ClassWriter classWriter = new ClassWriter(0);
     private final List<Class<?>> classes = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class ClassResource extends Resource<ClassResource> {
     private Class<?> generateClass(String name) {
         classWriter.visit(V12, ACC_PUBLIC, format("%s/%s", PACKAGE_NAME, name), null, "java/lang/Object", null);
         classWriter.visitEnd();
-        return CLASS_LOADER.defineClass(format("%s.%s", PACKAGE_NAME, name), classWriter.toByteArray());
+        return classLoader.defineClass(format("%s.%s", PACKAGE_NAME, name), classWriter.toByteArray());
     }
 
     @Override
