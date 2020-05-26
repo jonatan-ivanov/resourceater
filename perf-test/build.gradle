@@ -13,11 +13,6 @@ apply plugin: 'com.github.lkishalmi.gatling'
 repositories {
     mavenCentral()
 }
-dependencies {
-    implementation 'org.scala-lang:scala-library:2.13.1'
-    implementation 'io.gatling:gatling-http:3.3.1'
-    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.3.1'
-}
 
 idea {
     module {
