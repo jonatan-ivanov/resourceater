@@ -6,6 +6,7 @@ run:
 		-XX:NativeMemoryTracking=summary \
 		-XX:MinHeapSize=1G \
 		-XX:MaxHeapSize=1G \
+		-XX:MaxDirectMemorySize=1G \
 		-XX:MaxMetaspaceSize=256M \
 		-XX:+UseG1GC \
 		-XX:+HeapDumpOnOutOfMemoryError \
