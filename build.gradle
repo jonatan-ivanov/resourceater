@@ -62,6 +62,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
+processResources {
+    filesMatching('build.yml') { it.expand(project.properties) }
+}
+
 test {
     useJUnitPlatform()
 }
