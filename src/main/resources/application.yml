@@ -1,13 +1,20 @@
 spring.application.name: resourceater
-logging.level.resourceater: DEBUG
-logging.file: logs/${spring.application.name}.log
-spring.jackson.serialization.indent_output: true
+server.port: 8080
+
 spring.output.ansi.enabled: always
+spring.jackson.serialization.indent_output: true
+spring.jackson.date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+
+logging.level.resourceater: DEBUG
+logging.file.name: ${spring.application.home:.}/logs/${spring.application.name}.log
 
 management.endpoints.web.exposure.include: '*'
-management.endpoint.metrics.enabled: true
+management.endpoint.health.show-details: always
+management.metrics.tags.application: ${spring.application.name}
+management.metrics.distribution.percentiles.all: 0.95, 0.98, 0.99, 0.999, 0.9999, 0.99999
+management.metrics.distribution.percentiles-histogram.all: true
 
-server.tomcat.max-threads: 100
+server.tomcat.threads.max: 100
 feign.okhttp.enabled: true
 
 feign.client.config.containerThreadResource:
