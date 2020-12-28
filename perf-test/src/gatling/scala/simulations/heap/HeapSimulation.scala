@@ -1,4 +1,4 @@
-package heap
+package simulations.heap
 
 import java.time.Duration
 

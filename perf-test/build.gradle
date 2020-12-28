@@ -3,12 +3,12 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'com.github.lkishalmi.gatling:gradle-gatling-plugin:3.3.4'
+        classpath 'gradle.plugin.io.gatling.gradle:gatling-gradle-plugin:3.5.0'
     }
 }
 
 apply plugin: 'idea'
-apply plugin: 'com.github.lkishalmi.gatling'
+apply plugin: 'io.gatling.gradle'
 
 repositories {
     mavenCentral()
