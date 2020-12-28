@@ -2,7 +2,7 @@ apply plugin: 'com.bmuschko.docker-spring-boot-application'
 
 docker {
     springBootApplication {
-        baseImage = 'adoptopenjdk:14-jre-hotspot'
+        baseImage = 'adoptopenjdk:15-jre-hotspot'
         maintainer = project.maintainer
         ports = [HTTP_PORT, JMX_PORT]
     }
