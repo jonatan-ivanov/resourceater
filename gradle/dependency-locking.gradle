@@ -2,7 +2,7 @@ dependencyLocking {
     lockAllConfigurations()
 }
 
-task resolveAndLockAll {
+task resolveAndLockAll { // ./gradle resolveAndLockAll --write-locks
     doFirst {
         assert gradle.startParameter.writeDependencyLocks
     }

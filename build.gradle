@@ -1,6 +1,6 @@
 buildscript {
-    ext.springBootVersion = '2.2.6.RELEASE'
-    ext.springCloudVersion = 'Hoxton.SR4'
+    ext.springBootVersion = '2.4.1'
+    ext.springCloudVersion = '2020.0.0'
 
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' }
@@ -29,14 +29,13 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' } // for springfox-swagger 3.+
 }
 dependencies {
     ['annotationProcessor', 'compileOnly', 'implementation', 'runtimeOnly', 'testImplementation'].each { conf ->
         dependencies.add(conf, platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
         dependencies.add(conf, platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"))
     }
-    implementation platform('io.projectreactor:reactor-bom:Dysprosium-SR7')
+    implementation platform('io.projectreactor:reactor-bom:2020.0.2')
     testImplementation platform('org.junit:junit-bom:5.+')
 
     annotationProcessor 'org.projectlombok:lombok'
@@ -50,9 +49,8 @@ dependencies {
     implementation 'io.github.openfeign:feign-okhttp'
     implementation 'io.projectreactor:reactor-core'
 
-    implementation 'io.springfox:springfox-swagger2:3.+'
+    implementation 'io.springfox:springfox-boot-starter:3.+'
     implementation 'io.springfox:springfox-swagger-ui:3.+'
-    implementation 'io.springfox:springfox-spring-webmvc:3.+'
 
     implementation 'org.ow2.asm:asm:7.+'
 
