@@ -13,6 +13,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import reactor.core.publisher.Mono;
 import resourceater.model.resource.Resource;
 
 /**
@@ -44,6 +46,8 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
     public <S extends T> S save(S entity) {
         resources.put(entity.getId(), entity);
         entity.saved();
+        scheduleResourceDeletionIfNeeded(entity);
+
         return entity;
     }
 
@@ -105,5 +109,9 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
     @Override
     public void destroy() {
         deleteAll();
+    }
+
+    private void scheduleResourceDeletionIfNeeded(T entity) {
+        entity.getTtl().ifPresent(ttl -> Mono.delay(ttl).subscribe(event -> delete(entity)));
     }
 }

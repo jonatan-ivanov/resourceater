@@ -9,7 +9,7 @@ import resourceater.model.resource.Resource;
  */
 public class TestResource extends Resource<TestResource> {
     public TestResource() {
-        this(Duration.ZERO);
+        this(null);
     }
 
     public TestResource(Duration ttl) {
