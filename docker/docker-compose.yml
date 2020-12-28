@@ -1,6 +1,6 @@
 version: '3'
 services:
-  pacman:
+  resourceater:
     image: ${SERVICE_IMAGE}
     container_name: resourceater
     ports:
