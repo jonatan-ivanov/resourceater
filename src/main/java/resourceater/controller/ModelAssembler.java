@@ -15,6 +15,7 @@ import resourceater.model.resource.Resource;
 public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAssemblerSupport<R, Model<R>> {
     private final EntityLinks links;
 
+    @SuppressWarnings("unchecked")
     public ModelAssembler(EntityLinks links, Class<?> controllerClass, Class<? extends Model<R>> modelClass) {
         super(controllerClass, (Class<Model<R>>) modelClass);
         this.links = links;
@@ -33,7 +34,7 @@ public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAs
 
     @Override
     public CollectionModel<Model<R>> toCollectionModel(Iterable<? extends R> entities) {
-        return new CollectionModel<>(
+        return CollectionModel.of(
             super.toCollectionModel(entities).getContent(),
             links.linkToCollectionResource(getResourceType()).withRel(SELF)
         );
