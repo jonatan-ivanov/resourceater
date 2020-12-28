@@ -13,7 +13,7 @@ Resourceater is a Java based web service which consumes your resources on demand
 - Sockets by creating server sockets
 
 # Endpoints
-Check [ReDoc](https://jonatan-ivanov.github.io/resourceater/) or the [Swagger-UI](http://localhost:8080/swagger-ui.html)
+Check [ReDoc](https://jonatan-ivanov.github.io/resourceater/) or the [Swagger-UI](http://localhost:8080/swagger-ui/)
 
 # Examples
 
