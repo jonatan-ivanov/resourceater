@@ -1,8 +1,8 @@
 package simulations.heap
 
 import java.time.Duration
-
 import io.gatling.core.Predef._
+import io.gatling.http.HeaderNames.{Accept, ContentType}
 import io.gatling.http.HeaderValues._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
@@ -31,6 +31,8 @@ class HeapSimulation extends Simulation  {
             .exec(
                 http("createObject")
                     .post("/resources/objects")
+                    .header(ContentType, ApplicationJson)
+                    .header(Accept, ApplicationJson)
                     .body(StringBody(s"""{ "size": "$size", "ttl": "$ttl" }""")).asJson
             )
             .inject(constantUsersPerSec(rate) during duration)
