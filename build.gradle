@@ -1,6 +1,6 @@
 buildscript {
-    ext.springBootVersion = '2.4.1'
-    ext.springCloudVersion = '2020.0.0'
+    ext.springBootVersion = '2.4.3'
+    ext.springCloudVersion = '2020.0.1'
 
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' }
@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
         classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:2.2.4'
-        classpath 'com.bmuschko:gradle-docker-plugin:6.6.1'
+        classpath 'com.bmuschko:gradle-docker-plugin:6.7.0'
         classpath 'org.ajoberstar.grgit:grgit-gradle:4.1.0'
     }
 }
@@ -35,7 +35,7 @@ dependencies {
         dependencies.add(conf, platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
         dependencies.add(conf, platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"))
     }
-    implementation platform('io.projectreactor:reactor-bom:2020.0.2')
+    implementation platform('io.projectreactor:reactor-bom:2020.0.4')
     testImplementation platform('org.junit:junit-bom:5.+')
 
     annotationProcessor 'org.projectlombok:lombok'
