@@ -1,10 +1,10 @@
 ext.HTTP_PORT = 8080
-ext.JMX_PORT = 8686
+ext.JMX_PORT = 5000
+ext.DEBUG_PORT = 5005
 
 ext.commonJvmArgs = [
-        '-server',
 //        '-XX:+PrintFlagsFinal',
-        '-XX:NativeMemoryTracking=summary',
+//        '-XX:NativeMemoryTracking=summary',
 //        '-XX:+UnlockDiagnosticVMOptions',
 //        '-XX:+PrintNMTStatistics',
         '-XX:MinHeapSize=1G',
@@ -12,6 +12,7 @@ ext.commonJvmArgs = [
         '-XX:MaxDirectMemorySize=1G',
         '-XX:MaxMetaspaceSize=256M',
         '-XX:+UseG1GC',
+
         '-XX:+HeapDumpOnOutOfMemoryError',
         '-XX:HeapDumpPath=logs',
         '-Xlog:gc*:file=logs/gc.log:time,uptime,pid,tid,level,tags:filecount=5,filesize=5M',
@@ -19,22 +20,27 @@ ext.commonJvmArgs = [
         '-Djava.security.egd=file:/dev/./urandom',
         '-Duser.timezone=UTC',
         '-Dfile.encoding=UTF-8',
-        '-Dcom.sun.management.jmxremote',
-        "-Dcom.sun.management.jmxremote.port=$JMX_PORT",
-        "-Dcom.sun.management.jmxremote.rmi.port=$JMX_PORT",
-        '-Dcom.sun.management.jmxremote.local.only=false',
-        '-Dcom.sun.management.jmxremote.authenticate=false',
-        '-Dcom.sun.management.jmxremote.ssl=false',
-        '-Dcom.sun.management.jmxremote.host=127.0.0.1',
-        '-Djava.rmi.server.hostname=127.0.0.1',
+]
 
-        '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+ext.jmxJvmArgs = [
+    '-Dcom.sun.management.jmxremote',
+    "-Dcom.sun.management.jmxremote.port=$JMX_PORT",
+    "-Dcom.sun.management.jmxremote.rmi.port=$JMX_PORT",
+    '-Dcom.sun.management.jmxremote.local.only=false',
+    '-Dcom.sun.management.jmxremote.authenticate=false',
+    '-Dcom.sun.management.jmxremote.ssl=false',
+    '-Dcom.sun.management.jmxremote.host=127.0.0.1',
+    '-Djava.rmi.server.hostname=127.0.0.1',
+]
+
+ext.debugJvmArgs = [
+    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:$DEBUG_PORT"
 ]
 
 version = "${grgit.head().abbreviatedId}.${Instant.now().epochSecond}"
 
 bootRun {
-    jvmArgs += commonJvmArgs
+    jvmArgs += commonJvmArgs + jmxJvmArgs + debugJvmArgs
 }
 
 mkdir 'logs' // The JVM is not able to start if the GC logs folder does not exists :(

@@ -8,7 +8,6 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
 //        classpath 'com.gorylenko.gradle-git-properties:gradle-git-properties:2.3.0'
-        classpath 'com.bmuschko:gradle-docker-plugin:6.7.0'
         classpath 'org.ajoberstar.grgit:grgit-gradle:4.1.0'
     }
 }

@@ -1,24 +1,21 @@
-apply plugin: 'com.bmuschko.docker-spring-boot-application'
-
-docker {
-    springBootApplication {
-        baseImage = 'adoptopenjdk:15-jre-hotspot'
-        maintainer = project.maintainer
-        ports = [HTTP_PORT, JMX_PORT]
-    }
-}
-dockerCreateDockerfile {
-    environmentVariable 'JDK_JAVA_OPTIONS', commonJvmArgs.join(' ')
+bootBuildImage {
+    environment = [
+        BP_GRADLE_BUILD_ARGUMENTS: '--no-daemon assemble',
+        BP_JMX_ENABLED: 'true',
+        BP_DEBUG_ENABLED: 'true'
+    ]
 }
 
-task dockerRun {
-    dependsOn dockerBuildImage
+task bootDockerRun {
+    dependsOn bootBuildImage
     doLast {
         def envVars = [
                 "HTTP_PORT=$HTTP_PORT",
                 "JMX_PORT=$JMX_PORT",
+                "DEBUG_PORT=$DEBUG_PORT",
                 "LOGS_HOME=$projectDir/logs",
-                "SERVICE_IMAGE=$project.group/$project.name:$project.version"
+                "JAVA_TOOL_OPTIONS=${commonJvmArgs.join(' ')}",
+                "APP_IMAGE=$project.name:$project.version"
         ]
 
         'docker-compose --compatibility up'.execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)

@@ -1,14 +1,21 @@
 version: '3'
 services:
-  resourceater:
-    image: ${SERVICE_IMAGE}
-    container_name: resourceater
-    ports:
-      - "${HTTP_PORT}:${HTTP_PORT}"
-      - "${JMX_PORT}:${JMX_PORT}"
-    volumes:
-      - ${LOGS_HOME}:/app/logs
-    # deploy:
-    #   resources:
-    #     limits:
-    #       memory: 128M
+    resourceater:
+        image: ${APP_IMAGE}
+        container_name: resourceater
+        environment:
+            BPL_JMX_ENABLED: "true"
+            BPL_DEBUG_ENABLED: "true"
+#            BPL_DEBUG_SUSPEND: "true"
+            BPL_DEBUG_PORT: "*:${DEBUG_PORT}"
+            JAVA_TOOL_OPTIONS: "${JAVA_TOOL_OPTIONS}"
+        ports:
+            - "${HTTP_PORT}:${HTTP_PORT}"
+            - "${JMX_PORT}:${JMX_PORT}"
+            - "${DEBUG_PORT}:${DEBUG_PORT}"
+        volumes:
+            - ${LOGS_HOME}:/workspace/logs
+#        deploy:
+#            resources:
+#                limits:
+#                    memory: 128M
