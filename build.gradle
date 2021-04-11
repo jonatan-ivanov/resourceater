@@ -83,5 +83,5 @@ task cleanAll {
 
 wrapper {
     distributionType = Wrapper.DistributionType.ALL
-    gradleVersion = new groovy.json.JsonSlurper().parseText('https://services.gradle.org/versions/current'.toURL().text).version
+//    gradleVersion = new groovy.json.JsonSlurper().parseText('https://services.gradle.org/versions/current'.toURL().text).version
 }
