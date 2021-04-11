@@ -3,20 +3,20 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'gradle.plugin.io.gatling.gradle:gatling-gradle-plugin:3.5.1'
+//        classpath 'gradle.plugin.io.gatling.gradle:gatling-gradle-plugin:3.5.1' // TODO: check and update once it supports Gradle 7.x
     }
 }
 
 apply plugin: 'idea'
-apply plugin: 'io.gatling.gradle'
+//apply plugin: 'io.gatling.gradle'
 
 repositories {
     mavenCentral()
 }
 
-idea {
-    module {
-        sourceDirs += sourceSets.gatling.scala.srcDirs
-        resourceDirs +=  sourceSets.gatling.resources.srcDirs
-    }
-}
+//idea {
+//    module {
+//        sourceDirs += sourceSets.gatling.scala.srcDirs
+//        resourceDirs +=  sourceSets.gatling.resources.srcDirs
+//    }
+//}
