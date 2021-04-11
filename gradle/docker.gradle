@@ -4,6 +4,7 @@ bootBuildImage {
         BP_JMX_ENABLED: 'true',
         BP_DEBUG_ENABLED: 'true'
     ]
+    imageName = System.env.IMAGE ?: imageName // for skaffold
 }
 
 task bootDockerRun {

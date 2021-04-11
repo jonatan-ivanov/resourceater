@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+build:
+  artifacts:
+  - image: resourceater
+    custom:
+      buildCommand: ./gradlew bootBuildImage
+      dependencies:
+        paths:
+        - src/**
+        - gradle/**
+        - build.gradle
+        - gradle.lockfile
+        - gradle.properties
+        - settings.gradle
+        ignore:
+        - .gradle/**
+        - build/**
+        - .idea/**
+        - logs/**
+  tagPolicy:
+    sha256: {}
