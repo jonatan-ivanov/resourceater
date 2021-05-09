@@ -2,6 +2,10 @@ buildscript {
     ext.springBootVersion = 'latest.release'
     ext.springCloudVersion = 'latest.release'
 
+    configurations.classpath {
+        resolutionStrategy.activateDependencyLocking()
+    }
+
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
