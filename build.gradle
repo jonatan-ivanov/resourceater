@@ -1,14 +1,14 @@
 buildscript {
-    ext.springBootVersion = '2.4.4'
-    ext.springCloudVersion = '2020.0.2'
+    ext.springBootVersion = 'latest.release'
+    ext.springCloudVersion = 'latest.release'
 
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-        classpath 'com.gorylenko.gradle-git-properties:gradle-git-properties:2.3.1'
-        classpath 'org.ajoberstar.grgit:grgit-gradle:4.1.0'
+        classpath 'com.gorylenko.gradle-git-properties:gradle-git-properties:latest.release'
+        classpath 'org.ajoberstar.grgit:grgit-gradle:latest.release'
     }
 }
 
@@ -34,11 +34,11 @@ dependencies {
         dependencies.add(conf, platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
         dependencies.add(conf, platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"))
     }
-    implementation platform('io.projectreactor:reactor-bom:2020.0.5')
-    testImplementation platform('org.junit:junit-bom:5.+')
+    implementation platform('io.projectreactor:reactor-bom:latest.release')
+    testImplementation platform('org.junit:junit-bom:latest.release')
 
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
-    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -48,8 +48,8 @@ dependencies {
     implementation 'io.github.openfeign:feign-okhttp'
     implementation 'io.projectreactor:reactor-core'
 
-    implementation 'io.springfox:springfox-boot-starter:3.+'
-    implementation 'io.springfox:springfox-swagger-ui:3.+'
+    implementation 'io.springfox:springfox-boot-starter:latest.release'
+    implementation 'io.springfox:springfox-swagger-ui:latest.release'
 
     implementation 'org.ow2.asm:asm:7.+'
 
