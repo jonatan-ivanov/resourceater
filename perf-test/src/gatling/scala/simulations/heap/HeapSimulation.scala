@@ -10,7 +10,7 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 /**
  * @author Jonatan Ivanov
  */
-class HeapSimulation extends Simulation  {
+class HeapSimulation extends Simulation {
     val size = "512KB"
     val ttl: Duration = Duration.ofMinutes(1)
     val rate = 10 // 5MB/sec (300MB/min), 10 objects/sec (600 objects/min)
