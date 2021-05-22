@@ -1,5 +1,5 @@
 run:
-	./gradlew clean assemble
+	./gradlew assemble
 	java --version
 	java \
 		-server \
@@ -26,4 +26,4 @@ run:
 		-jar build/libs/resourceater-*.jar
 
 perftest:
-	./gradlew clean gatlingRun
+	./gradlew gatlingRun --rerun-tasks
