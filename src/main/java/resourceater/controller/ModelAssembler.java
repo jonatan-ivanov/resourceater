@@ -6,6 +6,8 @@ import static org.springframework.hateoas.IanaLinkRelations.SELF;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.EntityLinks;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
+
+import org.jetbrains.annotations.NotNull;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
 
@@ -21,19 +23,22 @@ public class ModelAssembler<R extends Resource<R>> extends RepresentationModelAs
         this.links = links;
     }
 
+    @NotNull
     @Override
     protected Model<R> instantiateModel(R resource) {
         return resource.toModel();
     }
 
+    @NotNull
     @Override
-    public Model<R> toModel(R resource) {
+    public Model<R> toModel(@NotNull R resource) {
         return createModelWithId(resource.getId(), resource)
             .add(links.linkToCollectionResource(getResourceType()).withRel(COLLECTION));
     }
 
+    @NotNull
     @Override
-    public CollectionModel<Model<R>> toCollectionModel(Iterable<? extends R> entities) {
+    public CollectionModel<Model<R>> toCollectionModel(@NotNull Iterable<? extends R> entities) {
         return CollectionModel.of(
             super.toCollectionModel(entities).getContent(),
             links.linkToCollectionResource(getResourceType()).withRel(SELF)

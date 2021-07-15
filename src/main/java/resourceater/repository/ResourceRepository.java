@@ -1,6 +1,5 @@
 package resourceater.repository;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
 import static resourceater.utils.StreamUtils.toStream;
 
 import java.util.List;
@@ -14,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import org.jetbrains.annotations.NotNull;
 import reactor.core.publisher.Mono;
 import resourceater.model.resource.Resource;
 
@@ -23,11 +23,13 @@ import resourceater.model.resource.Resource;
 public class ResourceRepository<T extends Resource<T>> implements PagingAndSortingRepository<T, String>, DisposableBean {
     private final Map<String, T> resources = new ConcurrentHashMap<>();
 
+    @NotNull
     @Override
-    public Iterable<T> findAll(Sort sort) {
+    public Iterable<T> findAll(@NotNull Sort sort) {
         throw new UnsupportedOperationException("Sorting is not supported on this data set");
     }
 
+    @NotNull
     @Override
     public Page<T> findAll(Pageable pageable) {
         if (!pageable.getSort().isEmpty()) {
@@ -37,13 +39,14 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
         List<T> result = resources.values().stream()
             .skip(pageable.getOffset())
             .limit(pageable.getPageSize())
-            .collect(toUnmodifiableList());
+            .toList();
 
         return new PageImpl<>(result, pageable, count());
     }
 
+    @NotNull
     @Override
-    public <S extends T> S save(S entity) {
+    public <S extends T> S save(@NotNull S entity) {
         resources.put(entity.getId(), entity);
         entity.saved();
         scheduleResourceDeletionIfNeeded(entity);
@@ -51,34 +54,38 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
         return entity;
     }
 
+    @NotNull
     @Override
-    public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
+    public <S extends T> Iterable<S> saveAll(@NotNull Iterable<S> entities) {
         return toStream(entities)
             .map(this::save)
-            .collect(toUnmodifiableList());
+            .toList();
     }
 
+    @NotNull
     @Override
-    public Optional<T> findById(String id) {
+    public Optional<T> findById(@NotNull String id) {
         return Optional.ofNullable(resources.get(id));
     }
 
     @Override
-    public boolean existsById(String id) {
+    public boolean existsById(@NotNull String id) {
         return resources.containsKey(id);
     }
 
+    @NotNull
     @Override
     public Iterable<T> findAll() {
         return resources.values();
     }
 
+    @NotNull
     @Override
-    public Iterable<T> findAllById(Iterable<String> ids) {
+    public Iterable<T> findAllById(@NotNull Iterable<String> ids) {
         return toStream(ids)
             .filter(resources::containsKey)
             .map(resources::get)
-            .collect(toUnmodifiableList());
+            .toList();
     }
 
     @Override
@@ -87,7 +94,7 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
     }
 
     @Override
-    public void deleteById(String id) {
+    public void deleteById(@NotNull String id) {
         Optional.ofNullable(resources.remove(id)).ifPresent(Resource::destroy);
     }
 

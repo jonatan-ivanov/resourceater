@@ -1,7 +1,5 @@
 package resourceater.model.resource.network.socket;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.time.Duration;
@@ -49,7 +47,7 @@ public class SocketResource extends Resource<SocketResource> {
         return new SocketResourceModel(
             this,
             sockets.size(),
-            sockets.stream().map(ServerSocket::getLocalPort).collect(toUnmodifiableList())
+            sockets.stream().map(ServerSocket::getLocalPort).toList()
         );
     }
 }
