@@ -97,6 +97,11 @@ public class ResourceRepository<T extends Resource<T>> implements PagingAndSorti
     }
 
     @Override
+    public void deleteAllById(Iterable<? extends String> ids) {
+        ids.forEach(this::deleteById);
+    }
+
+    @Override
     public void deleteAll(Iterable<? extends T> entities) {
         entities.forEach(this::delete);
     }
