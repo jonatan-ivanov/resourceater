@@ -26,8 +26,8 @@ apply from: 'gradle/runtime.gradle'
 apply from: 'gradle/docker.gradle'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -54,8 +54,6 @@ dependencies {
 
     implementation 'io.springfox:springfox-boot-starter:latest.release'
     implementation 'io.springfox:springfox-swagger-ui:latest.release'
-
-    implementation 'org.ow2.asm:asm:7.+'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.mockito:mockito-junit-jupiter'

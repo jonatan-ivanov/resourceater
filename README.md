@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/jonatan-ivanov/resourceater/actions/workflows/gradle.yml/badge.svg)](https://github.com/jonatan-ivanov/resourceater/actions)
+
 # resourceater
 
 Resourceater is a Java based web service which consumes your resources on demand. It can be useful to simulate high resource needs. It can consume the following resources:
