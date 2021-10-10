@@ -67,8 +67,19 @@ processResources {
     filesMatching('build.yml') { it.expand(project.properties) }
 }
 
+jar {
+    enabled = false
+}
+
 test {
     useJUnitPlatform()
+}
+
+task stage {
+    dependsOn assemble
+    doLast {
+        file('Procfile').text = "web: java -Dserver.port=\$PORT -jar ${relativePath(bootJar.archiveFile)}"
+    }
 }
 
 springBoot {
