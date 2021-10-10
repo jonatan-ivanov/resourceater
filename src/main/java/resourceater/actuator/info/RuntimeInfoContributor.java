@@ -57,34 +57,34 @@ public class RuntimeInfoContributor implements InfoContributor {
 
     private Map<String, Object> javaInfo() {
         return Map.of(
-            "class.version", System.getProperty("java.class.version"),
-            "version", System.getProperty("java.version"),
-            "version.date", System.getProperty("java.version.date"),
+            "class.version", getProperty("java.class.version"),
+            "version", getProperty("java.version"),
+            "version.date", getProperty("java.version.date"),
             "runtime", Map.of(
-                "name", System.getProperty("java.runtime.name"),
-                "version", System.getProperty("java.runtime.version")
+                "name", getProperty("java.runtime.name"),
+                "version", getProperty("java.runtime.version")
             ),
             "vendor", Map.of(
-                "name", System.getProperty("java.vendor"),
-                "version", System.getProperty("java.vendor.version")
+                "name", getProperty("java.vendor"),
+                "version", getProperty("java.vendor.version")
             ),
             "vm", Map.of(
-                "name", System.getProperty("java.vm.name"),
-                "vendor", System.getProperty("java.vm.vendor"),
-                "version", System.getProperty("java.vm.version"),
+                "name", getProperty("java.vm.name"),
+                "vendor", getProperty("java.vm.vendor"),
+                "version", getProperty("java.vm.version"),
                 "specification", Map.of(
-                    "name", System.getProperty("java.vm.specification.name"),
-                    "vendor", System.getProperty("java.vm.specification.vendor"),
-                    "version", System.getProperty("java.vm.specification.version")
+                    "name", getProperty("java.vm.specification.name"),
+                    "vendor", getProperty("java.vm.specification.vendor"),
+                    "version", getProperty("java.vm.specification.version")
                 )
             ),
             "specification", Map.of(
-                "name", System.getProperty("java.specification.name"),
-                "vendor", System.getProperty("java.specification.vendor"),
-                "version", System.getProperty("java.specification.version")
+                "name", getProperty("java.specification.name"),
+                "vendor", getProperty("java.specification.vendor"),
+                "version", getProperty("java.specification.version")
             ),
             "compilation.name", ManagementFactory.getCompilationMXBean().getName(),
-            "file.encoding", System.getProperty("file.encoding")
+            "file.encoding", getProperty("file.encoding")
         );
     }
 
@@ -106,10 +106,10 @@ public class RuntimeInfoContributor implements InfoContributor {
 
     private Map<String, Object> userInfo() {
         return Map.of(
-            "timezone", System.getProperty("user.timezone"),
-            "country", System.getProperty("user.country"),
-            "language", System.getProperty("user.language"),
-            "dir", System.getProperty("user.dir")
+            "timezone", getProperty("user.timezone"),
+            "country", getProperty("user.country"),
+            "language", getProperty("user.language"),
+            "dir", getProperty("user.dir")
         );
     }
 
@@ -148,5 +148,10 @@ public class RuntimeInfoContributor implements InfoContributor {
             log.error("Unable to fetch IP", exception);
             return "n/a";
         }
+    }
+
+    private String getProperty(String key) {
+        String value = System.getProperty(key);
+        return value != null ? value : "null";
     }
 }

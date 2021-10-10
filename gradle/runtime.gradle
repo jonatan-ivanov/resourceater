@@ -37,7 +37,7 @@ ext.debugJvmArgs = [
     "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:$DEBUG_PORT"
 ]
 
-version = "${grgit.head().abbreviatedId}.${Instant.now().epochSecond}"
+version = grgit ? "${grgit.head().abbreviatedId}.${Instant.now().epochSecond}" : '0.0.0-UNKNOWN'
 
 bootRun {
     jvmArgs += commonJvmArgs + jmxJvmArgs + debugJvmArgs

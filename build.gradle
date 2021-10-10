@@ -75,6 +75,12 @@ test {
     useJUnitPlatform()
 }
 
+gradle.taskGraph.whenReady { graph ->
+    if (graph.hasTask(stage)) {
+        generateGitProperties.enabled = false
+    }
+}
+
 task stage {
     dependsOn assemble
     doLast {
