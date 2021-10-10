@@ -55,6 +55,8 @@ dependencies {
     implementation 'io.springfox:springfox-boot-starter:latest.release'
     implementation 'io.springfox:springfox-swagger-ui:latest.release'
 
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.mockito:mockito-junit-jupiter'
     testImplementation 'org.assertj:assertj-core'
