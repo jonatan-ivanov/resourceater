@@ -70,7 +70,7 @@ task generateGitPropertiesForHeroku(type: WriteProperties) {
     outputFile file("$buildDir/git.properties")
     properties([
         'git.branch': 'N/A',
-        'git.commit.id.abbrev': System.env.HEROKU_SLUG_COMMIT ?: 'N/A',
+        'git.commit.id.abbrev': System.env.SOURCE_VERSION ?: 'N/A',
         'git.commit.time': 'N/A'
     ])
 }
