@@ -1,11 +1,12 @@
 package resourceater.controller;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import resourceater.model.resource.CreateRequest;
+import resourceater.model.resource.Model;
+import resourceater.model.resource.Resource;
+import resourceater.repository.ResourceRepository;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedModel;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
-import resourceater.model.resource.CreateRequest;
-import resourceater.model.resource.Model;
-import resourceater.model.resource.Resource;
-import resourceater.repository.ResourceRepository;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 /**
  * @author Jonatan Ivanov
@@ -31,13 +32,13 @@ public abstract class ResourceController<RQ extends CreateRequest, R extends Res
     protected final ResourceRepository<R> repository;
 
     @GetMapping
-    @ApiOperation("Fetches all of the resources")
+    @Operation(summary = "Fetches all of the resources")
     public PagedModel<Model<R>> findAll(Pageable pageable) {
         return pagedAssembler.toModel(repository.findAll(pageable), modelAssembler);
     }
 
     @GetMapping("{id}")
-    @ApiOperation("Fetches a resource by its ID")
+    @Operation(summary = "Fetches a resource by its ID")
     public Model<R> findById(@PathVariable String id) {
         return repository.findById(id)
             .map(modelAssembler::toModel)
@@ -46,21 +47,21 @@ public abstract class ResourceController<RQ extends CreateRequest, R extends Res
 
     @PostMapping
     @ResponseStatus(CREATED)
-    @ApiOperation("Creates a resource")
+    @Operation(summary = "Creates a resource")
     public Model<R> create(@RequestBody(required = false) RQ request) {
         return modelAssembler.toModel(repository.save(createResource(request)));
     }
 
     @DeleteMapping
     @ResponseStatus(NO_CONTENT)
-    @ApiOperation("Deletes all of the resources")
+    @Operation(summary = "Deletes all of the resources")
     public void deleteAll() {
         repository.deleteAll();
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
-    @ApiOperation("Deletes a resource by its ID ")
+    @Operation(summary = "Deletes a resource by its ID ")
     public void deleteById(@PathVariable String id) {
         repository.deleteById(id);
     }

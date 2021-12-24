@@ -1,16 +1,17 @@
 package resourceater.controller;
 
-import static resourceater.controller.Mappings.OBJECTS;
-
-import io.swagger.annotations.Api;
-import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.server.ExposesResourceFor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import resourceater.model.resource.heap.CreateHeapResourceRequest;
 import resourceater.model.resource.heap.HeapResource;
 import resourceater.model.resource.heap.HeapResourceModel;
 import resourceater.repository.ResourceRepository;
+
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static resourceater.controller.Mappings.OBJECTS;
 
 /**
  * @author Jonatan Ivanov
@@ -18,7 +19,7 @@ import resourceater.repository.ResourceRepository;
 @RestController
 @RequestMapping(OBJECTS)
 @ExposesResourceFor(HeapResourceModel.class)
-@Api(tags = {"Heap Objects"})
+@Tag(name = "Heap Objects")
 public class HeapResourceController extends ResourceController<CreateHeapResourceRequest, HeapResource> {
     public HeapResourceController(
         PagedResourcesAssembler<HeapResource> pagedAssembler,

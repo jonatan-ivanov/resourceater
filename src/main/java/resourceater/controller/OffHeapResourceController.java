@@ -1,16 +1,17 @@
 package resourceater.controller;
 
-import static resourceater.controller.Mappings.DIRECT_BUFFERS;
-
-import io.swagger.annotations.Api;
-import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.server.ExposesResourceFor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import resourceater.model.resource.offheap.CreateOffHeapResourceRequest;
 import resourceater.model.resource.offheap.OffHeapResource;
 import resourceater.model.resource.offheap.OffHeapResourceModel;
 import resourceater.repository.ResourceRepository;
+
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static resourceater.controller.Mappings.DIRECT_BUFFERS;
 
 /**
  * @author Jonatan Ivanov
@@ -18,7 +19,7 @@ import resourceater.repository.ResourceRepository;
 @RestController
 @RequestMapping(DIRECT_BUFFERS)
 @ExposesResourceFor(OffHeapResourceModel.class)
-@Api(tags = {"Off-Heap Direct Buffers"})
+@Tag(name = "Off-Heap Direct Buffers")
 public class OffHeapResourceController extends ResourceController<CreateOffHeapResourceRequest, OffHeapResource> {
     public OffHeapResourceController(
         PagedResourcesAssembler<OffHeapResource> pagedAssembler,

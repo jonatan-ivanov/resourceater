@@ -1,18 +1,19 @@
 package resourceater.controller;
 
-import static resourceater.controller.Mappings.HTTP_CLIENTS;
-
-import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.server.ExposesResourceFor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import resourceater.client.HttpBlobClient;
 import resourceater.model.resource.network.http.CreateHttpResourceRequest;
 import resourceater.model.resource.network.http.HttpResource;
 import resourceater.model.resource.network.http.HttpResourceModel;
 import resourceater.repository.ResourceRepository;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static resourceater.controller.Mappings.HTTP_CLIENTS;
 
 /**
  * @author Jonatan Ivanov
@@ -20,7 +21,7 @@ import resourceater.repository.ResourceRepository;
 @RestController
 @RequestMapping(HTTP_CLIENTS)
 @ExposesResourceFor(HttpResourceModel.class)
-@Api(tags = {"Network Traffic over HTTP"})
+@Tag(name = "Network Traffic over HTTP")
 public class HttpResourceController extends ResourceController<CreateHttpResourceRequest, HttpResource> {
     private final String url;
     private final HttpBlobClient client;

@@ -52,8 +52,8 @@ dependencies {
     implementation 'io.github.openfeign:feign-okhttp'
     implementation 'io.projectreactor:reactor-core'
 
-    implementation 'io.springfox:springfox-boot-starter:latest.release'
-    implementation 'io.springfox:springfox-swagger-ui:latest.release'
+    implementation 'org.springdoc:springdoc-openapi-ui:latest.release'
+    implementation 'org.springdoc:springdoc-openapi-hateoas:latest.release'
 
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
