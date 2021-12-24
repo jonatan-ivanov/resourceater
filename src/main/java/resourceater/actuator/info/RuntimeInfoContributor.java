@@ -60,29 +60,6 @@ public class RuntimeInfoContributor implements InfoContributor {
             "class.version", getProperty("java.class.version"),
             "version", getProperty("java.version"),
             "version.date", getProperty("java.version.date"),
-            "runtime", Map.of(
-                "name", getProperty("java.runtime.name"),
-                "version", getProperty("java.runtime.version")
-            ),
-            "vendor", Map.of(
-                "name", getProperty("java.vendor"),
-                "version", getProperty("java.vendor.version")
-            ),
-            "vm", Map.of(
-                "name", getProperty("java.vm.name"),
-                "vendor", getProperty("java.vm.vendor"),
-                "version", getProperty("java.vm.version"),
-                "specification", Map.of(
-                    "name", getProperty("java.vm.specification.name"),
-                    "vendor", getProperty("java.vm.specification.vendor"),
-                    "version", getProperty("java.vm.specification.version")
-                )
-            ),
-            "specification", Map.of(
-                "name", getProperty("java.specification.name"),
-                "vendor", getProperty("java.specification.vendor"),
-                "version", getProperty("java.specification.version")
-            ),
             "compilation.name", ManagementFactory.getCompilationMXBean().getName(),
             "file.encoding", getProperty("file.encoding")
         );
