@@ -1,7 +1,6 @@
 spring.application.name: resourceater
 server.port: 8080
 
-spring.output.ansi.enabled: always
 spring.jackson.serialization.indent_output: true
 spring.jackson.date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
 
