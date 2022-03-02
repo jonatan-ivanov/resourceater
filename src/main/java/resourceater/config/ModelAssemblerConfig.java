@@ -1,8 +1,5 @@
 package resourceater.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.hateoas.server.EntityLinks;
 import resourceater.controller.ClassResourceController;
 import resourceater.controller.ContainerThreadResourceController;
 import resourceater.controller.CpuResourceController;
@@ -10,6 +7,7 @@ import resourceater.controller.DaemonThreadResourceController;
 import resourceater.controller.FileResourceController;
 import resourceater.controller.HeapResourceController;
 import resourceater.controller.HttpResourceController;
+import resourceater.controller.MeterResourceController;
 import resourceater.controller.ModelAssembler;
 import resourceater.controller.OffHeapResourceController;
 import resourceater.controller.SocketResourceController;
@@ -21,6 +19,8 @@ import resourceater.model.resource.file.FileResource;
 import resourceater.model.resource.file.FileResourceModel;
 import resourceater.model.resource.heap.HeapResource;
 import resourceater.model.resource.heap.HeapResourceModel;
+import resourceater.model.resource.micrometer.MeterResource;
+import resourceater.model.resource.micrometer.MeterResourceModel;
 import resourceater.model.resource.network.http.HttpResource;
 import resourceater.model.resource.network.http.HttpResourceModel;
 import resourceater.model.resource.network.socket.SocketResource;
@@ -31,6 +31,10 @@ import resourceater.model.resource.thread.container.ContainerThreadResource;
 import resourceater.model.resource.thread.container.ContainerThreadResourceModel;
 import resourceater.model.resource.thread.daemon.DaemonThreadResource;
 import resourceater.model.resource.thread.daemon.DaemonThreadResourceModel;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.hateoas.server.EntityLinks;
 
 /**
  * @author Jonatan Ivanov
@@ -80,5 +84,10 @@ public class ModelAssemblerConfig {
     @Bean
     ModelAssembler<SocketResource> socketResourceModelAssembler(EntityLinks entityLinks) {
         return new ModelAssembler<>(entityLinks, SocketResourceController.class, SocketResourceModel.class);
+    }
+
+    @Bean
+    ModelAssembler<MeterResource> meterResourceModelAssembler(EntityLinks entityLinks) {
+        return new ModelAssembler<>(entityLinks, MeterResourceController.class, MeterResourceModel.class);
     }
 }

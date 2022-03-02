@@ -1,17 +1,19 @@
 package resourceater.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import resourceater.model.resource.clazz.ClassResource;
 import resourceater.model.resource.cpu.CpuResource;
 import resourceater.model.resource.file.FileResource;
 import resourceater.model.resource.heap.HeapResource;
+import resourceater.model.resource.micrometer.MeterResource;
 import resourceater.model.resource.network.http.HttpResource;
 import resourceater.model.resource.network.socket.SocketResource;
 import resourceater.model.resource.offheap.OffHeapResource;
 import resourceater.model.resource.thread.container.ContainerThreadResource;
 import resourceater.model.resource.thread.daemon.DaemonThreadResource;
 import resourceater.repository.ResourceRepository;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Jonatan Ivanov
@@ -51,6 +53,10 @@ class RepositoryConfig {
     }
 
     @Bean ResourceRepository<SocketResource> socketResourceRepository() {
+        return new ResourceRepository<>();
+    }
+
+    @Bean ResourceRepository<MeterResource> meterResourceRepository() {
         return new ResourceRepository<>();
     }
 }

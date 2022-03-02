@@ -14,4 +14,5 @@ class Mappings {
     static final String DIRECT_BUFFERS = RESOURCES + "/directBuffers";
     static final String HTTP_CLIENTS = RESOURCES + "/httpClients";
     static final String SOCKET_POOLS = RESOURCES + "/socketPools";
+    static final String METERS = RESOURCES + "/meters";
 }
