@@ -33,6 +33,9 @@
             "name": "Sockets"
         },
         {
+            "name": "Micrometer Meter Objects"
+        },
+        {
             "name": "Heap Objects"
         },
         {
@@ -253,13 +256,84 @@
                 }
             }
         },
+        "/resources/meters": {
+            "get": {
+                "tags": [
+                    "Micrometer Meter Objects"
+                ],
+                "summary": "Fetches all of the resources",
+                "operationId": "findAll_3",
+                "parameters": [
+                    {
+                        "name": "pageable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Pageable"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PagedModelModelMeterResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Micrometer Meter Objects"
+                ],
+                "summary": "Creates a resource",
+                "operationId": "create_3",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateMeterResourceRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelMeterResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Micrometer Meter Objects"
+                ],
+                "summary": "Deletes all of the resources",
+                "operationId": "deleteAll_3",
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
         "/resources/httpClients": {
             "get": {
                 "tags": [
                     "Network Traffic over HTTP"
                 ],
                 "summary": "Fetches all of the resources",
-                "operationId": "findAll_3",
+                "operationId": "findAll_4",
                 "parameters": [
                     {
                         "name": "pageable",
@@ -288,7 +362,7 @@
                     "Network Traffic over HTTP"
                 ],
                 "summary": "Creates a resource",
-                "operationId": "create_3",
+                "operationId": "create_4",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -316,7 +390,7 @@
                     "Network Traffic over HTTP"
                 ],
                 "summary": "Deletes all of the resources",
-                "operationId": "deleteAll_3",
+                "operationId": "deleteAll_4",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -330,7 +404,7 @@
                     "Files"
                 ],
                 "summary": "Fetches all of the resources",
-                "operationId": "findAll_4",
+                "operationId": "findAll_5",
                 "parameters": [
                     {
                         "name": "pageable",
@@ -359,7 +433,7 @@
                     "Files"
                 ],
                 "summary": "Creates a resource",
-                "operationId": "create_4",
+                "operationId": "create_5",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -387,7 +461,7 @@
                     "Files"
                 ],
                 "summary": "Deletes all of the resources",
-                "operationId": "deleteAll_4",
+                "operationId": "deleteAll_5",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -401,7 +475,7 @@
                     "Off-Heap Direct Buffers"
                 ],
                 "summary": "Fetches all of the resources",
-                "operationId": "findAll_5",
+                "operationId": "findAll_6",
                 "parameters": [
                     {
                         "name": "pageable",
@@ -430,7 +504,7 @@
                     "Off-Heap Direct Buffers"
                 ],
                 "summary": "Creates a resource",
-                "operationId": "create_5",
+                "operationId": "create_6",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -458,7 +532,7 @@
                     "Off-Heap Direct Buffers"
                 ],
                 "summary": "Deletes all of the resources",
-                "operationId": "deleteAll_5",
+                "operationId": "deleteAll_6",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -472,7 +546,7 @@
                     "CPU Cores"
                 ],
                 "summary": "Fetches all of the resources",
-                "operationId": "findAll_6",
+                "operationId": "findAll_7",
                 "parameters": [
                     {
                         "name": "pageable",
@@ -501,7 +575,7 @@
                     "CPU Cores"
                 ],
                 "summary": "Creates a resource",
-                "operationId": "create_6",
+                "operationId": "create_7",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -529,7 +603,7 @@
                     "CPU Cores"
                 ],
                 "summary": "Deletes all of the resources",
-                "operationId": "deleteAll_6",
+                "operationId": "deleteAll_7",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -543,7 +617,7 @@
                     "Container Threads"
                 ],
                 "summary": "Fetches all of the resources",
-                "operationId": "findAll_7",
+                "operationId": "findAll_8",
                 "parameters": [
                     {
                         "name": "pageable",
@@ -572,7 +646,7 @@
                     "Container Threads"
                 ],
                 "summary": "Creates a resource",
-                "operationId": "create_7",
+                "operationId": "create_8",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -600,7 +674,7 @@
                     "Container Threads"
                 ],
                 "summary": "Deletes all of the resources",
-                "operationId": "deleteAll_7",
+                "operationId": "deleteAll_8",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -614,7 +688,7 @@
                     "Classes"
                 ],
                 "summary": "Fetches all of the resources",
-                "operationId": "findAll_8",
+                "operationId": "findAll_9",
                 "parameters": [
                     {
                         "name": "pageable",
@@ -643,7 +717,7 @@
                     "Classes"
                 ],
                 "summary": "Creates a resource",
-                "operationId": "create_8",
+                "operationId": "create_9",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -671,7 +745,7 @@
                     "Classes"
                 ],
                 "summary": "Deletes all of the resources",
-                "operationId": "deleteAll_8",
+                "operationId": "deleteAll_9",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -838,13 +912,66 @@
                 }
             }
         },
+        "/resources/meters/{id}": {
+            "get": {
+                "tags": [
+                    "Micrometer Meter Objects"
+                ],
+                "summary": "Fetches a resource by its ID",
+                "operationId": "findById_3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelMeterResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Micrometer Meter Objects"
+                ],
+                "summary": "Deletes a resource by its ID ",
+                "operationId": "deleteById_3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
         "/resources/httpClients/{id}": {
             "get": {
                 "tags": [
                     "Network Traffic over HTTP"
                 ],
                 "summary": "Fetches a resource by its ID",
-                "operationId": "findById_3",
+                "operationId": "findById_4",
                 "parameters": [
                     {
                         "name": "id",
@@ -873,7 +1000,7 @@
                     "Network Traffic over HTTP"
                 ],
                 "summary": "Deletes a resource by its ID ",
-                "operationId": "deleteById_3",
+                "operationId": "deleteById_4",
                 "parameters": [
                     {
                         "name": "id",
@@ -897,7 +1024,7 @@
                     "Files"
                 ],
                 "summary": "Fetches a resource by its ID",
-                "operationId": "findById_4",
+                "operationId": "findById_5",
                 "parameters": [
                     {
                         "name": "id",
@@ -926,7 +1053,7 @@
                     "Files"
                 ],
                 "summary": "Deletes a resource by its ID ",
-                "operationId": "deleteById_4",
+                "operationId": "deleteById_5",
                 "parameters": [
                     {
                         "name": "id",
@@ -950,7 +1077,7 @@
                     "Off-Heap Direct Buffers"
                 ],
                 "summary": "Fetches a resource by its ID",
-                "operationId": "findById_5",
+                "operationId": "findById_6",
                 "parameters": [
                     {
                         "name": "id",
@@ -979,7 +1106,7 @@
                     "Off-Heap Direct Buffers"
                 ],
                 "summary": "Deletes a resource by its ID ",
-                "operationId": "deleteById_5",
+                "operationId": "deleteById_6",
                 "parameters": [
                     {
                         "name": "id",
@@ -1003,7 +1130,7 @@
                     "CPU Cores"
                 ],
                 "summary": "Fetches a resource by its ID",
-                "operationId": "findById_6",
+                "operationId": "findById_7",
                 "parameters": [
                     {
                         "name": "id",
@@ -1032,7 +1159,7 @@
                     "CPU Cores"
                 ],
                 "summary": "Deletes a resource by its ID ",
-                "operationId": "deleteById_6",
+                "operationId": "deleteById_7",
                 "parameters": [
                     {
                         "name": "id",
@@ -1056,7 +1183,7 @@
                     "Container Threads"
                 ],
                 "summary": "Fetches a resource by its ID",
-                "operationId": "findById_7",
+                "operationId": "findById_8",
                 "parameters": [
                     {
                         "name": "id",
@@ -1085,7 +1212,7 @@
                     "Container Threads"
                 ],
                 "summary": "Deletes a resource by its ID ",
-                "operationId": "deleteById_7",
+                "operationId": "deleteById_8",
                 "parameters": [
                     {
                         "name": "id",
@@ -1132,7 +1259,7 @@
                     "Classes"
                 ],
                 "summary": "Fetches a resource by its ID",
-                "operationId": "findById_8",
+                "operationId": "findById_9",
                 "parameters": [
                     {
                         "name": "id",
@@ -1161,7 +1288,7 @@
                     "Classes"
                 ],
                 "summary": "Deletes a resource by its ID ",
-                "operationId": "deleteById_8",
+                "operationId": "deleteById_9",
                 "parameters": [
                     {
                         "name": "id",
@@ -1433,6 +1560,117 @@
                 }
             },
             "ModelHeapResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "ttl": {
+                        "type": "object",
+                        "properties": {
+                            "seconds": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "nano": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "negative": {
+                                "type": "boolean"
+                            },
+                            "zero": {
+                                "type": "boolean"
+                            },
+                            "units": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "dateBased": {
+                                            "type": "boolean"
+                                        },
+                                        "timeBased": {
+                                            "type": "boolean"
+                                        },
+                                        "durationEstimated": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "diesAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "_links": {
+                        "$ref": "#/components/schemas/Links"
+                    }
+                }
+            },
+            "CreateMeterResourceRequest": {
+                "type": "object",
+                "properties": {
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "COUNTER",
+                            "GAUGE",
+                            "LONG_TASK_TIMER",
+                            "TIMER",
+                            "DISTRIBUTION_SUMMARY",
+                            "OTHER"
+                        ]
+                    },
+                    "ttl": {
+                        "type": "object",
+                        "properties": {
+                            "seconds": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "nano": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "negative": {
+                                "type": "boolean"
+                            },
+                            "zero": {
+                                "type": "boolean"
+                            },
+                            "units": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "dateBased": {
+                                            "type": "boolean"
+                                        },
+                                        "timeBased": {
+                                            "type": "boolean"
+                                        },
+                                        "durationEstimated": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ModelMeterResource": {
                 "type": "object",
                 "properties": {
                     "id": {
@@ -2177,6 +2415,28 @@
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/ModelHeapResource"
+                                }
+                            }
+                        }
+                    },
+                    "_links": {
+                        "$ref": "#/components/schemas/Links"
+                    },
+                    "page": {
+                        "$ref": "#/components/schemas/PageMetadata"
+                    }
+                }
+            },
+            "PagedModelModelMeterResource": {
+                "type": "object",
+                "properties": {
+                    "_embedded": {
+                        "type": "object",
+                        "properties": {
+                            "modelList": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ModelMeterResource"
                                 }
                             }
                         }
