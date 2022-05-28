@@ -2,7 +2,6 @@ package resourceater.actuator.info;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
 import java.net.InetAddress;
 import java.time.Instant;
 import java.util.List;
@@ -32,10 +31,8 @@ public class RuntimeInfoContributor implements InfoContributor {
         builder.withDetail("runtime", Map.of(
             "memory", memoryInfo(),
             "cpu", cpuInfo(),
-            "java", javaInfo(),
             "gcs", gcInfo(),
             "user", userInfo(),
-            "os", osInfo(),
             "network", networkInfo(),
             "startTime", startTime,
             "uptime", between(startTime, Instant.now()),
@@ -53,16 +50,6 @@ public class RuntimeInfoContributor implements InfoContributor {
 
     private Map<String, Object> cpuInfo() {
         return Map.of("availableProcessors", Runtime.getRuntime().availableProcessors());
-    }
-
-    private Map<String, Object> javaInfo() {
-        return Map.of(
-            "class.version", getProperty("java.class.version"),
-            "version", getProperty("java.version"),
-            "version.date", getProperty("java.version.date"),
-            "compilation.name", ManagementFactory.getCompilationMXBean().getName(),
-            "file.encoding", getProperty("file.encoding")
-        );
     }
 
     private List<Map<String, Object>> gcInfo() {
@@ -87,15 +74,6 @@ public class RuntimeInfoContributor implements InfoContributor {
             "country", getProperty("user.country"),
             "language", getProperty("user.language"),
             "dir", getProperty("user.dir")
-        );
-    }
-
-    private Map<String, Object> osInfo() {
-        OperatingSystemMXBean osMXBean = ManagementFactory.getOperatingSystemMXBean();
-        return Map.of(
-            "arch", osMXBean.getArch(),
-            "name", osMXBean.getName(),
-            "version", osMXBean.getVersion()
         );
     }
 

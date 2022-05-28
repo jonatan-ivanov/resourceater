@@ -9,7 +9,9 @@ logging.file.name: ${spring.application.home:.}/logs/${spring.application.name}.
 
 management.endpoints.web.exposure.include: health,info,metrics,prometheus
 management.endpoint.health.show-details: always
+management.info.env.enabled: true
 management.info.java.enabled: true
+management.info.os.enabled: true
 management.metrics.tags.application: ${spring.application.name}
 management.metrics.distribution.percentiles.all: 0.95, 0.98, 0.99, 0.999, 0.9999, 0.99999
 management.metrics.distribution.percentiles-histogram.all: true
