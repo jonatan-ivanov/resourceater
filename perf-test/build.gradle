@@ -13,3 +13,7 @@ buildscript {
 
 apply plugin: 'io.gatling.gradle'
 apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
