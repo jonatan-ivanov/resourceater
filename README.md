@@ -90,4 +90,18 @@ The project is using [micrometer](https://micrometer.io/) and it also opens JMX 
 
 # Docker
 
-`docker run -it -p 8080:8080 -p 8686:8686 -v logs:/app/logs jonatanivanov/resourceater:tag`
+```bash
+docker run -it -p 8080:8080 -p 8686:8686 -v logs:/app/logs jonatanivanov/resourceater:tag
+```
+
+# Kubernetes
+
+You need a cluster first, e.g.: `kind create cluster`
+
+```bash
+skaffold dev --port-forward
+```
+or
+```bash
+skaffold run --port-forward
+```

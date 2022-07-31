@@ -1,5 +1,7 @@
 apiVersion: skaffold/v2beta29
 kind: Config
+metadata:
+  name: resourceater
 build:
   artifacts:
   - image: resourceater
