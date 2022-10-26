@@ -26,8 +26,9 @@ apply from: 'gradle/runtime.gradle'
 apply from: 'gradle/docker.gradle'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_18
-    targetCompatibility = JavaVersion.VERSION_18
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(19)
+    }
 }
 
 repositories {
