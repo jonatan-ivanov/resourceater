@@ -3,6 +3,7 @@ package resourceater.model.resource;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;

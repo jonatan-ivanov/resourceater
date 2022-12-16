@@ -40,6 +40,7 @@ import org.springframework.hateoas.server.EntityLinks;
  * @author Jonatan Ivanov
  */
 @Configuration
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class ModelAssemblerConfig {
     @Bean
     ModelAssembler<ClassResource> classResourceModelAssembler(EntityLinks entityLinks) {

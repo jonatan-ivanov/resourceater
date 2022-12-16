@@ -10,7 +10,7 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class ContainerThreadResourceModel extends Model<ContainerThreadResource> {
-    private final int size;
+    int size;
 
     public ContainerThreadResourceModel(ContainerThreadResource resource, int size) {
         super(resource);

@@ -1,22 +1,23 @@
 package resourceater.repository;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import resourceater.model.resource.Resource;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static resourceater.utils.StreamUtils.toStream;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import resourceater.model.resource.Resource;
 
 /**
  * @author Jonatan Ivanov
@@ -42,6 +43,8 @@ class ResourceRepositoryTest {
     @Test
     void shouldDeleteAndDestroyEntityByReference() {
         Iterable<TestResource> resources = saveThreeResources();
+        // We intentionally call delete in a loop instead of deleteAll since we want to test the delete method
+        // noinspection UseBulkOperation
         resources.forEach(repository::delete);
 
         assertThat(repository.count()).isZero();
@@ -117,7 +120,7 @@ class ResourceRepositoryTest {
 
     @Test
     void shouldFindAndPageAllSavedEntities() {
-        List<TestResource> savedResources = toStream(saveThreeResources()).collect(toUnmodifiableList());
+        List<TestResource> savedResources = toStream(saveThreeResources()).toList();
         Page<TestResource> firstPage = repository.findAll(PageRequest.of(0, 2));
         Page<TestResource> secondPage = repository.findAll(firstPage.nextPageable());
 
@@ -131,8 +134,7 @@ class ResourceRepositoryTest {
         assertThat(secondPage.hasNext()).isFalse();
         assertThat(secondPage.hasPrevious()).isTrue();
 
-        List<TestResource> foundResources = Stream.concat(toStream(firstPage), toStream(secondPage))
-            .collect(toUnmodifiableList());
+        List<TestResource> foundResources = Stream.concat(toStream(firstPage), toStream(secondPage)).toList();
         assertThat(foundResources).hasSameElementsAs(savedResources);
     }
 
@@ -157,7 +159,7 @@ class ResourceRepositoryTest {
         Iterable<TestResource> resources = saveThreeResources();
         Iterable<String> ids = toStream(resources)
             .map(Resource::getId)
-            .collect(toUnmodifiableList());
+            .toList();
 
         assertThat(repository.findAllById(ids)).hasSameElementsAs(resources);
     }
@@ -175,7 +177,7 @@ class ResourceRepositoryTest {
             .map(Resource::getId)
             .map(repository::findById)
             .flatMap(Optional::stream)
-            .collect(toUnmodifiableList());
+            .toList();
 
         assertThat(foundResources).hasSameElementsAs(resources);
     }

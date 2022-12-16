@@ -10,7 +10,7 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class OffHeapResourceModel extends Model<OffHeapResource> {
-    private final long size;
+    long size;
 
     public OffHeapResourceModel(OffHeapResource resource, long size) {
         super(resource);

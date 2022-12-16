@@ -10,7 +10,7 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class DaemonThreadResourceModel extends Model<DaemonThreadResource> {
-    private final int size;
+    int size;
 
     public DaemonThreadResourceModel(DaemonThreadResource resource, int size) {
         super(resource);

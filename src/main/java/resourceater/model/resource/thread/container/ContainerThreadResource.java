@@ -1,17 +1,18 @@
 package resourceater.model.resource.thread.container;
 
-import static java.lang.String.format;
-
-import feign.FeignException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
+
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import resourceater.client.ContainerThreadResourceClient;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
+
+import static java.lang.String.format;
 
 /**
  * @author Jonatan Ivanov
@@ -25,7 +26,7 @@ public class ContainerThreadResource extends Resource<ContainerThreadResource> {
     private final ContainerThreadResourceClient client;
 
     public ContainerThreadResource(CreateContainerThreadResourceRequest request, ContainerThreadResourceClient client) {
-        this(request.getSize(), client, request.getTtl());
+        this(request.size(), client, request.ttl());
     }
 
     private ContainerThreadResource(int size, ContainerThreadResourceClient client, Duration ttl) {

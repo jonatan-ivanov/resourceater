@@ -26,7 +26,7 @@ public class MeterResource extends Resource<MeterResource> {
     private final List<Meter.Id> meters;
 
     public MeterResource(CreateMeterResourceRequest request) {
-        this(request.getSize(), request.getType(), request.getTtl());
+        this(request.size(), request.type(), request.ttl());
     }
 
     public MeterResource(int count, Meter.Type type, Duration ttl) {

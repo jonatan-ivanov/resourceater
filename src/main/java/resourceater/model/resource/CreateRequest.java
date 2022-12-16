@@ -6,5 +6,5 @@ import java.time.Duration;
  * @author Jonatan Ivanov
  */
 public interface CreateRequest {
-    Duration getTtl();
+    Duration ttl();
 }

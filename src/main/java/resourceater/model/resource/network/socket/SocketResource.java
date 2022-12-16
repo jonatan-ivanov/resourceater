@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import lombok.extern.slf4j.Slf4j;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
@@ -18,7 +19,7 @@ public class SocketResource extends Resource<SocketResource> {
     private final List<ServerSocket> sockets = new ArrayList<>();
 
     public SocketResource(CreateSocketResourceRequest request) {
-        this(request.getSize(), request.getTtl());
+        this(request.size(), request.ttl());
     }
 
     private SocketResource(int count, Duration ttl) {

@@ -10,7 +10,7 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class HttpResourceModel extends Model<HttpResource> {
-    private final String url;
+    String url;
 
     public HttpResourceModel(HttpResource resource, String url) {
         super(resource);

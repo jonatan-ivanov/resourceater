@@ -1,9 +1,11 @@
 package resourceater.model.resource.heap;
 
 import java.time.Duration;
-import org.springframework.util.unit.DataSize;
+
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
+
+import org.springframework.util.unit.DataSize;
 
 /**
  * @author Jonatan Ivanov
@@ -13,7 +15,7 @@ public class HeapResource extends Resource<HeapResource> {
     private final byte[] bytes;
 
     public HeapResource(CreateHeapResourceRequest request) {
-        this(DataSize.parse(request.getSize()), request.getTtl());
+        this(DataSize.parse(request.size()), request.ttl());
     }
 
     private HeapResource(DataSize dataSize, Duration ttl) {

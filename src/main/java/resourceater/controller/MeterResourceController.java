@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.METERS;
 @ExposesResourceFor(MeterResourceModel.class)
 @Tag(name = "Micrometer Meter Objects")
 public class MeterResourceController extends ResourceController<CreateMeterResourceRequest, MeterResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public MeterResourceController(
         PagedResourcesAssembler<MeterResource> pagedAssembler,
         ModelAssembler<MeterResource> modelAssembler,

@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.CORES;
 @ExposesResourceFor(CpuResourceModel.class)
 @Tag(name = "CPU Cores")
 public class CpuResourceController extends ResourceController<CreateCpuResourceRequest, CpuResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public CpuResourceController(
         PagedResourcesAssembler<CpuResource> pagedAssembler,
         ModelAssembler<CpuResource> modelAssembler,

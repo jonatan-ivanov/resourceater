@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.CLASS_POOLS;
 @ExposesResourceFor(ClassResourceModel.class)
 @Tag(name = "Classes")
 public class ClassResourceController extends ResourceController<CreateClassResourceRequest, ClassResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public ClassResourceController(
         PagedResourcesAssembler<ClassResource> pagedAssembler,
         ModelAssembler<ClassResource> modelAssembler,

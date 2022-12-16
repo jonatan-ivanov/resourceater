@@ -31,6 +31,7 @@ import static resourceater.controller.Mappings.CONTAINER_THREADS;
 public class ContainerThreadResourceController extends ResourceController<CreateContainerThreadResourceRequest, ContainerThreadResource> {
     private final ContainerThreadResourceClient client;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public ContainerThreadResourceController(
         PagedResourcesAssembler<ContainerThreadResource> pagedAssembler,
         ModelAssembler<ContainerThreadResource> modelAssembler,

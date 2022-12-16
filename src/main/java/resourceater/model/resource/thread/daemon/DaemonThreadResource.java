@@ -3,6 +3,7 @@ package resourceater.model.resource.thread.daemon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+
 import lombok.extern.slf4j.Slf4j;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
@@ -16,8 +17,8 @@ public class DaemonThreadResource extends Resource<DaemonThreadResource> {
     private final List<Thread> threads = new ArrayList<>();
 
     public DaemonThreadResource(CreateDaemonThreadResourceRequest request) {
-        super(request.getTtl());
-        for (int i = 0; i < request.getSize(); i++) {
+        super(request.ttl());
+        for (int i = 0; i < request.size(); i++) {
             Thread thread = new Thread(this::run, String.format("daemonThread-%s#%d", getId(), i));
             threads.add(thread);
             thread.start();

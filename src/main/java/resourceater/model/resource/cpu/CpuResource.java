@@ -1,13 +1,14 @@
 package resourceater.model.resource.cpu;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
+
 import lombok.extern.slf4j.Slf4j;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * @author Jonatan Ivanov
@@ -18,8 +19,8 @@ public class CpuResource extends Resource<CpuResource> {
     private final int size;
 
     public CpuResource(CreateCpuResourceRequest request) {
-        super(request.getTtl());
-        this.size = request.getSize();
+        super(request.ttl());
+        this.size = request.size();
         this.executorService = new ThreadPoolExecutor(this.size, this.size, 0, SECONDS, new ArrayBlockingQueue<>(1));
         for (int i = 0; i < size; i++) {
             executorService.submit(this::run);

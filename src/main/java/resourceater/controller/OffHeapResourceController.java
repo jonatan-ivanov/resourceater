@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.DIRECT_BUFFERS;
 @ExposesResourceFor(OffHeapResourceModel.class)
 @Tag(name = "Off-Heap Direct Buffers")
 public class OffHeapResourceController extends ResourceController<CreateOffHeapResourceRequest, OffHeapResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public OffHeapResourceController(
         PagedResourcesAssembler<OffHeapResource> pagedAssembler,
         ModelAssembler<OffHeapResource> modelAssembler,

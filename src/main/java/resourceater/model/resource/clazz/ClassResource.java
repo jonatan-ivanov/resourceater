@@ -1,14 +1,15 @@
 package resourceater.model.resource.clazz;
 
-import static java.lang.String.format;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-import static org.objectweb.asm.Opcodes.V12;
-
 import java.util.ArrayList;
 import java.util.List;
+
 import org.objectweb.asm.ClassWriter;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
+
+import static java.lang.String.format;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
+import static org.objectweb.asm.Opcodes.V12;
 
 /**
  * @author Jonatan Ivanov
@@ -20,8 +21,8 @@ public class ClassResource extends Resource<ClassResource> {
     private final List<Class<?>> classes = new ArrayList<>();
 
     public ClassResource(CreateClassResourceRequest request) {
-        super(request.getTtl());
-        for (int i = 0; i < request.getSize(); i++) {
+        super(request.ttl());
+        for (int i = 0; i < request.size(); i++) {
             classes.add(generateClass(format("%s$%d", getId(), i)));
         }
     }

@@ -1,18 +1,20 @@
 package resourceater.model.resource.file;
 
-import static java.nio.file.StandardOpenOption.CREATE_NEW;
-import static java.nio.file.StandardOpenOption.WRITE;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.time.Duration;
+
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.unit.DataSize;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
+
+import org.springframework.util.unit.DataSize;
+
+import static java.nio.file.StandardOpenOption.CREATE_NEW;
+import static java.nio.file.StandardOpenOption.WRITE;
 
 /**
  * @author Jonatan Ivanov
@@ -24,7 +26,7 @@ public class FileResource extends Resource<FileResource> {
     private final File file;
 
     public FileResource(CreateFileResourceRequest request) {
-        this(DataSize.parse(request.getSize()), request.getTtl());
+        this(DataSize.parse(request.size()), request.ttl());
     }
 
     private FileResource(DataSize dataSize, Duration ttl) {

@@ -10,8 +10,8 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class FileResourceModel extends Model<FileResource> {
-    private final long size;
-    private final String path;
+    long size;
+    String path;
 
     public FileResourceModel(FileResource resource, long size, String path) {
         super(resource);

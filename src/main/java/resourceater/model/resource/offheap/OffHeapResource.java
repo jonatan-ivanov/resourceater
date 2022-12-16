@@ -2,9 +2,11 @@ package resourceater.model.resource.offheap;
 
 import java.nio.ByteBuffer;
 import java.time.Duration;
-import org.springframework.util.unit.DataSize;
+
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
+
+import org.springframework.util.unit.DataSize;
 
 /**
  * @author Jonatan Ivanov
@@ -14,7 +16,7 @@ public class OffHeapResource extends Resource<OffHeapResource> {
     private final ByteBuffer byteBuffer;
 
     public OffHeapResource(CreateOffHeapResourceRequest request) {
-        this(DataSize.parse(request.getSize()), request.getTtl());
+        this(DataSize.parse(request.size()), request.ttl());
     }
 
     private OffHeapResource(DataSize dataSize, Duration ttl) {

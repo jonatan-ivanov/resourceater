@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.OBJECTS;
 @ExposesResourceFor(HeapResourceModel.class)
 @Tag(name = "Heap Objects")
 public class HeapResourceController extends ResourceController<CreateHeapResourceRequest, HeapResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public HeapResourceController(
         PagedResourcesAssembler<HeapResource> pagedAssembler,
         ModelAssembler<HeapResource> modelAssembler,

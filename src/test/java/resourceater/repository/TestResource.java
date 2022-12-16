@@ -1,6 +1,7 @@
 package resourceater.repository;
 
 import java.time.Duration;
+
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
 
@@ -8,6 +9,7 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 public class TestResource extends Resource<TestResource> {
+    @SuppressWarnings("unused")
     public TestResource() {
         this(null);
     }

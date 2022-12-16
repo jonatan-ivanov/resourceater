@@ -26,6 +26,7 @@ public class HttpResourceController extends ResourceController<CreateHttpResourc
     private final String url;
     private final HttpBlobClient client;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public HttpResourceController(
         PagedResourcesAssembler<HttpResource> pagedAssembler,
         ModelAssembler<HttpResource> modelAssembler,

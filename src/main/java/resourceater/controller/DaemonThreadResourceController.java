@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.THREAD_POOLS;
 @ExposesResourceFor(DaemonThreadResourceModel.class)
 @Tag(name = "Threads")
 public class DaemonThreadResourceController extends ResourceController<CreateDaemonThreadResourceRequest, DaemonThreadResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public DaemonThreadResourceController(
         PagedResourcesAssembler<DaemonThreadResource> pagedAssembler,
         ModelAssembler<DaemonThreadResource> modelAssembler,

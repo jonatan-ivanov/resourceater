@@ -10,7 +10,7 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class ClassResourceModel extends Model<ClassResource> {
-    private final int size;
+    int size;
 
     public ClassResourceModel(ClassResource resource, int size) {
         super(resource);

@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.SOCKET_POOLS;
 @ExposesResourceFor(SocketResourceModel.class)
 @Tag(name = "Sockets")
 public class SocketResourceController extends ResourceController<CreateSocketResourceRequest, SocketResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public SocketResourceController(
         PagedResourcesAssembler<SocketResource> pagedAssembler,
         ModelAssembler<SocketResource> modelAssembler,

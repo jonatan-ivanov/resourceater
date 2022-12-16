@@ -21,6 +21,7 @@ import static resourceater.controller.Mappings.FILES;
 @ExposesResourceFor(FileResourceModel.class)
 @Tag(name = "Files")
 public class FileResourceController extends ResourceController<CreateFileResourceRequest, FileResource> {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public FileResourceController(
         PagedResourcesAssembler<FileResource> pagedAssembler,
         ModelAssembler<FileResource> modelAssembler,

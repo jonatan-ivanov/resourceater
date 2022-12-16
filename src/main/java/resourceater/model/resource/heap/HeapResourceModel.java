@@ -10,7 +10,7 @@ import resourceater.model.resource.Model;
 @Value
 @EqualsAndHashCode(callSuper=true)
 public class HeapResourceModel extends Model<HeapResource> {
-    private final long size;
+    long size;
 
     public HeapResourceModel(HeapResource resource, long size) {
         super(resource);
