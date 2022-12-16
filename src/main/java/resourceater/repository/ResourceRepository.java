@@ -1,26 +1,28 @@
 package resourceater.repository;
 
-import static resourceater.utils.StreamUtils.toStream;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import org.jetbrains.annotations.NotNull;
 import reactor.core.publisher.Mono;
 import resourceater.model.resource.Resource;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import static resourceater.utils.StreamUtils.toStream;
+
 /**
  * @author Jonatan Ivanov
  */
-public class ResourceRepository<T extends Resource<T>> implements PagingAndSortingRepository<T, String>, DisposableBean {
+public class ResourceRepository<T extends Resource<T>> implements PagingAndSortingRepository<T, String>, CrudRepository<T, String>, DisposableBean {
     private final Map<String, T> resources = new ConcurrentHashMap<>();
 
     @NotNull
