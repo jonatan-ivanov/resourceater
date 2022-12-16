@@ -7,7 +7,7 @@ services:
             BPL_JMX_ENABLED: "true"
             BPL_DEBUG_ENABLED: "true"
 #            BPL_DEBUG_SUSPEND: "true"
-            BPL_DEBUG_PORT: "*:${DEBUG_PORT}"
+            BPL_DEBUG_PORT: "${DEBUG_PORT}"
             JAVA_TOOL_OPTIONS: "${JAVA_TOOL_OPTIONS}"
         ports:
             - "${HTTP_PORT}:${HTTP_PORT}"

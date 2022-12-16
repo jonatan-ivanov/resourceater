@@ -1,10 +1,9 @@
 bootBuildImage {
     environment = [
-        BP_GRADLE_BUILD_ARGUMENTS: '--no-daemon assemble',
         BP_JMX_ENABLED: 'true',
         BP_DEBUG_ENABLED: 'true'
     ]
-    imageName = System.env.IMAGE ?: imageName // for skaffold
+    imageName = System.env.IMAGE ?: imageName.get() // for skaffold
 }
 
 task bootDockerRun {
@@ -19,6 +18,6 @@ task bootDockerRun {
                 "APP_IMAGE=$project.name:$project.version"
         ]
 
-        'docker-compose --compatibility up'.execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)
+        "docker compose --project-name $project.name up".execute(envVars, file('docker')).waitForProcessOutput(System.out, System.err)
     }
 }
