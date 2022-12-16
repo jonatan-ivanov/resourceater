@@ -32,7 +32,7 @@ public class HttpResourceController extends ResourceController<CreateHttpResourc
         ModelAssembler<HttpResource> modelAssembler,
         ResourceRepository<HttpResource> repository,
         HttpBlobClient client,
-        @Value("${feign.client.config.httpBlob.url}") String url) {
+        @Value("${spring.cloud.openfeign.client.config.httpBlob.url}") String url) {
         super(pagedAssembler, modelAssembler, repository);
         this.client = client;
         this.url = url;

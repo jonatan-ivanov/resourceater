@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * @author Jonatan Ivanov
  */
-@FeignClient(name = "containerThreadResource", url = "${feign.client.config.containerThreadResource.url}")
+@FeignClient(name = "containerThreadResource")
 public interface ContainerThreadResourceClient {
     @GetMapping("{id}/block")
     void block(@PathVariable("id") String id);

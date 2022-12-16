@@ -68,7 +68,7 @@ dependencies {
 }
 
 processResources {
-    filesMatching('build.yml') { it.expand(project.properties) }
+    filesMatching('build.properties') { it.expand(project.properties) }
 }
 
 jar {

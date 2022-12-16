@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * @author Jonatan Ivanov
  */
-@FeignClient(name = "httpBlob", url = "${feign.client.config.httpBlob.url}")
+@FeignClient(name = "httpBlob")
 public interface HttpBlobClient {
     @GetMapping byte[] getBytes();
 }
