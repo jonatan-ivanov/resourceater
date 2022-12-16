@@ -52,6 +52,7 @@ dependencies {
     implementation 'org.springframework.data:spring-data-commons'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'io.github.openfeign:feign-okhttp'
+    implementation 'io.github.openfeign:feign-micrometer'
     implementation 'io.projectreactor:reactor-core'
 
     implementation 'org.springdoc:springdoc-openapi-ui:latest.release'

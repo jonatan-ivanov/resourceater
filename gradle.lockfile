@@ -22,6 +22,7 @@ io.github.classgraph:classgraph:4.8.149=compileClasspath,default,productionRunti
 io.github.openfeign.form:feign-form-spring:3.8.0=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.github.openfeign.form:feign-form:3.8.0=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.github.openfeign:feign-core:12.1=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+io.github.openfeign:feign-micrometer:12.1=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.github.openfeign:feign-okhttp:12.1=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.github.openfeign:feign-slf4j:12.1=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.micrometer:context-propagation:1.0.0=compileClasspath,default,productionRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
