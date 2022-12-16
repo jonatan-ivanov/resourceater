@@ -57,6 +57,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:latest.release'
     implementation 'org.springdoc:springdoc-openapi-hateoas:latest.release'
 
+    implementation ('io.micrometer:micrometer-tracing-bridge-brave') { exclude(group: 'io.zipkin.reporter2') }
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api'

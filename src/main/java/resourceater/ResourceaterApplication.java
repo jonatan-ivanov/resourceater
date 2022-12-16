@@ -13,7 +13,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType
 @EnableFeignClients
 @EnableHypermediaSupport(type = HypermediaType.HAL)
 @SpringBootApplication
-@PropertySource("classpath:build.yml")
+@PropertySource("classpath:build.properties")
 public class ResourceaterApplication {
     public static void main(String[] args) {
         SpringApplication.run(ResourceaterApplication.class, args);
