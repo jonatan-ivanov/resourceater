@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "dbc8a181-a822-45f5-a69e-1dcdb6598ecc",
 		"name": "resourceater",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13782682"
 	},
 	"item": [
 		{
@@ -986,7 +987,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"size\": 1000000,\n\t\"type\": \"COUNTER\",\n\t\"ttl\": \"PT10s\"\n}"
+							"raw": "{\n\t\"size\": 1000,\n\t\"type\": \"COUNTER\",\n\t\"ttl\": \"PT10s\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/resources/meters",
