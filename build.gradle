@@ -54,6 +54,7 @@ dependencies {
     implementation 'io.github.openfeign:feign-okhttp'
     implementation 'io.github.openfeign:feign-micrometer'
     implementation 'io.projectreactor:reactor-core'
+    implementation 'org.ow2.asm:asm:latest.release'
 
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.+'
 
