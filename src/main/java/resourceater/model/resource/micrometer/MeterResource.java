@@ -12,9 +12,9 @@ import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.LongTaskTimer;
 import io.micrometer.core.instrument.Measurement;
 import io.micrometer.core.instrument.Meter;
+import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Statistic;
 import io.micrometer.core.instrument.Timer;
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import resourceater.model.resource.Model;
 import resourceater.model.resource.Resource;
 
@@ -22,16 +22,16 @@ import resourceater.model.resource.Resource;
  * @author Jonatan Ivanov
  */
 public class MeterResource extends Resource<MeterResource> {
-    private final SimpleMeterRegistry registry;
+    private final MeterRegistry registry;
     private final List<Meter.Id> meters;
 
-    public MeterResource(CreateMeterResourceRequest request) {
-        this(request.size(), request.type(), request.ttl());
+    public MeterResource(CreateMeterResourceRequest request, MeterRegistry registry) {
+        this(request.size(), request.type(), request.ttl(), registry);
     }
 
-    public MeterResource(int count, Meter.Type type, Duration ttl) {
+    public MeterResource(int count, Meter.Type type, Duration ttl, MeterRegistry registry) {
         super(ttl);
-        this.registry = new SimpleMeterRegistry();
+        this.registry = registry;
         this.meters = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {

@@ -1,5 +1,6 @@
 package resourceater.controller;
 
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import resourceater.model.resource.micrometer.CreateMeterResourceRequest;
 import resourceater.model.resource.micrometer.MeterResource;
@@ -31,6 +32,6 @@ public class MeterResourceController extends ResourceController<CreateMeterResou
 
     @Override
     MeterResource createResource(CreateMeterResourceRequest request) {
-        return new MeterResource(request);
+        return new MeterResource(request, new SimpleMeterRegistry());
     }
 }
