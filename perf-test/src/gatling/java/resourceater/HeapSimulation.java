@@ -1,4 +1,4 @@
-package resourceater.simulations.heap;
+package resourceater;
 
 import java.time.Duration;
 
