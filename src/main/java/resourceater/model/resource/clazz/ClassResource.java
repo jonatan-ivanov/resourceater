@@ -9,7 +9,7 @@ import resourceater.model.resource.Resource;
 
 import static java.lang.String.format;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-import static org.objectweb.asm.Opcodes.V12;
+import static org.objectweb.asm.Opcodes.V17;
 
 /**
  * @author Jonatan Ivanov
@@ -28,7 +28,7 @@ public class ClassResource extends Resource<ClassResource> {
     }
 
     private Class<?> generateClass(String name) {
-        classWriter.visit(V12, ACC_PUBLIC, format("%s/%s", PACKAGE_NAME, name), null, "java/lang/Object", null);
+        classWriter.visit(V17, ACC_PUBLIC, format("%s/%s", PACKAGE_NAME, name), null, "java/lang/Object", null);
         classWriter.visitEnd();
         return classLoader.defineClass(format("%s.%s", PACKAGE_NAME, name), classWriter.toByteArray());
     }
