@@ -1,6 +1,6 @@
 buildscript {
     ext.springBootVersion = '3.+'
-    ext.springCloudVersion = '2022.+'
+    ext.springCloudVersion = '2023.+'
 
     configurations.classpath {
         resolutionStrategy.activateDependencyLocking()
