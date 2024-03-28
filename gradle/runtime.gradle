@@ -39,8 +39,8 @@ ext.debugJvmArgs = [
 
 version = grgit ? "${grgit.head().abbreviatedId}.${Instant.now().epochSecond}" : (System.env.SOURCE_VERSION ?: '0.0.0-UNKNOWN')
 
-bootRun {
-    jvmArgs += commonJvmArgs + jmxJvmArgs + debugJvmArgs
-}
+bootRun.jvmArgs += commonJvmArgs + jmxJvmArgs + debugJvmArgs
+// TODO: remove this once the Boot Gradle Plugin works with Java 22
+springBoot.mainClass = 'resourceater.ResourceaterApplication'
 
 mkdir 'logs' // The JVM is not able to start if the GC logs folder does not exists :(
