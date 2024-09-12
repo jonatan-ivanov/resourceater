@@ -3,23 +3,23 @@ ext.JMX_PORT = 5000
 ext.DEBUG_PORT = 5005
 
 ext.commonJvmArgs = [
-//        '-XX:+PrintFlagsFinal',
-//        '-XX:NativeMemoryTracking=summary',
-//        '-XX:+UnlockDiagnosticVMOptions',
-//        '-XX:+PrintNMTStatistics',
-        '-XX:MinHeapSize=1G',
-        '-XX:MaxHeapSize=1G',
-        '-XX:MaxDirectMemorySize=1G',
-        '-XX:MaxMetaspaceSize=256M',
-        '-XX:+UseG1GC',
+    // '-XX:+PrintFlagsFinal',
+    // '-XX:NativeMemoryTracking=summary',
+    // '-XX:+UnlockDiagnosticVMOptions',
+    // '-XX:+PrintNMTStatistics',
+    '-XX:MinHeapSize=1G',
+    '-XX:MaxHeapSize=1G',
+    '-XX:MaxDirectMemorySize=1G',
+    '-XX:MaxMetaspaceSize=256M',
+    '-XX:+UseG1GC',
 
-        '-XX:+HeapDumpOnOutOfMemoryError',
-        '-XX:HeapDumpPath=logs',
-        '-Xlog:gc*:file=logs/gc.log:time,uptime,pid,tid,level,tags:filecount=5,filesize=5M',
+    '-XX:+HeapDumpOnOutOfMemoryError',
+    '-XX:HeapDumpPath=logs',
+    '-Xlog:gc*:file=logs/gc.log:time,uptime,pid,tid,level,tags:filecount=5,filesize=5M',
 
-        '-Djava.security.egd=file:/dev/./urandom',
-        '-Duser.timezone=UTC',
-        '-Dfile.encoding=UTF-8',
+    '-Djava.security.egd=file:/dev/./urandom',
+    '-Duser.timezone=UTC',
+    '-Dfile.encoding=UTF-8',
 ]
 
 ext.jmxJvmArgs = [
