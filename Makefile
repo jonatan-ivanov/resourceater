@@ -26,4 +26,4 @@ run:
 		-jar build/libs/resourceater-*.jar
 
 perftest:
-	./gradlew gatlingRun --rerun-tasks
+	./gradlew gatlingRun --simulation=resourceater.HeapSimulation
