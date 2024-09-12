@@ -1,6 +1,6 @@
 buildscript {
-    ext.springBootVersion = '3.+'
-    ext.springCloudVersion = '2023.+'
+    ext.springBootVersion = 'latest.release'
+    ext.springCloudVersion = 'latest.release'
 
     configurations.classpath {
         resolutionStrategy.activateDependencyLocking()
@@ -47,6 +47,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.data:spring-data-commons'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
@@ -57,7 +58,7 @@ dependencies {
 
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.+'
 
-    implementation ('io.micrometer:micrometer-tracing-bridge-brave') { exclude(group: 'io.zipkin.reporter2') }
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
