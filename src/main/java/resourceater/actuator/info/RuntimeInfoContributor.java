@@ -29,8 +29,6 @@ public class RuntimeInfoContributor implements InfoContributor {
         );
 
         builder.withDetail("runtime", Map.of(
-            "memory", memoryInfo(),
-            "cpu", cpuInfo(),
             "gcs", gcInfo(),
             "user", userInfo(),
             "network", networkInfo(),
@@ -38,18 +36,6 @@ public class RuntimeInfoContributor implements InfoContributor {
             "uptime", between(startTime, Instant.now()),
             "heartbeat", Instant.now())
         );
-    }
-
-    private Map<String, Object> memoryInfo() {
-        return Map.of(
-            "total", Runtime.getRuntime().totalMemory(),
-            "max", Runtime.getRuntime().maxMemory(),
-            "free", Runtime.getRuntime().freeMemory()
-        );
-    }
-
-    private Map<String, Object> cpuInfo() {
-        return Map.of("availableProcessors", Runtime.getRuntime().availableProcessors());
     }
 
     private List<Map<String, Object>> gcInfo() {
